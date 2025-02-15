@@ -10,12 +10,27 @@ from .models import (
 from .translation import *  # Импортируем все из translation.py
 from modeltranslation.admin import TranslationAdmin
 
+class BaseTranslationAdmin(TranslationAdmin):
+    class Media:
+        css = {
+            'all': (
+                'modeltranslation/css/tabbed_translation_fields.css',
+                'admin/css/jquery.ui.tabs.css',
+            ),
+        }
+        js = (
+            'admin/js/jquery.init.js',
+            'admin/js/jquery.ui.tabs.min.js',
+            'modeltranslation/js/force_jquery.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+
 class AboutUsMixin:
     def get_app_label(self):
         return "О нас"
 
 @admin.register(MenuItem)
-class MenuItemAdmin(TranslationAdmin):
+class MenuItemAdmin(BaseTranslationAdmin):
     list_display = ('title', 'url', 'parent', 'order', 'is_active')
     list_editable = ('order', 'is_active')
     list_filter = ('is_active', 'parent')
@@ -23,7 +38,7 @@ class MenuItemAdmin(TranslationAdmin):
     ordering = ('order',)
 
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(TranslationAdmin):
+class SiteSettingsAdmin(BaseTranslationAdmin):
     fieldsets = (
         (_('General'), {
             'fields': ('logo', 'site_name'),
@@ -50,21 +65,8 @@ class SiteSettingsAdmin(TranslationAdmin):
         # Запрещаем удаление настроек
         return False
 
-    class Media:
-        css = {
-            'screen': (
-                'modeltranslation/css/tabbed_translation_fields.css',
-                'https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css',
-            ),
-        }
-        js = (
-            'https://code.jquery.com/jquery-3.6.0.min.js',
-            'https://code.jquery.com/ui/1.13.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-
 @admin.register(Hero)
-class HeroAdmin(TranslationAdmin):
+class HeroAdmin(BaseTranslationAdmin):
     list_display = ('id', 'display_image', 'is_active', 'order')
     list_editable = ('is_active', 'order')
 
@@ -75,7 +77,7 @@ class HeroAdmin(TranslationAdmin):
     display_image.short_description = 'Image'
 
 @admin.register(Event)
-class EventAdmin(TranslationAdmin):
+class EventAdmin(BaseTranslationAdmin):
     list_display = ('title', 'display_image', 'date', 'is_active', 'created_at')
     list_editable = ('is_active',)
     search_fields = ('title',)
@@ -88,7 +90,7 @@ class EventAdmin(TranslationAdmin):
     display_image.short_description = 'Image'
 
 @admin.register(Banner)
-class BannerAdmin(TranslationAdmin):
+class BannerAdmin(BaseTranslationAdmin):
     list_display = ('title', 'display_image', 'url', 'order', 'is_active')
     list_editable = ('order', 'is_active')
     search_fields = ('title',)
@@ -100,7 +102,7 @@ class BannerAdmin(TranslationAdmin):
     display_image.short_description = 'Image'
 
 @admin.register(News)
-class NewsAdmin(AboutUsMixin, TranslationAdmin):
+class NewsAdmin(AboutUsMixin, BaseTranslationAdmin):
     list_display = ('title', 'display_image', 'is_featured', 'created_at')
     list_editable = ('is_featured',)
     search_fields = ('title', 'preview', 'content')
@@ -117,7 +119,7 @@ class NewsAdmin(AboutUsMixin, TranslationAdmin):
         verbose_name_plural = 'Новости'
 
 @admin.register(Resource)
-class ResourceAdmin(TranslationAdmin):
+class ResourceAdmin(BaseTranslationAdmin):
     list_display = ('title', 'display_image', 'url', 'order')
     list_editable = ('order',)
     search_fields = ('title', 'description')
