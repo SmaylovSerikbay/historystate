@@ -50,11 +50,8 @@
                                 {% trans "Digital" %}
                             </a>
                             <ul class="dropdown-menu">
-                                {% for digital_link in digital_links %}
-                                    {% if digital_link.is_active %}
-                                        <li><a class="dropdown-item" href="{{ digital_link.url }}" target="_blank">{{ digital_link.title }}</a></li>
-                                    {% endif %}
-                                {% endfor %}
+                                <li><a class="dropdown-item" href="{% url 'main:ehistory' %}">{% trans "E-history" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'main:archive' %}">{% trans "Archive 2025" %}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

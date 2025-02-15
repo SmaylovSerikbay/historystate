@@ -352,3 +352,33 @@ class ScientificLibraryView(BaseContextMixin, ListView):
 
     def get_queryset(self):
         return ScientificLibrary.objects.filter(is_active=True).order_by('order', '-publication_date')
+
+class EHistoryView(BaseContextMixin, ListView):
+    model = Journal
+    template_name = 'main/journal_list.html'
+    context_object_name = 'journals'
+
+    def get_queryset(self):
+        return Journal.objects.filter(is_active=True, type='ehistory')
+    
+    def get(self, request, *args, **kwargs):
+        first_journal = self.get_queryset().first()
+        if first_journal:
+            return redirect(first_journal.url)
+        messages.warning(request, _('No active E-history link available.'))
+        return redirect('main:home')
+
+class ArchiveView(BaseContextMixin, ListView):
+    model = Journal
+    template_name = 'main/journal_list.html'
+    context_object_name = 'journals'
+
+    def get_queryset(self):
+        return Journal.objects.filter(is_active=True, type='archive')
+    
+    def get(self, request, *args, **kwargs):
+        first_journal = self.get_queryset().first()
+        if first_journal:
+            return redirect(first_journal.url)
+        messages.warning(request, _('No active Archive 2025 link available.'))
+        return redirect('main:home')

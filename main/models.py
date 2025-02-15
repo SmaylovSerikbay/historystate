@@ -114,7 +114,13 @@ class Recommendation(TimeStampedModel):
         return self.title
 
 class Journal(TimeStampedModel):
+    TYPES = [
+        ('journal', _('Scientific Journal')),
+        ('ehistory', _('E-history')),
+        ('archive', _('Archive 2025')),
+    ]
     url = models.URLField(verbose_name=_('URL'))
+    type = models.CharField(max_length=20, choices=TYPES, default='journal', verbose_name=_('Type'))
     is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
 
     class Meta:

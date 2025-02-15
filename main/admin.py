@@ -155,8 +155,9 @@ class RecommendationAdmin(TranslationAdmin):
 
 @admin.register(Journal)
 class JournalAdmin(TranslationAdmin):
-    list_display = ('url', 'is_active')
+    list_display = ('url', 'type', 'is_active')
     list_editable = ('is_active',)
+    list_filter = ('type', 'is_active')
 
 @admin.register(ExpertOpinion)
 class ExpertOpinionAdmin(TranslationAdmin):

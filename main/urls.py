@@ -3,7 +3,7 @@ from .views import (
     HomeView, EventListView, EventDetailView, NewsListView, NewsDetailView,
     ResourceListView, ResourceDetailView, JournalListView, ExpertOpinionListView,
     AboutView, ContactView, ResearchProjectListView, ResearchProjectDetailView,
-    RecommendationListView, SearchView, ScientificLibraryView
+    RecommendationListView, SearchView, ScientificLibraryView, EHistoryView, ArchiveView
 )
 
 app_name = 'main'
@@ -25,4 +25,6 @@ urlpatterns = [
     path('research/projects/<int:pk>/', ResearchProjectDetailView.as_view(), name='research_project_detail'),
     path('research/recommendations/', RecommendationListView.as_view(), name='recommendations'),
     path('scientific-library/', ScientificLibraryView.as_view(), name='scientific_library'),
+    path('ehistory/', EHistoryView.as_view(), name='ehistory'),
+    path('archive/', ArchiveView.as_view(), name='archive'),
 ] 
