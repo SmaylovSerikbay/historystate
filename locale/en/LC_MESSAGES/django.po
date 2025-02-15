@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 00:32+0500\n"
+"POT-Creation-Date: 2025-02-16 01:03+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,8 +35,8 @@ msgid "Institute of State History Admin"
 msgstr ""
 
 #: .\config\settings.py:199 .\config\settings.py:200 .\config\settings.py:202
-#: .\main\translation.py:18 .\templates\base.html:201 .\templates\base.html:205
-#: .\templates\base.html:209 .\templates\base.html:212
+#: .\main\translation.py:18 .\templates\base.html:159 .\templates\base.html:163
+#: .\templates\base.html:167 .\templates\base.html:170
 msgid "Institute of State History"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Is featured"
 msgstr ""
 
-#: .\main\models.py:63 .\main\models.py:64 .\templates\base.html:190
+#: .\main\models.py:63 .\main\models.py:64 .\templates\base.html:148
 #: .\templates\main\home.html:139 .\templates\main\news_detail.html:13
 #: .\templates\main\news_list.html:4 .\templates\main\news_list.html:13
 #: .\templates\main\news_list.html:24 .\templates\main\news_list.html:72
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Research Project"
 msgstr ""
 
-#: .\main\models.py:95 .\templates\base.html:78 .\templates\base.html:191
+#: .\main\models.py:95 .\templates\base.html:36 .\templates\base.html:149
 #: .\templates\main\research_project_detail.html:12
 #: .\templates\main\research_project_list.html:4
 #: .\templates\main\research_project_list.html:8
@@ -250,7 +250,7 @@ msgstr ""
 msgid "Recommendation"
 msgstr ""
 
-#: .\main\models.py:110 .\templates\base.html:79
+#: .\main\models.py:110 .\templates\base.html:37
 #: .\templates\main\recommendation_list.html:4
 #: .\templates\main\recommendation_list.html:13
 #: .\templates\main\recommendation_list.html:24
@@ -281,8 +281,8 @@ msgstr ""
 
 #: .\main\models.py:137 .\main\templates\main\expert_opinion_list.html:4
 #: .\main\templates\main\expert_opinion_list.html:13
-#: .\main\templates\main\expert_opinion_list.html:22 .\templates\base.html:81
-#: .\templates\base.html:192 .\templates\main\expert_opinion_detail.html:12
+#: .\main\templates\main\expert_opinion_list.html:22 .\templates\base.html:39
+#: .\templates\base.html:150 .\templates\main\expert_opinion_detail.html:12
 #: .\templates\main\expert_opinion_list.html:4
 #: .\templates\main\expert_opinion_list.html:13
 #: .\templates\main\expert_opinion_list.html:24
@@ -345,8 +345,8 @@ msgstr ""
 msgid "Copyright Text"
 msgstr ""
 
-#: .\main\models.py:181 .\templates\base.html:201 .\templates\base.html:205
-#: .\templates\base.html:209 .\templates\base.html:212
+#: .\main\models.py:181 .\templates\base.html:159 .\templates\base.html:163
+#: .\templates\base.html:167 .\templates\base.html:170
 msgid "All rights reserved"
 msgstr ""
 
@@ -449,66 +449,66 @@ msgstr ""
 msgid "No active journals available."
 msgstr ""
 
-#: .\templates\base.html:71 .\templates\base.html:189
+#: .\templates\base.html:29 .\templates\base.html:147
 #: .\templates\main\about.html:4 .\templates\main\about.html:13
 #: .\templates\main\about.html:24
 msgid "About Institute"
 msgstr ""
 
-#: .\templates\base.html:75
+#: .\templates\base.html:33
 msgid "Research"
 msgstr ""
 
-#: .\templates\base.html:80 .\templates\main\journal_detail.html:12
+#: .\templates\base.html:38 .\templates\main\journal_detail.html:12
 #: .\templates\main\journal_list.html:4 .\templates\main\journal_list.html:8
 msgid "Scientific Journals"
 msgstr ""
 
-#: .\templates\base.html:85
+#: .\templates\base.html:43
 msgid "Scientific Library"
 msgstr ""
 
-#: .\templates\base.html:88
+#: .\templates\base.html:46
 msgid "Modern History"
 msgstr ""
 
-#: .\templates\base.html:92
+#: .\templates\base.html:50
 msgid "Digital"
 msgstr ""
 
-#: .\templates\base.html:95
+#: .\templates\base.html:53
 msgid "History"
 msgstr ""
 
-#: .\templates\base.html:96
+#: .\templates\base.html:54
 msgid "E-history"
 msgstr ""
 
-#: .\templates\base.html:97
+#: .\templates\base.html:55
 msgid "Archive 2025"
 msgstr ""
 
-#: .\templates\base.html:101
+#: .\templates\base.html:59
 msgid "Our Achievements"
 msgstr ""
 
-#: .\templates\base.html:111 .\templates\main\search_results.html:36
+#: .\templates\base.html:69 .\templates\main\search_results.html:36
 msgid "Search..."
 msgstr ""
 
-#: .\templates\base.html:156 .\templates\main\about.html:364
+#: .\templates\base.html:114 .\templates\main\about.html:364
 msgid "Contact Information"
 msgstr ""
 
-#: .\templates\base.html:176 .\templates\main\about.html:49
+#: .\templates\base.html:134 .\templates\main\about.html:49
 msgid "About Us"
 msgstr ""
 
-#: .\templates\base.html:187
+#: .\templates\base.html:145
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\base.html:193
+#: .\templates\base.html:151
 msgid "Contact"
 msgstr ""
 
