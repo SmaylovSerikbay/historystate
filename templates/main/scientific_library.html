@@ -7,9 +7,10 @@
 <style>
     /* Общие стили */
     :root {
-        --primary-color: #00205B;
-        --secondary-color: #B8860B;
-        --text-color: #2C3E50;
+        --primary-color: #00529B;
+        --secondary-color: #1B2B48;
+        --accent-color: #C4A052;
+        --text-color: #333333;
         --light-bg: #F8F9FA;
         --border-color: #E5E5E5;
     }
@@ -17,7 +18,7 @@
     /* Стили для секций */
     .breadcrumb-wrapper {
         background: var(--light-bg);
-        padding: 1.2rem 0;
+        padding: 1rem 0;
         border-bottom: 1px solid var(--border-color);
     }
 
@@ -30,100 +31,95 @@
         color: var(--primary-color);
         text-decoration: none;
         font-weight: 500;
-        font-size: 0.95rem;
-        letter-spacing: 0.3px;
-    }
-
-    .breadcrumb-item.active {
-        color: var(--secondary-color);
-        font-size: 0.95rem;
     }
 
     .page-header {
         background: white;
-        padding: 4rem 0;
+        padding: 3.5rem 0;
         border-bottom: 1px solid var(--border-color);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: relative;
+    }
+
+    .page-header::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary-color);
+        opacity: 0.1;
     }
 
     .scientific-library-section {
-        padding: 4rem 0;
+        padding: 3rem 0;
         background: var(--light-bg);
     }
 
     /* Стили для заголовка */
     .page-title {
         color: var(--primary-color);
-        font-size: 2.8rem;
+        font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1rem;
         letter-spacing: -0.5px;
-        line-height: 1.2;
     }
 
     .page-description {
         color: var(--text-color);
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1.1rem;
         margin: 0;
-        opacity: 0.85;
-        letter-spacing: 0.2px;
+        opacity: 0.8;
+        max-width: 800px;
+    }
+
+    .page-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
     }
 
     .page-actions .btn {
-        padding: 0.8rem 1.5rem;
+        padding: 0.6rem 1.2rem;
         font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        border-radius: 0;
-    }
-
-    .page-actions .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
     /* Стили для фильтров */
     .input-group {
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        overflow: hidden;
     }
 
     .input-group .form-control {
-        padding: 1rem 1.2rem;
         border: 1px solid var(--border-color);
+        padding: 0.8rem 1rem;
         font-size: 0.95rem;
-        letter-spacing: 0.3px;
-        border-radius: 0;
     }
 
     .input-group .btn {
         padding: 0 1.5rem;
         background: var(--primary-color);
         border-color: var(--primary-color);
-        border-radius: 0;
     }
 
     .form-select {
-        padding: 1rem 1.2rem;
+        padding: 0.8rem 1rem;
         border: 1px solid var(--border-color);
         font-size: 0.95rem;
-        letter-spacing: 0.3px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        border-radius: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     /* Стили для карточек */
     .card {
         border: none;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-        transition: all 0.3s ease;
-        border-radius: 0;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .card-title {
@@ -131,95 +127,78 @@
         font-weight: 600;
         font-size: 1.1rem;
         line-height: 1.4;
-        margin-bottom: 1rem;
-        letter-spacing: 0.2px;
+        margin-bottom: 0.5rem;
     }
 
     .card-text {
         color: var(--text-color);
-        opacity: 0.8;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     .card-footer {
-        background: transparent;
-        padding: 1.5rem;
-        border-top: 1px solid var(--border-color);
+        background: none;
     }
 
-    .card-footer .btn {
-        padding: 0.8rem 1.2rem;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-        border-radius: 0;
-        text-transform: uppercase;
-        font-size: 0.9rem;
+    .btn-outline-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .btn-primary {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
     }
 
     /* Стили для модальных окон */
     .modal-content {
         border: none;
-        border-radius: 0;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
     .modal-header {
-        background: var(--primary-color);
-        color: white;
-        padding: 1.5rem;
-        border-radius: 0;
+        background: var(--light-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.25rem 1.5rem;
     }
 
     .modal-title {
+        color: var(--primary-color);
         font-weight: 600;
-        letter-spacing: 0.3px;
-        font-size: 1.2rem;
     }
 
     .modal-body {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem;
     }
 
     .info-section h6 {
         color: var(--primary-color);
-        font-size: 1rem;
-        margin-bottom: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.2px;
+        margin-bottom: 0.5rem;
     }
 
     .pdf-preview {
-        border: 1px solid var(--border-color);
-        border-radius: 0;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Адаптивные стили */
     @media (max-width: 768px) {
         .page-header {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
         }
 
         .page-title {
-            font-size: 2.2rem;
-        }
-
-        .page-description {
-            font-size: 1.1rem;
+            font-size: 2rem;
         }
 
         .page-actions {
             margin-top: 1.5rem;
-        }
-
-        .card-img-wrapper {
-            height: 180px !important;
+            justify-content: flex-start;
         }
     }
 
-    /* Стили для печати */
     @media print {
         .breadcrumb-wrapper,
         .navbar,
@@ -249,9 +228,8 @@
         }
         
         .page-header {
-            padding: 2rem 0 !important;
+            padding: 1rem 0 !important;
             margin-bottom: 2rem !important;
-            box-shadow: none !important;
         }
         
         .library-item {

@@ -52,27 +52,19 @@
             <!-- Статистика -->
             <div class="col-lg-5">
                 <div class="statistics-box">
+                    <h3 class="statistics-title">{% trans "Our Achievements" %}</h3>
                     <div class="achievement-grid">
+                        {% for achievement in achievements %}
                         <div class="achievement-item">
-                            <i class="fas fa-book"></i>
-                            <h2 class="counter">3382</h2>
-                            <p>{% trans "Research Publications" %}</p>
+                            <div class="achievement-icon">
+                                <i class="{{ achievement.icon }}"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h2 class="counter">{{ achievement.value }}</h2>
+                                <p>{{ achievement.title }}</p>
+                            </div>
                         </div>
-                        <div class="achievement-item">
-                            <i class="fas fa-search"></i>
-                            <h2 class="counter">23</h2>
-                            <p>{% trans "Active Projects" %}</p>
-                        </div>
-                        <div class="achievement-item">
-                            <i class="fas fa-book-open"></i>
-                            <h2 class="counter">99</h2>
-                            <p>{% trans "Scientific Works" %}</p>
-                        </div>
-                        <div class="achievement-item">
-                            <i class="fas fa-user-graduate"></i>
-                            <h2 class="counter">42</h2>
-                            <p>{% trans "Scientists" %}</p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -421,54 +413,92 @@
     }
 
     .statistics-box {
-        background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
-        padding: 2rem;
+        background: white;
         border-radius: 16px;
+        padding: 2.5rem;
         height: 100%;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .statistics-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .statistics-title {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
     }
 
     .achievement-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 2rem;
     }
 
     .achievement-item {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         padding: 1.5rem;
-        text-align: center;
-        backdrop-filter: blur(5px);
-        transition: transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: var(--light-bg);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .achievement-item:hover {
         transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-color: var(--primary-color);
     }
 
-    .achievement-item i {
-        font-size: 2rem;
-        color: var(--secondary-color);
-        margin-bottom: 1rem;
+    .achievement-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-color);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
-    .achievement-item .counter {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin: 0.5rem 0;
-        background: linear-gradient(45deg, #fff, var(--secondary-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .achievement-item p {
+    .achievement-icon i {
+        font-size: 1.5rem;
         color: white;
-        font-size: 0.9rem;
+    }
+
+    .achievement-content {
+        flex-grow: 1;
+    }
+
+    .achievement-content .counter {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
         margin: 0;
-        opacity: 0.9;
+        line-height: 1.2;
+    }
+
+    .achievement-content p {
+        margin: 0.5rem 0 0;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        opacity: 0.8;
     }
 
     /* Events Section */
@@ -884,17 +914,34 @@
             font-size: 2rem;
         }
 
-        .achievement-item {
-            min-height: 180px;
-            margin-bottom: 1.5rem;
+        .statistics-box {
+            padding: 1.5rem;
         }
 
-        .counter {
-            font-size: 2.2rem;
+        .achievement-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            padding: 1rem;
+        }
+
+        .achievement-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .achievement-icon i {
+            font-size: 1.2rem;
+        }
+
+        .achievement-content .counter {
+            font-size: 1.5rem;
         }
 
         .news-image {
-            min-height: 200px;
+            height: 180px;
         }
         
         .news-title {
