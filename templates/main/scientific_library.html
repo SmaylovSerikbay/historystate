@@ -5,6 +5,33 @@
 
 {% block extra_head %}
 <style>
+    /* Общие стили */
+    :root {
+        --primary-color: #1B2B48;
+        --secondary-color: #C4A052;
+        --text-color: #333333;
+        --light-bg: #F8F9FA;
+        --border-color: #E5E5E5;
+    }
+
+    /* Стили для секций */
+    .breadcrumb-wrapper {
+        background: var(--light-bg);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-header {
+        background: white;
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .scientific-library {
+        padding: 3rem 0;
+        background: var(--light-bg);
+    }
+
     @media print {
         .breadcrumb-wrapper,
         .navbar,
@@ -72,7 +99,7 @@
     </div>
 
     <!-- Заголовок страницы -->
-    <div class="page-header">
+    <div class="page-header bg-white border-bottom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8">
