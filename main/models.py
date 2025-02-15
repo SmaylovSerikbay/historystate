@@ -307,3 +307,18 @@ class ScientificLibrary(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+class DigitalLink(TimeStampedModel):
+    """Модель для внешних цифровых ресурсов"""
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    url = models.URLField(verbose_name=_('URL'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+    order = models.PositiveIntegerField(default=0, verbose_name=_('Order'))
+
+    class Meta:
+        verbose_name = _('Digital Link')
+        verbose_name_plural = _('Digital Links')
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title

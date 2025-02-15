@@ -3,7 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
-    MenuItem, SiteSettings, AboutPage, Charter, Management, Department, ScientificCouncil, YoungScientist, ScientificLibrary
+    MenuItem, SiteSettings, AboutPage, Charter, Management, Department, ScientificCouncil, YoungScientist, ScientificLibrary,
+    DigitalLink
 )
 
 @register(MenuItem)
@@ -100,4 +101,9 @@ class YoungScientistTranslationOptions(TranslationOptions):
 @register(ScientificLibrary)
 class ScientificLibraryTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'author')
+    required_languages = ('ru', 'kk', 'en')
+
+@register(DigitalLink)
+class DigitalLinkTranslationOptions(TranslationOptions):
+    fields = ('title',)
     required_languages = ('ru', 'kk', 'en') 

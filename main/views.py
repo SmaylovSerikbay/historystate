@@ -7,13 +7,27 @@ from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     AboutPage, Charter, Management, Department, ScientificCouncil, YoungScientist,
-    SiteSettings, ScientificLibrary
+    SiteSettings, ScientificLibrary, DigitalLink
 )
 from django.urls import reverse
 
 # Create your views here.
 
-class HomeView(TemplateView):
+def get_common_context(request):
+    """Функция для получения общего контекста"""
+    return {
+        'site_config': SiteSettings.objects.first(),
+        'digital_links': DigitalLink.objects.filter(is_active=True).order_by('order'),
+    }
+
+class BaseContextMixin:
+    """Миксин для добавления общего контекста"""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_common_context(self.request))
+        return context
+
+class HomeView(BaseContextMixin, TemplateView):
     template_name = 'main/home.html'
 
     def get_context_data(self, **kwargs):
@@ -36,7 +50,7 @@ class HomeView(TemplateView):
         
         return context
 
-class AboutView(TemplateView):
+class AboutView(BaseContextMixin, TemplateView):
     template_name = 'main/about.html'
 
     def get_context_data(self, **kwargs):
@@ -55,22 +69,22 @@ class AboutView(TemplateView):
         
         return context
 
-class ResearchProjectListView(ListView):
+class ResearchProjectListView(BaseContextMixin, ListView):
     model = ResearchProject
     template_name = 'main/research_project_list.html'
     context_object_name = 'projects'
 
-class ResearchProjectDetailView(DetailView):
+class ResearchProjectDetailView(BaseContextMixin, DetailView):
     model = ResearchProject
     template_name = 'main/research_project_detail.html'
     context_object_name = 'project'
 
-class RecommendationListView(ListView):
+class RecommendationListView(BaseContextMixin, ListView):
     model = Recommendation
     template_name = 'main/recommendation_list.html'
     context_object_name = 'recommendations'
 
-class JournalListView(ListView):
+class JournalListView(BaseContextMixin, ListView):
     model = Journal
     template_name = 'main/journal_list.html'
     context_object_name = 'journals'
@@ -88,12 +102,12 @@ class JournalListView(ListView):
         messages.warning(request, _('No active journals available.'))
         return redirect('home')
 
-class JournalDetailView(DetailView):
+class JournalDetailView(BaseContextMixin, DetailView):
     model = Journal
     template_name = 'main/journal_detail.html'
     context_object_name = 'journal'
 
-class ExpertOpinionListView(ListView):
+class ExpertOpinionListView(BaseContextMixin, ListView):
     model = ExpertOpinion
     template_name = 'main/expert_opinion_list.html'
     context_object_name = 'opinions'
@@ -102,18 +116,18 @@ class ExpertOpinionListView(ListView):
     def get_queryset(self):
         return ExpertOpinion.objects.filter(is_active=True)
 
-class ExpertOpinionDetailView(DetailView):
+class ExpertOpinionDetailView(BaseContextMixin, DetailView):
     model = ExpertOpinion
     template_name = 'main/expert_opinion_detail.html'
     context_object_name = 'opinion'
 
-class NewsListView(ListView):
+class NewsListView(BaseContextMixin, ListView):
     model = News
     template_name = 'main/news_list.html'
     context_object_name = 'news_list'
     paginate_by = 12
 
-class NewsDetailView(DetailView):
+class NewsDetailView(BaseContextMixin, DetailView):
     model = News
     template_name = 'main/news_detail.html'
     context_object_name = 'news'
@@ -133,7 +147,7 @@ class NewsDetailView(DetailView):
         
         return context
 
-class EventListView(ListView):
+class EventListView(BaseContextMixin, ListView):
     model = Event
     template_name = 'main/event_list.html'
     context_object_name = 'events'
@@ -142,12 +156,12 @@ class EventListView(ListView):
     def get_queryset(self):
         return Event.objects.filter(is_active=True).order_by('-date')
 
-class EventDetailView(DetailView):
+class EventDetailView(BaseContextMixin, DetailView):
     model = Event
     template_name = 'main/event_detail.html'
     context_object_name = 'event'
 
-class ResourceListView(ListView):
+class ResourceListView(BaseContextMixin, ListView):
     model = Resource
     template_name = 'main/resource_list.html'
     context_object_name = 'resources'
@@ -156,20 +170,19 @@ class ResourceListView(ListView):
     def get_queryset(self):
         return Resource.objects.all().order_by('order')
 
-class ResourceDetailView(DetailView):
+class ResourceDetailView(BaseContextMixin, DetailView):
     model = Resource
     template_name = 'main/resource_detail.html'
     context_object_name = 'resource'
 
-class ContactView(TemplateView):
+class ContactView(BaseContextMixin, TemplateView):
     template_name = 'main/contact.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['site_config'] = SiteSettings.objects.first()
         return context
 
-class SearchView(ListView):
+class SearchView(BaseContextMixin, ListView):
     template_name = 'main/search_results.html'
     paginate_by = 20
     context_object_name = 'results'
@@ -332,7 +345,7 @@ class SearchView(ListView):
         context['query'] = self.request.GET.get('q', '')
         return context
 
-class ScientificLibraryView(ListView):
+class ScientificLibraryView(BaseContextMixin, ListView):
     model = ScientificLibrary
     template_name = 'main/scientific_library.html'
     context_object_name = 'library_items'

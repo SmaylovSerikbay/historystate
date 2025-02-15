@@ -5,7 +5,8 @@ from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     MenuItem, SiteSettings, AboutPage, Charter, Management,
-    Department, ScientificCouncil, YoungScientist, ScientificLibrary
+    Department, ScientificCouncil, YoungScientist, ScientificLibrary,
+    DigitalLink
 )
 from .translation import *  # Импортируем все из translation.py
 from modeltranslation.admin import TranslationAdmin
@@ -342,3 +343,10 @@ class ScientificLibraryAdmin(TranslationAdmin):
             return format_html('<img src="{}" width="50" height="70" style="object-fit: cover;" />', obj.image.url)
         return ''
     display_image.short_description = _('Cover Image')
+
+@admin.register(DigitalLink)
+class DigitalLinkAdmin(TranslationAdmin):
+    list_display = ('title', 'url', 'is_active', 'order')
+    list_editable = ('is_active', 'order')
+    search_fields = ('title', 'url')
+    ordering = ('order',)
