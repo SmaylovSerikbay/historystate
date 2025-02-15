@@ -40,7 +40,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{% trans "Scientific Library" %}</a>
+                            <a class="nav-link" href="{% url 'main:scientific_library' %}">{% trans "Scientific Library" %}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">{% trans "Modern History" %}</a>
@@ -275,6 +275,10 @@
                 flex: 0 0 100%;
                 max-width: 100%;
             }
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
         }
     </style>
     <script>
