@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from modeltranslation.admin import TranslationAdmin
 from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     MenuItem, SiteSettings, AboutPage, Charter, Management,
     Department, ScientificCouncil, YoungScientist
 )
+from .translation import *  # Импортируем все из translation.py
+from modeltranslation.admin import TranslationAdmin
 
 class AboutUsMixin:
     def get_app_label(self):
@@ -50,19 +51,14 @@ class SiteSettingsAdmin(TranslationAdmin):
         return False
 
     class Media:
-        css = {
-            'screen': (
-                'modeltranslation/css/tabbed_translation_fields.css',
-                'admin/css/jquery-ui.min.css',
-            ),
-        }
         js = (
-            'admin/js/vendor/jquery/jquery.min.js',
-            'admin/js/jquery.init.js',
-            'admin/js/vendor/jquery/jquery-ui.min.js',
-            'modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 @admin.register(Hero)
 class HeroAdmin(TranslationAdmin):
