@@ -80,28 +80,38 @@
 
         <!-- Preview Modal -->
         <div class="modal fade" id="previewModal{{ item.id }}" tabindex="-1">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">{{ item.title }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-md-4">
                                 {% if item.image %}
                                 <img src="{{ item.image.url }}" class="img-fluid rounded" alt="{{ item.title }}">
                                 {% endif %}
+                                <div class="mt-3">
+                                    <h6>{% trans "Author" %}</h6>
+                                    <p>{{ item.author }}</p>
+                                    
+                                    <h6>{% trans "Publication Date" %}</h6>
+                                    <p>{{ item.publication_date|date:"d.m.Y" }}</p>
+                                    
+                                    <h6>{% trans "Description" %}</h6>
+                                    <p>{{ item.description }}</p>
+                                </div>
                             </div>
                             <div class="col-md-8">
-                                <h6>{% trans "Author" %}</h6>
-                                <p>{{ item.author }}</p>
-                                
-                                <h6>{% trans "Publication Date" %}</h6>
-                                <p>{{ item.publication_date|date:"d.m.Y" }}</p>
-                                
-                                <h6>{% trans "Description" %}</h6>
-                                <p>{{ item.description }}</p>
+                                <div class="pdf-preview h-100">
+                                    <object data="{{ item.file.url }}#toolbar=0" type="application/pdf" width="100%" style="height: 70vh;">
+                                        <div class="alert alert-warning">
+                                            {% trans "Your browser doesn't support PDF preview." %}
+                                            <a href="{{ item.file.url }}" target="_blank">{% trans "Click here to download" %}</a>
+                                        </div>
+                                    </object>
+                                </div>
                             </div>
                         </div>
                     </div>
