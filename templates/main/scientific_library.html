@@ -47,6 +47,7 @@
 
 {% block content %}
 <div class="scientific-library">
+    <!-- Хлебные крошки -->
     <div class="breadcrumb-wrapper">
         <div class="container">
             <div class="row align-items-center">
@@ -60,27 +61,39 @@
                 </div>
                 <div class="col-md-5 text-md-end">
                     <button class="btn btn-link text-decoration-none text-dark" onclick="window.print()">
-                        <i class="fas fa-print"></i> {% trans "Print" %}
+                        <i class="fas fa-print me-2"></i>{% trans "Print" %}
                     </button>
                     <button class="btn btn-link text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#shareModal">
-                        <i class="fas fa-share-alt"></i> {% trans "Share" %}
+                        <i class="fas fa-share-alt me-2"></i>{% trans "Share" %}
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Заголовок страницы -->
     <div class="page-header">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>{% trans "Scientific Library" %}</h1>
-                    <p class="lead">{% trans "Scientific publications and research materials from our institute" %}</p>
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="page-title">{% trans "Scientific Library" %}</h1>
+                    <p class="page-description">{% trans "Scientific publications and research materials from our institute" %}</p>
+                </div>
+                <div class="col-lg-4">
+                    <nav class="page-actions text-lg-end">
+                        <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
+                            <i class="fas fa-print me-2"></i>{% trans "Print" %}
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#shareModal">
+                            <i class="fas fa-share-alt me-2"></i>{% trans "Share" %}
+                        </button>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Основной контент -->
     <div class="container py-5">
         <div class="row mb-4">
             <div class="col-md-6 col-lg-4">
