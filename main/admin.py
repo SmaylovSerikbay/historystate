@@ -52,8 +52,8 @@ class SiteSettingsAdmin(TranslationAdmin):
 
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'https://code.jquery.com/jquery-3.6.0.min.js',
+            'https://code.jquery.com/ui/1.13.2/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
