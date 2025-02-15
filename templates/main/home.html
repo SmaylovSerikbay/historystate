@@ -84,42 +84,6 @@
     </div>
 </section>
 
-<!-- Statistics Section -->
-<section class="statistics-section">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="statistics-card">
-                    <i class="fas fa-book-open statistics-icon"></i>
-                    <div class="statistics-value">{{ research_publications_count }}</div>
-                    <p class="statistics-label">{% trans "Research Publications" %}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="statistics-card">
-                    <i class="fas fa-project-diagram statistics-icon"></i>
-                    <div class="statistics-value">{{ active_projects_count }}</div>
-                    <p class="statistics-label">{% trans "Active Projects" %}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="statistics-card">
-                    <i class="fas fa-scroll statistics-icon"></i>
-                    <div class="statistics-value">{{ scientific_works_count }}</div>
-                    <p class="statistics-label">{% trans "Scientific Works" %}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="statistics-card">
-                    <i class="fas fa-user-graduate statistics-icon"></i>
-                    <div class="statistics-value">{{ scientists_count }}</div>
-                    <p class="statistics-label">{% trans "Scientists" %}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Events Section -->
 <section class="events-section py-5">
     <div class="container">
@@ -454,54 +418,138 @@
     }
 
     .statistics-box {
-        background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
-        padding: 2rem;
-        border-radius: 16px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2.5rem;
+        border-radius: 24px;
         height: 100%;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .statistics-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        opacity: 0.1;
+        z-index: 0;
     }
 
     .achievement-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 2rem;
+        position: relative;
+        z-index: 1;
     }
 
     .achievement-item {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem 1.5rem;
         text-align: center;
-        backdrop-filter: blur(5px);
-        transition: transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .achievement-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .achievement-item:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .achievement-item:hover::before {
+        opacity: 1;
     }
 
     .achievement-item i {
-        font-size: 2rem;
-        color: var(--secondary-color);
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.2rem;
+        display: inline-block;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+
+    .achievement-item:hover i {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .achievement-item .counter {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
         font-weight: 700;
         margin: 0.5rem 0;
-        background: linear-gradient(45deg, #fff, var(--secondary-color));
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-family: 'Inter', sans-serif;
+        line-height: 1.2;
     }
 
     .achievement-item p {
-        color: white;
-        font-size: 0.9rem;
+        color: var(--text-color);
+        font-size: 1rem;
         margin: 0;
-        opacity: 0.9;
+        font-weight: 500;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .achievement-item:hover p {
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .statistics-box {
+            padding: 1.5rem;
+        }
+
+        .achievement-grid {
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            padding: 1.5rem 1rem;
+        }
+
+        .achievement-item i {
+            font-size: 2rem;
+        }
+
+        .achievement-item .counter {
+            font-size: 2.2rem;
+        }
+
+        .achievement-item p {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .achievement-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* Events Section */
