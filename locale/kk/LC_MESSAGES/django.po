@@ -102,7 +102,7 @@ msgstr "Қазіргі заман тарихы"
 
 #: .\templates\base.html:92
 msgid "Digital"
-msgstr "Digital"
+msgstr "Дигитал"
 
 #: .\templates\base.html:95
 msgid "History"
