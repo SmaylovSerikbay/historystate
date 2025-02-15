@@ -174,11 +174,18 @@
             {% for resource in resources %}
             <div class="col-lg-2-4 col-md-4 col-sm-6">
                 <a href="{{ resource.url }}" class="resource-card">
-                    <div class="resource-image">
-                        <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
-                    </div>
-                    <div class="resource-content">
-                        <h3 class="resource-title">{{ resource.title }}</h3>
+                    <div class="resource-box">
+                        <div class="resource-image">
+                            <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
+                            <div class="resource-overlay">
+                                <span class="view-resource">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="resource-content">
+                            <h3 class="resource-title">{{ resource.title }}</h3>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -418,138 +425,54 @@
     }
 
     .statistics-box {
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2.5rem;
-        border-radius: 24px;
+        background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
+        padding: 2rem;
+        border-radius: 16px;
         height: 100%;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .statistics-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-        opacity: 0.1;
-        z-index: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .achievement-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        position: relative;
-        z-index: 1;
+        gap: 1.5rem;
     }
 
     .achievement-item {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
         text-align: center;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
-
-    .achievement-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        backdrop-filter: blur(5px);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .achievement-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-
-    .achievement-item:hover::before {
-        opacity: 1;
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
     }
 
     .achievement-item i {
-        font-size: 2.5rem;
-        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 1.2rem;
-        display: inline-block;
-        transform: scale(1);
-        transition: transform 0.3s ease;
-    }
-
-    .achievement-item:hover i {
-        transform: scale(1.1) rotate(5deg);
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
     }
 
     .achievement-item .counter {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
         font-weight: 700;
         margin: 0.5rem 0;
-        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        background: linear-gradient(45deg, #fff, var(--secondary-color));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-family: 'Inter', sans-serif;
-        line-height: 1.2;
     }
 
     .achievement-item p {
-        color: var(--text-color);
-        font-size: 1rem;
+        color: white;
+        font-size: 0.9rem;
         margin: 0;
-        font-weight: 500;
-        opacity: 0.8;
-        transition: opacity 0.3s ease;
-    }
-
-    .achievement-item:hover p {
-        opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-        .statistics-box {
-            padding: 1.5rem;
-        }
-
-        .achievement-grid {
-            gap: 1rem;
-        }
-
-        .achievement-item {
-            padding: 1.5rem 1rem;
-        }
-
-        .achievement-item i {
-            font-size: 2rem;
-        }
-
-        .achievement-item .counter {
-            font-size: 2.2rem;
-        }
-
-        .achievement-item p {
-            font-size: 0.9rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .achievement-grid {
-            grid-template-columns: 1fr;
-        }
+        opacity: 0.9;
     }
 
     /* Events Section */
@@ -850,6 +773,21 @@
         color: inherit;
         display: block;
         height: 100%;
+    }
+
+    .resource-box {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        transition: all var(--transition-speed);
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .resource-card:hover .resource-box {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
     .resource-image {
