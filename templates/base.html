@@ -9,18 +9,136 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            min-height: 70px;
+            padding: 0;
+        }
+
+        .navbar-brand {
+            font-size: 15px;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 35px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .navbar-toggler {
+            padding: 4px 8px;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .navbar-toggler-icon {
+            width: 1em;
+            height: 1em;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .carousel-item {
+            width: 100%;
+            height: calc(100vh - 70px);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 991.98px) {
+            body {
+                padding-top: 56px;
+            }
+
+            .navbar {
+                min-height: 56px;
+            }
+
+            .navbar-collapse {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                padding: 1rem;
+                max-height: calc(100vh - 56px);
+                overflow-y: auto;
+            }
+
+            .carousel-item {
+                height: calc(100vh - 56px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 52px;
+            }
+
+            .navbar {
+                min-height: 52px;
+            }
+
+            .navbar-brand {
+                font-size: 14px;
+            }
+
+            .header-logo {
+                height: 30px;
+            }
+
+            .navbar-toggler {
+                padding: 3px 6px;
+                font-size: 12px;
+            }
+
+            .navbar-toggler-icon {
+                width: 0.8em;
+                height: 0.8em;
+            }
+
+            .carousel-item {
+                height: calc(100vh - 52px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header fixed-top">
+    <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
+                <a class="navbar-brand" href="{% url 'main:home' %}">
                     {% if site_config.logo %}
-                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo me-2">
+                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo">
                     {% endif %}
                     <span>{{ site_config.site_name }}</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
