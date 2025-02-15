@@ -238,6 +238,44 @@
                 border-radius: 0;
             }
         }
+
+        .row-resources {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+            justify-content: flex-start;
+        }
+
+        .col-lg-2-4 {
+            position: relative;
+            width: 20%;
+            padding-right: 15px;
+            padding-left: 15px;
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+
+        @media (max-width: 991.98px) {
+            .col-lg-2-4 {
+                flex: 0 0 33.333%;
+                max-width: 33.333%;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .col-lg-2-4 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .col-lg-2-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
