@@ -1,18 +1,24 @@
 /* Global Styles */
 :root {
-    --primary-color: #1B2B48;
+    --primary-color: #0056b3;
     --secondary-color: #C4A052;
     --accent-color: #CF2028;
     --light-gray: #F5F5F5;
     --white: #FFFFFF;
-    --border-color: #E5E5E5;
+    --border-color: #dee2e6;
     --header-height: 70px;
-    --header-height-mobile: 56px;
+    --header-height-mobile: 60px;
     --header-height-small: 52px;
 }
 
 html {
     scroll-padding-top: var(--header-height);
+}
+
+@media (max-width: 991.98px) {
+    html {
+        scroll-padding-top: var(--header-height-mobile);
+    }
 }
 
 body {
@@ -26,47 +32,54 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: var(--primary-color);
-    position: fixed !important;
+    height: var(--header-height);
+    background: white;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    width: 100%;
-    height: var(--header-height);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+    .header {
+        height: var(--header-height-mobile);
+    }
 }
 
 .navbar {
-    height: var(--header-height);
-    padding: 0;
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .navbar-brand {
-    font-size: 1.1rem;
-    white-space: normal;
-    max-width: 200px;
-    line-height: 1.2;
-    padding: 0.5rem 0;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header-logo {
-    max-height: 35px;
+    height: 40px;
     width: auto;
-    object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+    .header-logo {
+        height: 35px;
+    }
 }
 
 /* Мобильное меню */
 .navbar-toggler {
-    padding: 4px;
+    padding: 4px 8px;
     font-size: 0.8rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    margin-right: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
 }
 
 .navbar-toggler:focus {
@@ -75,9 +88,8 @@ body {
 }
 
 .navbar-toggler-icon {
-    width: 20px;
-    height: 20px;
-    background-size: contain;
+    width: 0.8em;
+    height: 0.8em;
 }
 
 /* Основной контент */
