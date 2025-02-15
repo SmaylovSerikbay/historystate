@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Scientific Library" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "Scientific Library" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="section-title">{% trans "Scientific Library" %}</h1>
+            <p class="lead">{% trans "Scientific publications and research materials from our institute" %}</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="{% trans 'Search publications...' %}">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 ms-auto">
+            <select class="form-select" id="sortSelect">
+                <option value="newest">{% trans "Newest first" %}</option>
+                <option value="oldest">{% trans "Oldest first" %}</option>
+                <option value="title">{% trans "By title" %}</option>
+                <option value="author">{% trans "By author" %}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for item in library_items %}
+        <div class="col-sm-6 col-md-4 col-lg-3 library-item">
+            <div class="card h-100">
+                <div class="card-img-wrapper" style="height: 300px; overflow: hidden;">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}" style="height: 100%; object-fit: cover;">
+                    {% else %}
+                    <div class="no-image-placeholder d-flex align-items-center justify-content-center bg-light" style="height: 100%;">
+                        <i class="fas fa-book fa-3x text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text text-muted mb-2">
+                        <small>
+                            <i class="fas fa-user me-1"></i> {{ item.author }}<br>
+                            <i class="fas fa-calendar me-1"></i> {{ item.publication_date|date:"d.m.Y" }}
+                        </small>
+                    </p>
+                    <p class="card-text description">{{ item.description|truncatewords:20 }}</p>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-primary preview-btn" data-bs-toggle="modal" data-bs-target="#previewModal{{ item.id }}">
+                            <i class="fas fa-eye me-1"></i> {% trans "Preview" %}
+                        </button>
+                        <a href="{{ item.file.url }}" class="btn btn-primary" download>
+                            <i class="fas fa-download me-1"></i> {% trans "Download" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div class="modal fade" id="previewModal{{ item.id }}" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ item.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {% if item.image %}
+                                <img src="{{ item.image.url }}" class="img-fluid rounded" alt="{{ item.title }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <h6>{% trans "Author" %}</h6>
+                                <p>{{ item.author }}</p>
+                                
+                                <h6>{% trans "Publication Date" %}</h6>
+                                <p>{{ item.publication_date|date:"d.m.Y" }}</p>
+                                
+                                <h6>{% trans "Description" %}</h6>
+                                <p>{{ item.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                        <a href="{{ item.file.url }}" class="btn btn-primary" download>
+                            <i class="fas fa-download me-1"></i> {% trans "Download" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                {% trans "No publications available at the moment." %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const items = document.querySelectorAll('.library-item');
+
+    function filterItems() {
+        const searchTerm = searchInput.value.toLowerCase();
+        items.forEach(item => {
+            const title = item.querySelector('.card-title').textContent.toLowerCase();
+            const author = item.querySelector('.card-text').textContent.toLowerCase();
+            const description = item.querySelector('.description').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || author.includes(searchTerm) || description.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function sortItems() {
+        const sortValue = sortSelect.value;
+        const itemsArray = Array.from(items);
+        
+        itemsArray.sort((a, b) => {
+            if (sortValue === 'newest' || sortValue === 'oldest') {
+                const dateA = new Date(a.querySelector('.fa-calendar').nextSibling.textContent.trim());
+                const dateB = new Date(b.querySelector('.fa-calendar').nextSibling.textContent.trim());
+                return sortValue === 'newest' ? dateB - dateA : dateA - dateB;
+            } else if (sortValue === 'title') {
+                const titleA = a.querySelector('.card-title').textContent;
+                const titleB = b.querySelector('.card-title').textContent;
+                return titleA.localeCompare(titleB);
+            } else if (sortValue === 'author') {
+                const authorA = a.querySelector('.fa-user').nextSibling.textContent.trim();
+                const authorB = b.querySelector('.fa-user').nextSibling.textContent.trim();
+                return authorA.localeCompare(authorB);
+            }
+        });
+
+        const container = document.querySelector('.row.g-4');
+        itemsArray.forEach(item => container.appendChild(item));
+    }
+
+    searchInput.addEventListener('input', filterItems);
+    sortSelect.addEventListener('change', sortItems);
+});
+</script>
+{% endblock %} 

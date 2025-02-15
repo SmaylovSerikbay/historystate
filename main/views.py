@@ -7,7 +7,7 @@ from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     AboutPage, Charter, Management, Department, ScientificCouncil, YoungScientist,
-    SiteSettings
+    SiteSettings, ScientificLibrary
 )
 from django.urls import reverse
 
@@ -331,3 +331,11 @@ class SearchView(ListView):
         context = super().get_context_data(**kwargs)
         context['query'] = self.request.GET.get('q', '')
         return context
+
+class ScientificLibraryView(ListView):
+    model = ScientificLibrary
+    template_name = 'main/scientific_library.html'
+    context_object_name = 'library_items'
+
+    def get_queryset(self):
+        return ScientificLibrary.objects.filter(is_active=True).order_by('order', '-publication_date')

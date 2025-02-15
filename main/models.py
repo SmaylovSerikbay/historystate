@@ -289,3 +289,21 @@ class YoungScientist(TimeStampedModel):
 
     def __str__(self):
         return f"{self.name} - {self.degree}"
+
+class ScientificLibrary(TimeStampedModel):
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    description = models.TextField(verbose_name=_('Description'))
+    author = models.CharField(max_length=255, verbose_name=_('Author'))
+    publication_date = models.DateField(verbose_name=_('Publication Date'))
+    image = models.ImageField(upload_to='library/covers/', verbose_name=_('Cover Image'))
+    file = models.FileField(upload_to='library/files/', verbose_name=_('PDF File'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+    order = models.IntegerField(default=0, verbose_name=_('Order'))
+
+    class Meta:
+        verbose_name = _('Scientific Library')
+        verbose_name_plural = _('Scientific Library')
+        ordering = ['order', '-publication_date']
+
+    def __str__(self):
+        return self.title

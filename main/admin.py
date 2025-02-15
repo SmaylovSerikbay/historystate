@@ -5,7 +5,7 @@ from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     MenuItem, SiteSettings, AboutPage, Charter, Management,
-    Department, ScientificCouncil, YoungScientist
+    Department, ScientificCouncil, YoungScientist, ScientificLibrary
 )
 from .translation import *  # Импортируем все из translation.py
 from modeltranslation.admin import TranslationAdmin
@@ -329,3 +329,16 @@ class YoungScientistAdmin(AboutUsMixin, TranslationAdmin):
     class Meta:
         verbose_name = 'Молодые ученые'
         verbose_name_plural = 'Молодые ученые'
+
+@admin.register(ScientificLibrary)
+class ScientificLibraryAdmin(TranslationAdmin):
+    list_display = ('title', 'author', 'display_image', 'publication_date', 'is_active', 'order')
+    list_editable = ('is_active', 'order')
+    search_fields = ('title', 'description', 'author')
+    list_filter = ('is_active', 'publication_date')
+    
+    def display_image(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="50" height="70" style="object-fit: cover;" />', obj.image.url)
+        return ''
+    display_image.short_description = _('Cover Image')
