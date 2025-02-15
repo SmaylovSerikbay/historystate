@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 23:40+0500\n"
+"POT-Creation-Date: 2025-02-16 00:00+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,508 +18,515 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings.py:139
+#: .\config\settings.py:139
 msgid "Kazakh"
 msgstr ""
 
-#: config/settings.py:140
+#: .\config\settings.py:140
 msgid "Russian"
 msgstr ""
 
-#: config/settings.py:141
+#: .\config\settings.py:141
 msgid "English"
 msgstr ""
 
-#: config/settings.py:198
+#: .\config\settings.py:198
 msgid "Institute of State History Admin"
 msgstr ""
 
-#: config/settings.py:199 config/settings.py:200 config/settings.py:202
-#: templates/base.html:201 templates/base.html:205 templates/base.html:209
-#: templates/base.html:212
+#: .\config\settings.py:199 .\config\settings.py:200 .\config\settings.py:202
+#: .\templates\base.html:201 .\templates\base.html:205
+#: .\templates\base.html:209 .\templates\base.html:212
 msgid "Institute of State History"
 msgstr ""
 
-#: config/settings.py:201
+#: .\config\settings.py:201
 msgid "Welcome to Institute of State History Admin"
 msgstr ""
 
-#: config/settings.py:205 templates/main/about.html:12
-#: templates/main/expert_opinion_list.html:12
-#: templates/main/news_detail.html:12 templates/main/news_list.html:12
-#: templates/main/recommendation_list.html:12
-#: templates/main/search_results.html:12
+#: .\config\settings.py:205 .\templates\main\about.html:12
+#: .\templates\main\expert_opinion_list.html:12
+#: .\templates\main\news_detail.html:12 .\templates\main\news_list.html:12
+#: .\templates\main\recommendation_list.html:12
+#: .\templates\main\search_results.html:12
 msgid "Home"
 msgstr ""
 
-#: config/settings.py:206
+#: .\config\settings.py:206
 msgid "Site"
 msgstr ""
 
-#: templates/base.html:71 templates/base.html:189 templates/main/about.html:4
-#: templates/main/about.html:13 templates/main/about.html:24
+#: .\templates\base.html:71 .\templates\base.html:189
+#: .\templates\main\about.html:4 .\templates\main\about.html:13
+#: .\templates\main\about.html:24
 msgid "About Institute"
 msgstr ""
 
-#: templates/base.html:75
+#: .\templates\base.html:75
 msgid "Research"
 msgstr ""
 
-#: templates/base.html:78 templates/base.html:191
-#: templates/main/research_project_detail.html:12
-#: templates/main/research_project_list.html:4
-#: templates/main/research_project_list.html:8
+#: .\templates\base.html:78 .\templates\base.html:191
+#: .\templates\main\research_project_detail.html:12
+#: .\templates\main\research_project_list.html:4
+#: .\templates\main\research_project_list.html:8
 msgid "Research Projects"
 msgstr ""
 
-#: templates/base.html:79 templates/main/recommendation_list.html:4
-#: templates/main/recommendation_list.html:13
-#: templates/main/recommendation_list.html:24
+#: .\templates\base.html:79 .\templates\main\recommendation_list.html:4
+#: .\templates\main\recommendation_list.html:13
+#: .\templates\main\recommendation_list.html:24
 msgid "Recommendations"
 msgstr ""
 
-#: templates/base.html:80 templates/main/journal_detail.html:12
-#: templates/main/journal_list.html:4 templates/main/journal_list.html:8
+#: .\templates\base.html:80 .\templates\main\journal_detail.html:12
+#: .\templates\main\journal_list.html:4 .\templates\main\journal_list.html:8
 msgid "Scientific Journals"
 msgstr ""
 
-#: templates/base.html:81 templates/base.html:192
-#: templates/main/expert_opinion_detail.html:12
-#: templates/main/expert_opinion_list.html:4
-#: templates/main/expert_opinion_list.html:13
-#: templates/main/expert_opinion_list.html:24
+#: .\templates\base.html:81 .\templates\base.html:192
+#: .\templates\main\expert_opinion_detail.html:12
+#: .\templates\main\expert_opinion_list.html:4
+#: .\templates\main\expert_opinion_list.html:13
+#: .\templates\main\expert_opinion_list.html:24
 msgid "Expert Opinions"
 msgstr ""
 
-#: templates/base.html:85
+#: .\templates\base.html:85
 msgid "Scientific Library"
 msgstr ""
 
-#: templates/base.html:88
+#: .\templates\base.html:88
 msgid "Modern History"
 msgstr ""
 
-#: templates/base.html:92
+#: .\templates\base.html:92
 msgid "Digital"
 msgstr ""
 
-#: templates/base.html:95
+#: .\templates\base.html:95
 msgid "History"
 msgstr ""
 
-#: templates/base.html:96
+#: .\templates\base.html:96
 msgid "E-history"
 msgstr ""
 
-#: templates/base.html:97
+#: .\templates\base.html:97
 msgid "Archive 2025"
 msgstr ""
 
-#: templates/base.html:101
+#: .\templates\base.html:101
 msgid "Our Achievements"
 msgstr ""
 
-#: templates/base.html:111 templates/main/search_results.html:36
+#: .\templates\base.html:111 .\templates\main\search_results.html:36
 msgid "Search..."
 msgstr ""
 
-#: templates/base.html:156 templates/main/about.html:364
+#: .\templates\base.html:156 .\templates\main\about.html:364
 msgid "Contact Information"
 msgstr ""
 
-#: templates/base.html:176 templates/main/about.html:49
+#: .\templates\base.html:176 .\templates\main\about.html:49
 msgid "About Us"
 msgstr ""
 
-#: templates/base.html:187
+#: .\templates\base.html:187
 msgid "Quick Links"
 msgstr ""
 
-#: templates/base.html:190 templates/main/home.html:139
-#: templates/main/news_detail.html:13 templates/main/news_list.html:4
-#: templates/main/news_list.html:13 templates/main/news_list.html:24
-#: templates/main/news_list.html:72 templates/main/search_results.html:65
+#: .\templates\base.html:190 .\templates\main\home.html:139
+#: .\templates\main\news_detail.html:13 .\templates\main\news_list.html:4
+#: .\templates\main\news_list.html:13 .\templates\main\news_list.html:24
+#: .\templates\main\news_list.html:72 .\templates\main\search_results.html:65
 msgid "News"
 msgstr ""
 
-#: templates/base.html:193
+#: .\templates\base.html:193
 msgid "Contact"
 msgstr ""
 
-#: templates/base.html:201 templates/base.html:205 templates/base.html:209
-#: templates/base.html:212
+#: .\templates\base.html:201 .\templates\base.html:205
+#: .\templates\base.html:209 .\templates\base.html:212
 msgid "All rights reserved"
 msgstr ""
 
-#: templates/main/about.html:25
+#: .\templates\main\about.html:25
 msgid "Information about our institute, structure and management"
 msgstr ""
 
-#: templates/main/about.html:30 templates/main/expert_opinion_list.html:30
-#: templates/main/news_detail.html:36 templates/main/news_list.html:30
-#: templates/main/recommendation_list.html:30
+#: .\templates\main\about.html:30 .\templates\main\expert_opinion_list.html:30
+#: .\templates\main\news_detail.html:36 .\templates\main\news_list.html:30
+#: .\templates\main\recommendation_list.html:30
 msgid "Print"
 msgstr ""
 
-#: templates/main/about.html:33 templates/main/expert_opinion_detail.html:64
-#: templates/main/expert_opinion_list.html:33
-#: templates/main/journal_detail.html:80 templates/main/news_detail.html:39
-#: templates/main/news_list.html:33 templates/main/recommendation_list.html:33
-#: templates/main/research_project_detail.html:58
+#: .\templates\main\about.html:33
+#: .\templates\main\expert_opinion_detail.html:64
+#: .\templates\main\expert_opinion_list.html:33
+#: .\templates\main\journal_detail.html:80 .\templates\main\news_detail.html:39
+#: .\templates\main\news_list.html:33
+#: .\templates\main\recommendation_list.html:33
+#: .\templates\main\research_project_detail.html:58
 msgid "Share"
 msgstr ""
 
-#: templates/main/about.html:54
+#: .\templates\main\about.html:54
 msgid "Charter"
 msgstr ""
 
-#: templates/main/about.html:59 templates/main/about.html:121
+#: .\templates\main\about.html:59 .\templates\main\about.html:121
 msgid "Management"
 msgstr ""
 
-#: templates/main/about.html:64 templates/main/about.html:160
+#: .\templates\main\about.html:64 .\templates\main\about.html:160
 msgid "Institute Structure"
 msgstr ""
 
-#: templates/main/about.html:69
+#: .\templates\main\about.html:69
 msgid "Scientific Council"
 msgstr ""
 
-#: templates/main/about.html:74 templates/main/about.html:221
+#: .\templates\main\about.html:74 .\templates\main\about.html:221
 msgid "Young Scientists"
 msgstr ""
 
-#: templates/main/about.html:108
+#: .\templates\main\about.html:108
 msgid "Download Charter"
 msgstr ""
 
-#: templates/main/about.html:171
+#: .\templates\main\about.html:171
 msgid "Head"
 msgstr ""
 
-#: templates/main/about.html:208
+#: .\templates\main\about.html:208
 msgid "Download Document"
 msgstr ""
 
-#: templates/main/about.html:226
+#: .\templates\main\about.html:226
 msgid "Filter by Degree"
 msgstr ""
 
-#: templates/main/about.html:228
+#: .\templates\main\about.html:228
 msgid "All degrees"
 msgstr ""
 
-#: templates/main/about.html:235
+#: .\templates\main\about.html:235
 msgid "Filter by Year"
 msgstr ""
 
-#: templates/main/about.html:237
+#: .\templates\main\about.html:237
 msgid "All years"
 msgstr ""
 
-#: templates/main/about.html:244
+#: .\templates\main\about.html:244
 msgid "Search"
 msgstr ""
 
-#: templates/main/about.html:247
+#: .\templates\main\about.html:247
 msgid "Search by name or research topics"
 msgstr ""
 
-#: templates/main/about.html:261
+#: .\templates\main\about.html:261
 msgid "Photo"
 msgstr ""
 
-#: templates/main/about.html:264
+#: .\templates\main\about.html:264
 msgid "Name"
 msgstr ""
 
-#: templates/main/about.html:268 templates/main/about.html:354
+#: .\templates\main\about.html:268 .\templates\main\about.html:354
 msgid "Degree"
 msgstr ""
 
-#: templates/main/about.html:272
+#: .\templates\main\about.html:272
 msgid "Year"
 msgstr ""
 
-#: templates/main/about.html:276 templates/main/about.html:360
+#: .\templates\main\about.html:276 .\templates\main\about.html:360
 msgid "Research Topics"
 msgstr ""
 
-#: templates/main/about.html:279
+#: .\templates\main\about.html:279
 msgid "Actions"
 msgstr ""
 
-#: templates/main/about.html:312
+#: .\templates\main\about.html:312
 msgid "Show more"
 msgstr ""
 
-#: templates/main/about.html:322 templates/main/home.html:223
+#: .\templates\main\about.html:322 .\templates\main\home.html:223
 msgid "Email"
 msgstr ""
 
-#: templates/main/about.html:329
+#: .\templates\main\about.html:329
 msgid "View Details"
 msgstr ""
 
-#: templates/main/about.html:357
+#: .\templates\main\about.html:357
 msgid "Admission Year"
 msgstr ""
 
-#: templates/main/about.html:393
+#: .\templates\main\about.html:393
 msgid "Showing"
 msgstr ""
 
-#: templates/main/about.html:393
+#: .\templates\main\about.html:393
 msgid "of"
 msgstr ""
 
-#: templates/main/about.html:393
+#: .\templates\main\about.html:393
 msgid "scientists"
 msgstr ""
 
-#: templates/main/about.html:398
+#: .\templates\main\about.html:398
 msgid "Export to Excel"
 msgstr ""
 
-#: templates/main/expert_opinion_detail.html:58
+#: .\templates\main\expert_opinion_detail.html:58
 msgid "References"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:25
+#: .\templates\main\expert_opinion_list.html:25
 msgid "Expert analysis and opinions on historical events"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:49
+#: .\templates\main\expert_opinion_list.html:49
 msgid "Search opinions..."
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:55 templates/main/news_list.html:55
-#: templates/main/recommendation_list.html:55
+#: .\templates\main\expert_opinion_list.html:55
+#: .\templates\main\news_list.html:55
+#: .\templates\main\recommendation_list.html:55
 msgid "Newest first"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:56 templates/main/news_list.html:56
-#: templates/main/recommendation_list.html:56
+#: .\templates\main\expert_opinion_list.html:56
+#: .\templates\main\news_list.html:56
+#: .\templates\main\recommendation_list.html:56
 msgid "Oldest first"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:73
-#: templates/main/search_results.html:73
+#: .\templates\main\expert_opinion_list.html:73
+#: .\templates\main\search_results.html:73
 msgid "Expert Opinion"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:87 templates/main/home.html:152
-#: templates/main/journal_list.html:29 templates/main/news_list.html:85
-#: templates/main/search_results.html:87
+#: .\templates\main\expert_opinion_list.html:87 .\templates\main\home.html:152
+#: .\templates\main\journal_list.html:29 .\templates\main\news_list.html:85
+#: .\templates\main\search_results.html:87
 msgid "Read More"
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:100
+#: .\templates\main\expert_opinion_list.html:100
 msgid "No expert opinions available at the moment."
 msgstr ""
 
-#: templates/main/expert_opinion_list.html:457
-#: templates/main/news_detail.html:289 templates/main/news_list.html:429
-#: templates/main/recommendation_list.html:534
+#: .\templates\main\expert_opinion_list.html:457
+#: .\templates\main\news_detail.html:289 .\templates\main\news_list.html:429
+#: .\templates\main\recommendation_list.html:534
 msgid "Link copied to clipboard"
 msgstr ""
 
-#: templates/main/home.html:4
+#: .\templates\main\home.html:4
 msgid "History State - Main Page"
 msgstr ""
 
-#: templates/main/home.html:49 templates/main/research_project_list.html:17
+#: .\templates\main\home.html:49 .\templates\main\research_project_list.html:17
 msgid "Learn More"
 msgstr ""
 
-#: templates/main/home.html:63
+#: .\templates\main\home.html:63
 msgid "Research Publications"
 msgstr ""
 
-#: templates/main/home.html:68
+#: .\templates\main\home.html:68
 msgid "Active Projects"
 msgstr ""
 
-#: templates/main/home.html:73
+#: .\templates\main\home.html:73
 msgid "Scientific Works"
 msgstr ""
 
-#: templates/main/home.html:78
+#: .\templates\main\home.html:78
 msgid "Scientists"
 msgstr ""
 
-#: templates/main/home.html:90
+#: .\templates\main\home.html:90
 msgid "Events"
 msgstr ""
 
-#: templates/main/home.html:113
+#: .\templates\main\home.html:113
 msgid "Main Hall"
 msgstr ""
 
-#: templates/main/home.html:129
+#: .\templates\main\home.html:129
 msgid "Latest News"
 msgstr ""
 
-#: templates/main/home.html:163
+#: .\templates\main\home.html:163
 msgid "View All News"
 msgstr ""
 
-#: templates/main/home.html:172
+#: .\templates\main\home.html:172
 msgid "Resources"
 msgstr ""
 
-#: templates/main/home.html:200 templates/main/home.html:213
+#: .\templates\main\home.html:200 .\templates\main\home.html:213
 msgid "Schedule an Appointment"
 msgstr ""
 
-#: templates/main/home.html:201
+#: .\templates\main\home.html:201
 msgid ""
 "Would you like to visit our institute or meet with our researchers? Schedule "
 "an appointment now!"
 msgstr ""
 
-#: templates/main/home.html:203
+#: .\templates\main\home.html:203
 msgid "Schedule Appointment"
 msgstr ""
 
-#: templates/main/home.html:219
+#: .\templates\main\home.html:219
 msgid "Full Name"
 msgstr ""
 
-#: templates/main/home.html:227
+#: .\templates\main\home.html:227
 msgid "Phone"
 msgstr ""
 
-#: templates/main/home.html:231
+#: .\templates\main\home.html:231
 msgid "Preferred Date"
 msgstr ""
 
-#: templates/main/home.html:235
+#: .\templates\main\home.html:235
 msgid "Message"
 msgstr ""
 
-#: templates/main/home.html:241 templates/main/recommendation_list.html:137
+#: .\templates\main\home.html:241 .\templates\main\recommendation_list.html:137
 msgid "Close"
 msgstr ""
 
-#: templates/main/home.html:242
+#: .\templates\main\home.html:242
 msgid "Submit"
 msgstr ""
 
-#: templates/main/journal_detail.html:29
+#: .\templates\main\journal_detail.html:29
 msgid "Journal Information"
 msgstr ""
 
-#: templates/main/journal_detail.html:33
+#: .\templates\main\journal_detail.html:33
 msgid "Publication Date"
 msgstr ""
 
-#: templates/main/journal_detail.html:38 templates/main/journal_list.html:26
+#: .\templates\main\journal_detail.html:38
+#: .\templates\main\journal_list.html:26
 msgid "Issue"
 msgstr ""
 
-#: templates/main/journal_detail.html:52
+#: .\templates\main\journal_detail.html:52
 msgid "Download Journal"
 msgstr ""
 
-#: templates/main/journal_detail.html:67
+#: .\templates\main\journal_detail.html:67
 msgid "Table of Contents"
 msgstr ""
 
-#: templates/main/journal_detail.html:74
+#: .\templates\main\journal_detail.html:74
 msgid "Editorial Board"
 msgstr ""
 
-#: templates/main/journal_list.html:36
+#: .\templates\main\journal_list.html:36
 msgid "No journals available at the moment."
 msgstr ""
 
-#: templates/main/journal_list.html:46 templates/main/news_detail.html:73
-#: templates/main/research_project_list.html:33
+#: .\templates\main\journal_list.html:46 .\templates\main\news_detail.html:73
+#: .\templates\main\research_project_list.html:33
 msgid "Previous"
 msgstr ""
 
-#: templates/main/journal_list.html:58 templates/main/news_detail.html:82
-#: templates/main/research_project_list.html:45
+#: .\templates\main\journal_list.html:58 .\templates\main\news_detail.html:82
+#: .\templates\main\research_project_list.html:45
 msgid "Next"
 msgstr ""
 
-#: templates/main/news_list.html:25
+#: .\templates\main\news_list.html:25
 msgid "Latest news and updates from our institute"
 msgstr ""
 
-#: templates/main/news_list.html:49
+#: .\templates\main\news_list.html:49
 msgid "Search news..."
 msgstr ""
 
-#: templates/main/news_list.html:96
+#: .\templates\main\news_list.html:96
 msgid "No news available at the moment."
 msgstr ""
 
-#: templates/main/recommendation_list.html:25
+#: .\templates\main\recommendation_list.html:25
 msgid "Scientific and methodological recommendations from our experts"
 msgstr ""
 
-#: templates/main/recommendation_list.html:49
+#: .\templates\main\recommendation_list.html:49
 msgid "Search recommendations..."
 msgstr ""
 
-#: templates/main/recommendation_list.html:57
+#: .\templates\main\recommendation_list.html:57
 msgid "By title"
 msgstr ""
 
-#: templates/main/recommendation_list.html:80
-#: templates/main/recommendation_list.html:133
+#: .\templates\main\recommendation_list.html:80
+#: .\templates\main\recommendation_list.html:133
 msgid "Download"
 msgstr ""
 
-#: templates/main/recommendation_list.html:84
+#: .\templates\main\recommendation_list.html:84
 msgid "Preview"
 msgstr ""
 
-#: templates/main/recommendation_list.html:120
+#: .\templates\main\recommendation_list.html:120
 msgid "Your browser doesn't support PDF preview."
 msgstr ""
 
-#: templates/main/recommendation_list.html:121
+#: .\templates\main\recommendation_list.html:121
 msgid "Click here to download"
 msgstr ""
 
-#: templates/main/recommendation_list.html:146
+#: .\templates\main\recommendation_list.html:146
 msgid "No recommendations available at the moment."
 msgstr ""
 
-#: templates/main/research_project_detail.html:27
+#: .\templates\main\research_project_detail.html:27
 msgid "Published"
 msgstr ""
 
-#: templates/main/research_project_detail.html:32
+#: .\templates\main\research_project_detail.html:32
 msgid "Updated"
 msgstr ""
 
-#: templates/main/research_project_detail.html:43
+#: .\templates\main\research_project_detail.html:43
 msgid "Related Documents"
 msgstr ""
 
-#: templates/main/research_project_list.html:23
+#: .\templates\main\research_project_list.html:23
 msgid "No research projects available at the moment."
 msgstr ""
 
-#: templates/main/search_results.html:4 templates/main/search_results.html:13
-#: templates/main/search_results.html:24
+#: .\templates\main\search_results.html:4
+#: .\templates\main\search_results.html:13
+#: .\templates\main\search_results.html:24
 msgid "Search Results"
 msgstr ""
 
-#: templates/main/search_results.html:27
+#: .\templates\main\search_results.html:27
 #, python-format
 msgid "Search results for: \"%(query)s\""
 msgstr ""
 
-#: templates/main/search_results.html:29
+#: .\templates\main\search_results.html:29
 msgid "Please enter a search query"
 msgstr ""
 
-#: templates/main/search_results.html:52
+#: .\templates\main\search_results.html:52
 #, python-format
 msgid ""
 "\n"
@@ -532,34 +539,34 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/main/search_results.html:67
+#: .\templates\main\search_results.html:67
 msgid "Event"
 msgstr ""
 
-#: templates/main/search_results.html:69
+#: .\templates\main\search_results.html:69
 msgid "Research Project"
 msgstr ""
 
-#: templates/main/search_results.html:71
+#: .\templates\main\search_results.html:71
 msgid "Recommendation"
 msgstr ""
 
-#: templates/main/search_results.html:125
+#: .\templates\main\search_results.html:125
 msgid "No results found for your search query."
 msgstr ""
 
-#: templates/main/search_results.html:127
+#: .\templates\main\search_results.html:127
 msgid "Suggestions:"
 msgstr ""
 
-#: templates/main/search_results.html:129
+#: .\templates\main\search_results.html:129
 msgid "Make sure all words are spelled correctly"
 msgstr ""
 
-#: templates/main/search_results.html:130
+#: .\templates\main\search_results.html:130
 msgid "Try different keywords"
 msgstr ""
 
-#: templates/main/search_results.html:131
+#: .\templates\main\search_results.html:131
 msgid "Try more general keywords"
 msgstr ""
