@@ -47,22 +47,22 @@
 
 {% block content %}
 <div class="scientific-library">
-    <div class="breadcrumb-wrapper bg-light">
+    <div class="breadcrumb-wrapper bg-light border-bottom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}" class="text-decoration-none">{% trans "Home" %}</a></li>
                             <li class="breadcrumb-item active">{% trans "Scientific Library" %}</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-md-5 text-md-end">
-                    <button class="btn btn-link text-decoration-none text-dark" onclick="window.print()">
+                    <button class="btn btn-link text-decoration-none text-dark px-2" onclick="window.print()">
                         <i class="fas fa-print"></i> {% trans "Print" %}
                     </button>
-                    <button class="btn btn-link text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#shareModal">
+                    <button class="btn btn-link text-decoration-none text-dark px-2" data-bs-toggle="modal" data-bs-target="#shareModal">
                         <i class="fas fa-share-alt"></i> {% trans "Share" %}
                     </button>
                 </div>
@@ -74,8 +74,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="mb-2">{% trans "Scientific Library" %}</h1>
-                    <p class="lead mb-0">{% trans "Scientific publications and research materials from our institute" %}</p>
+                    <h1 class="mb-2 text-primary">{% trans "Scientific Library" %}</h1>
+                    <p class="lead mb-0 text-secondary">{% trans "Scientific publications and research materials from our institute" %}</p>
                 </div>
             </div>
         </div>
