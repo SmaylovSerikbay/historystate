@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 01:03+0500\n"
+"POT-Creation-Date: 2025-02-16 02:49+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,8 @@ msgid "Institute of State History Admin"
 msgstr "Администрирование Института истории государства"
 
 #: .\config\settings.py:199 .\config\settings.py:200 .\config\settings.py:202
-#: .\main\translation.py:18 .\templates\base.html:159 .\templates\base.html:163
-#: .\templates\base.html:167 .\templates\base.html:170
+#: .\main\translation.py:19 .\templates\base.html:158 .\templates\base.html:162
+#: .\templates\base.html:166 .\templates\base.html:169
 msgid "Institute of State History"
 msgstr "Институт истории государства"
 
@@ -51,6 +51,7 @@ msgstr ""
 #: .\templates\main\about.html:12 .\templates\main\expert_opinion_list.html:12
 #: .\templates\main\news_detail.html:12 .\templates\main\news_list.html:12
 #: .\templates\main\recommendation_list.html:12
+#: .\templates\main\scientific_library.html:13
 #: .\templates\main\search_results.html:12
 msgid "Home"
 msgstr "Главная"
@@ -59,68 +60,72 @@ msgstr "Главная"
 msgid "Site"
 msgstr "Сайт"
 
-#: .\main\admin.py:28
+#: .\main\admin.py:29
 msgid "General"
 msgstr "Общие настройки"
 
-#: .\main\admin.py:31
+#: .\main\admin.py:32
 msgid "Footer Information"
 msgstr "Контактная информация"
 
-#: .\main\admin.py:40
+#: .\main\admin.py:41
 msgid "Logo Preview"
 msgstr "Предпросмотр"
 
-#: .\main\admin.py:147 .\main\models.py:58 .\main\models.py:103
-#: .\main\models.py:198 .\main\models.py:211 .\main\models.py:262
+#: .\main\admin.py:148 .\main\models.py:58 .\main\models.py:103
+#: .\main\models.py:204 .\main\models.py:217 .\main\models.py:268
 msgid "Content"
 msgstr "Содержание"
 
-#: .\main\admin.py:150
+#: .\main\admin.py:151
 msgid "Settings"
 msgstr "Настройки"
 
-#: .\main\admin.py:176 .\main\admin.py:190 .\main\admin.py:274
+#: .\main\admin.py:178 .\main\admin.py:192 .\main\admin.py:276
 msgid "Содержание"
 msgstr "Содержание"
 
-#: .\main\admin.py:193 .\main\admin.py:277
+#: .\main\admin.py:195 .\main\admin.py:279
 msgid "Документ"
 msgstr "Документ"
 
-#: .\main\admin.py:195 .\main\admin.py:279
+#: .\main\admin.py:197 .\main\admin.py:281
 msgid "Загрузить PDF документ"
 msgstr "Загрузить PDF документ"
 
-#: .\main\admin.py:197 .\main\admin.py:225 .\main\admin.py:257
-#: .\main\admin.py:281 .\main\admin.py:309
+#: .\main\admin.py:199 .\main\admin.py:227 .\main\admin.py:259
+#: .\main\admin.py:283 .\main\admin.py:311
 msgid "Настройки"
 msgstr "Настройки"
 
-#: .\main\admin.py:207 .\main\admin.py:291
+#: .\main\admin.py:209 .\main\admin.py:293
 msgid "Просмотр PDF"
 msgstr "Просмотр PDF документов"
 
-#: .\main\admin.py:209 .\main\admin.py:293
+#: .\main\admin.py:211 .\main\admin.py:295
 #, fuzzy
 #| msgid "Документ"
 msgid "PDF Документ"
 msgstr "Документ"
 
-#: .\main\admin.py:219 .\main\admin.py:303
+#: .\main\admin.py:221 .\main\admin.py:305
 msgid "Личная информация"
 msgstr "Личная информация"
 
-#: .\main\admin.py:222 .\main\admin.py:254 .\main\admin.py:306
+#: .\main\admin.py:224 .\main\admin.py:256 .\main\admin.py:308
 msgid "Контактная информация"
 msgstr ""
 
-#: .\main\admin.py:242 .\main\admin.py:327
+#: .\main\admin.py:244 .\main\admin.py:329
 msgid "Фото"
 msgstr ""
 
-#: .\main\admin.py:251
+#: .\main\admin.py:253
 msgid "Информация об отделе"
+msgstr ""
+
+#: .\main\admin.py:346 .\main\models.py:304
+msgid "Cover Image"
 msgstr ""
 
 #: .\main\models.py:6
@@ -139,16 +144,17 @@ msgid "Image"
 msgstr ""
 
 #: .\main\models.py:14 .\main\models.py:30 .\main\models.py:45
-#: .\main\models.py:106 .\main\models.py:118 .\main\models.py:133
-#: .\main\models.py:162 .\main\models.py:199 .\main\models.py:213
-#: .\main\models.py:231 .\main\models.py:249 .\main\models.py:264
-#: .\main\models.py:283
+#: .\main\models.py:106 .\main\models.py:124 .\main\models.py:139
+#: .\main\models.py:168 .\main\models.py:205 .\main\models.py:219
+#: .\main\models.py:237 .\main\models.py:255 .\main\models.py:270
+#: .\main\models.py:289 .\main\models.py:306 .\main\models.py:321
 msgid "Is active"
 msgstr ""
 
 #: .\main\models.py:15 .\main\models.py:44 .\main\models.py:74
-#: .\main\models.py:147 .\main\models.py:160 .\main\models.py:230
-#: .\main\models.py:248 .\main\models.py:282
+#: .\main\models.py:153 .\main\models.py:166 .\main\models.py:236
+#: .\main\models.py:254 .\main\models.py:288 .\main\models.py:307
+#: .\main\models.py:322
 msgid "Order"
 msgstr ""
 
@@ -162,16 +168,17 @@ msgstr ""
 
 #: .\main\models.py:26 .\main\models.py:41 .\main\models.py:56
 #: .\main\models.py:71 .\main\models.py:85 .\main\models.py:102
-#: .\main\models.py:128 .\main\models.py:144 .\main\models.py:158
-#: .\main\models.py:197 .\main\models.py:210 .\main\models.py:243
-#: .\main\models.py:261
+#: .\main\models.py:134 .\main\models.py:150 .\main\models.py:164
+#: .\main\models.py:203 .\main\models.py:216 .\main\models.py:249
+#: .\main\models.py:267 .\main\models.py:300 .\main\models.py:319
 #, fuzzy
 #| msgid "By title"
 msgid "Title"
 msgstr "По названию"
 
-#: .\main\models.py:27 .\main\models.py:86 .\main\models.py:129
-#: .\main\models.py:244
+#: .\main\models.py:27 .\main\models.py:86 .\main\models.py:135
+#: .\main\models.py:250 .\main\models.py:301
+#: .\templates\main\scientific_library.html:146
 msgid "Description"
 msgstr "Описание"
 
@@ -187,8 +194,8 @@ msgstr "Событие"
 msgid "Events"
 msgstr "События"
 
-#: .\main\models.py:43 .\main\models.py:73 .\main\models.py:117
-#: .\main\models.py:132 .\main\models.py:159
+#: .\main\models.py:43 .\main\models.py:73 .\main\models.py:122
+#: .\main\models.py:138 .\main\models.py:165 .\main\models.py:320
 msgid "URL"
 msgstr "URL"
 
@@ -201,6 +208,7 @@ msgid "Banners"
 msgstr "Баннеры"
 
 #: .\main\models.py:57 .\templates\main\recommendation_list.html:84
+#: .\templates\main\scientific_library.html:115
 msgid "Preview"
 msgstr "Предпросмотр"
 
@@ -208,7 +216,7 @@ msgstr "Предпросмотр"
 msgid "Is featured"
 msgstr "Выделенный"
 
-#: .\main\models.py:63 .\main\models.py:64 .\templates\base.html:148
+#: .\main\models.py:63 .\main\models.py:64 .\templates\base.html:147
 #: .\templates\main\home.html:139 .\templates\main\news_detail.html:13
 #: .\templates\main\news_list.html:4 .\templates\main\news_list.html:13
 #: .\templates\main\news_list.html:24 .\templates\main\news_list.html:72
@@ -242,7 +250,7 @@ msgstr "Статус"
 msgid "Research Project"
 msgstr "Исследовательский проект"
 
-#: .\main\models.py:95 .\templates\base.html:36 .\templates\base.html:149
+#: .\main\models.py:95 .\templates\base.html:36 .\templates\base.html:148
 #: .\templates\main\research_project_detail.html:12
 #: .\templates\main\research_project_list.html:4
 #: .\templates\main\research_project_list.html:8
@@ -253,7 +261,8 @@ msgstr "Исследовательские проекты"
 msgid "File"
 msgstr "Файл"
 
-#: .\main\models.py:105
+#: .\main\models.py:105 .\main\models.py:302
+#: .\templates\main\scientific_library.html:140
 msgid "Author"
 msgstr "Автор"
 
@@ -268,196 +277,235 @@ msgstr "Рекомендация"
 msgid "Recommendations"
 msgstr "Рекомендации"
 
-#: .\main\models.py:121
+#: .\main\models.py:118
+#, fuzzy
+#| msgid "Scientific Journals"
+msgid "Scientific Journal"
+msgstr "Научные журналы"
+
+#: .\main\models.py:119 .\templates\base.html:53
+msgid "E-history"
+msgstr "E-history"
+
+#: .\main\models.py:120 .\templates\base.html:54
+msgid "Archive 2025"
+msgstr "Архив 2025"
+
+#: .\main\models.py:123
+msgid "Type"
+msgstr ""
+
+#: .\main\models.py:127
 #, fuzzy
 #| msgid "Download Journal"
 msgid "Journal"
 msgstr "Скачать журнал"
 
-#: .\main\models.py:122
+#: .\main\models.py:128
 msgid "Journals"
 msgstr "Журналы"
 
-#: .\main\models.py:130 .\main\models.py:227 .\main\models.py:276
+#: .\main\models.py:136 .\main\models.py:233 .\main\models.py:282
 #: .\templates\main\about.html:261
 msgid "Photo"
 msgstr "Фото"
 
-#: .\main\models.py:131 .\templates\main\journal_detail.html:33
+#: .\main\models.py:137 .\main\models.py:303
+#: .\templates\main\journal_detail.html:33
+#: .\templates\main\scientific_library.html:143
 msgid "Publication Date"
 msgstr "Дата публикации"
 
-#: .\main\models.py:136 .\templates\main\expert_opinion_list.html:73
+#: .\main\models.py:142 .\templates\main\expert_opinion_list.html:73
 #: .\templates\main\search_results.html:73
 msgid "Expert Opinion"
 msgstr "Экспертное мнение"
 
-#: .\main\models.py:137 .\main\templates\main\expert_opinion_list.html:4
+#: .\main\models.py:143 .\main\templates\main\expert_opinion_list.html:4
 #: .\main\templates\main\expert_opinion_list.html:13
 #: .\main\templates\main\expert_opinion_list.html:22 .\templates\base.html:39
-#: .\templates\base.html:150 .\templates\main\expert_opinion_detail.html:12
+#: .\templates\base.html:149 .\templates\main\expert_opinion_detail.html:12
 #: .\templates\main\expert_opinion_list.html:4
 #: .\templates\main\expert_opinion_list.html:13
 #: .\templates\main\expert_opinion_list.html:24
 msgid "Expert Opinions"
 msgstr "Экспертные мнения"
 
-#: .\main\models.py:145
+#: .\main\models.py:151
 msgid "Value"
 msgstr "Значение"
 
-#: .\main\models.py:146
+#: .\main\models.py:152
 msgid "Icon Class"
 msgstr "Класс иконки"
 
-#: .\main\models.py:150
+#: .\main\models.py:156
 #, fuzzy
 #| msgid "Our Achievements"
 msgid "Achievement"
 msgstr "Наши достижения"
 
-#: .\main\models.py:151
+#: .\main\models.py:157
 #, fuzzy
 #| msgid "Our Achievements"
 msgid "Achievements"
 msgstr "Наши достижения"
 
-#: .\main\models.py:161
+#: .\main\models.py:167
 msgid "Parent Menu"
 msgstr "Родительское меню"
 
-#: .\main\models.py:165
+#: .\main\models.py:171
 msgid "Menu Item"
 msgstr "Элемент меню"
 
-#: .\main\models.py:166
+#: .\main\models.py:172
 msgid "Menu Items"
 msgstr "Элементы меню"
 
-#: .\main\models.py:174
+#: .\main\models.py:180
 msgid "Logo"
 msgstr "Логотип"
 
-#: .\main\models.py:175
+#: .\main\models.py:181
 #, fuzzy
 #| msgid "Site"
 msgid "Site Name"
 msgstr "Название сайта"
 
-#: .\main\models.py:176
+#: .\main\models.py:182
 msgid "Footer Text"
 msgstr "Текст в футере"
 
-#: .\main\models.py:177
+#: .\main\models.py:183
 #, fuzzy
 #| msgid "Footer Information"
 msgid "Footer Email"
 msgstr "Email в футере"
 
-#: .\main\models.py:178
+#: .\main\models.py:184
 #, fuzzy
 #| msgid "Footer Information"
 msgid "Footer Phone"
 msgstr "Телефон в футере"
 
-#: .\main\models.py:179
+#: .\main\models.py:185
 msgid "Footer Address"
 msgstr "Адрес в футере"
 
-#: .\main\models.py:180
+#: .\main\models.py:186
 msgid "Copyright Text"
 msgstr "Текст копирайта"
 
-#: .\main\models.py:181 .\templates\base.html:159 .\templates\base.html:163
-#: .\templates\base.html:167 .\templates\base.html:170
+#: .\main\models.py:187 .\templates\base.html:158 .\templates\base.html:162
+#: .\templates\base.html:166 .\templates\base.html:169
 msgid "All rights reserved"
 msgstr "Все права защищены"
 
-#: .\main\models.py:184 .\main\models.py:185 .\main\models.py:188
+#: .\main\models.py:190 .\main\models.py:191 .\main\models.py:194
 #, fuzzy
 #| msgid "Settings"
 msgid "Site Settings"
 msgstr "Настройки"
 
-#: .\main\models.py:202 .\main\models.py:203
+#: .\main\models.py:208 .\main\models.py:209
 #, fuzzy
 #| msgid "About Us"
 msgid "About Page"
 msgstr "О нас"
 
-#: .\main\models.py:212 .\main\models.py:263
+#: .\main\models.py:218 .\main\models.py:269 .\main\models.py:305
 msgid "PDF File"
 msgstr "Файл PDF"
 
-#: .\main\models.py:216 .\main\models.py:217 .\templates\main\about.html:54
+#: .\main\models.py:222 .\main\models.py:223 .\templates\main\about.html:54
 msgid "Charter"
 msgstr "Устав"
 
-#: .\main\models.py:224 .\main\models.py:275 .\templates\main\home.html:219
+#: .\main\models.py:230 .\main\models.py:281 .\templates\main\home.html:219
 msgid "Full Name"
 msgstr "Полное имя"
 
-#: .\main\models.py:225
+#: .\main\models.py:231
 msgid "Position"
 msgstr "Должность"
 
-#: .\main\models.py:226 .\main\models.py:280
+#: .\main\models.py:232 .\main\models.py:286
 msgid "Biography"
 msgstr "Биография"
 
-#: .\main\models.py:228 .\main\models.py:246 .\main\models.py:281
+#: .\main\models.py:234 .\main\models.py:252 .\main\models.py:287
 #: .\templates\main\about.html:322 .\templates\main\home.html:223
 msgid "Email"
 msgstr "Email"
 
-#: .\main\models.py:229 .\main\models.py:247 .\templates\main\home.html:227
+#: .\main\models.py:235 .\main\models.py:253 .\templates\main\home.html:227
 msgid "Phone"
 msgstr "Телефон"
 
-#: .\main\models.py:234 .\main\models.py:235 .\templates\main\about.html:59
+#: .\main\models.py:240 .\main\models.py:241 .\templates\main\about.html:59
 #: .\templates\main\about.html:121
 msgid "Management"
 msgstr "Руководство"
 
-#: .\main\models.py:245
+#: .\main\models.py:251
 msgid "Head of Department"
 msgstr "Руководитель отдела"
 
-#: .\main\models.py:252
+#: .\main\models.py:258
 msgid "Department"
 msgstr "Отдел"
 
-#: .\main\models.py:253
+#: .\main\models.py:259
 msgid "Departments"
 msgstr "Отделы"
 
-#: .\main\models.py:267 .\main\models.py:268 .\templates\main\about.html:69
+#: .\main\models.py:273 .\main\models.py:274 .\templates\main\about.html:69
 msgid "Scientific Council"
 msgstr "Ученый совет"
 
-#: .\main\models.py:277
+#: .\main\models.py:283
 msgid "Academic Degree"
 msgstr "Ученая степень"
 
-#: .\main\models.py:278
+#: .\main\models.py:284
 msgid "Year of Admission"
 msgstr "Год поступления"
 
-#: .\main\models.py:279 .\templates\main\about.html:276
+#: .\main\models.py:285 .\templates\main\about.html:276
 #: .\templates\main\about.html:360
 msgid "Research Topics"
 msgstr "Темы исследований"
 
-#: .\main\models.py:286
+#: .\main\models.py:292
 #, fuzzy
 #| msgid "Young Scientists"
 msgid "Young Scientist"
 msgstr "Молодые ученые"
 
-#: .\main\models.py:287 .\templates\main\about.html:74
+#: .\main\models.py:293 .\templates\main\about.html:74
 #: .\templates\main\about.html:221
 msgid "Young Scientists"
 msgstr "Молодые ученые"
+
+#: .\main\models.py:310 .\main\models.py:311 .\templates\base.html:43
+#: .\templates\main\scientific_library.html:4
+#: .\templates\main\scientific_library.html:14
+#: .\templates\main\scientific_library.html:34
+msgid "Scientific Library"
+msgstr "Научная библиотека"
+
+#: .\main\models.py:325
+#, fuzzy
+#| msgid "Digital"
+msgid "Digital Link"
+msgstr "Digital"
+
+#: .\main\models.py:326
+#, fuzzy
+#| msgid "Digital"
+msgid "Digital Links"
+msgstr "Digital"
 
 #: .\main\templates\main\expert_opinion_list.html:23
 #, fuzzy
@@ -476,13 +524,25 @@ msgstr "Читать полное мнение"
 msgid "No expert opinions available at the moment."
 msgstr "На данный момент нет доступных экспертных мнений."
 
-#: .\main\views.py:88
+#: .\main\views.py:102
 #, fuzzy
 #| msgid "No journals available at the moment."
 msgid "No active journals available."
 msgstr "На данный момент нет доступных журналов."
 
-#: .\templates\base.html:29 .\templates\base.html:147
+#: .\main\views.py:368
+#, fuzzy
+#| msgid "No journals available at the moment."
+msgid "No active E-history link available."
+msgstr "На данный момент нет доступных журналов."
+
+#: .\main\views.py:383
+#, fuzzy
+#| msgid "No journals available at the moment."
+msgid "No active Archive 2025 link available."
+msgstr "На данный момент нет доступных журналов."
+
+#: .\templates\base.html:29 .\templates\base.html:146
 #: .\templates\main\about.html:4 .\templates\main\about.html:13
 #: .\templates\main\about.html:24
 msgid "About Institute"
@@ -497,10 +557,6 @@ msgstr "Исследования"
 msgid "Scientific Journals"
 msgstr "Научные журналы"
 
-#: .\templates\base.html:43
-msgid "Scientific Library"
-msgstr "Научная библиотека"
-
 #: .\templates\base.html:46
 msgid "Modern History"
 msgstr "Современная история"
@@ -509,39 +565,27 @@ msgstr "Современная история"
 msgid "Digital"
 msgstr "Digital"
 
-#: .\templates\base.html:53
-msgid "History"
-msgstr "История"
-
-#: .\templates\base.html:54
-msgid "E-history"
-msgstr "Электронная история"
-
-#: .\templates\base.html:55
-msgid "Archive 2025"
-msgstr "Архив 2025"
-
-#: .\templates\base.html:59
+#: .\templates\base.html:58
 msgid "Our Achievements"
 msgstr "Наши достижения"
 
-#: .\templates\base.html:69 .\templates\main\search_results.html:36
+#: .\templates\base.html:68 .\templates\main\search_results.html:36
 msgid "Search..."
 msgstr "Поиск..."
 
-#: .\templates\base.html:114 .\templates\main\about.html:364
+#: .\templates\base.html:113 .\templates\main\about.html:364
 msgid "Contact Information"
 msgstr "Контактная информация"
 
-#: .\templates\base.html:134 .\templates\main\about.html:49
+#: .\templates\base.html:133 .\templates\main\about.html:49
 msgid "About Us"
 msgstr "О нас"
 
-#: .\templates\base.html:145
+#: .\templates\base.html:144
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: .\templates\base.html:151
+#: .\templates\base.html:150
 msgid "Contact"
 msgstr "Контакты"
 
@@ -552,6 +596,7 @@ msgstr "Информация о нашем институте, структур�
 #: .\templates\main\about.html:30 .\templates\main\expert_opinion_list.html:30
 #: .\templates\main\news_detail.html:36 .\templates\main\news_list.html:30
 #: .\templates\main\recommendation_list.html:30
+#: .\templates\main\scientific_library.html:20
 msgid "Print"
 msgstr "Печать"
 
@@ -562,6 +607,8 @@ msgstr "Печать"
 #: .\templates\main\news_list.html:33
 #: .\templates\main\recommendation_list.html:33
 #: .\templates\main\research_project_detail.html:58
+#: .\templates\main\scientific_library.html:23
+#: .\templates\main\scientific_library.html:46
 msgid "Share"
 msgstr "Поделиться"
 
@@ -664,12 +711,14 @@ msgstr "Поиск мнений..."
 #: .\templates\main\expert_opinion_list.html:55
 #: .\templates\main\news_list.html:55
 #: .\templates\main\recommendation_list.html:55
+#: .\templates\main\scientific_library.html:81
 msgid "Newest first"
 msgstr "Сначала новые"
 
 #: .\templates\main\expert_opinion_list.html:56
 #: .\templates\main\news_list.html:56
 #: .\templates\main\recommendation_list.html:56
+#: .\templates\main\scientific_library.html:82
 msgid "Oldest first"
 msgstr "Сначала старые"
 
@@ -746,6 +795,7 @@ msgid "Message"
 msgstr "Сообщение"
 
 #: .\templates\main\home.html:241 .\templates\main\recommendation_list.html:137
+#: .\templates\main\scientific_library.html:163
 msgid "Close"
 msgstr "Закрыть"
 
@@ -809,19 +859,24 @@ msgid "Search recommendations..."
 msgstr "Поиск рекомендаций..."
 
 #: .\templates\main\recommendation_list.html:57
+#: .\templates\main\scientific_library.html:83
 msgid "By title"
 msgstr "По названию"
 
 #: .\templates\main\recommendation_list.html:80
 #: .\templates\main\recommendation_list.html:133
+#: .\templates\main\scientific_library.html:118
+#: .\templates\main\scientific_library.html:165
 msgid "Download"
 msgstr "Скачать"
 
 #: .\templates\main\recommendation_list.html:120
+#: .\templates\main\scientific_library.html:154
 msgid "Your browser doesn't support PDF preview."
 msgstr "Ваш браузер не поддерживает предпросмотр PDF."
 
 #: .\templates\main\recommendation_list.html:121
+#: .\templates\main\scientific_library.html:155
 msgid "Click here to download"
 msgstr "Нажмите здесь, чтобы скачать"
 
@@ -844,6 +899,30 @@ msgstr "Связанные документы"
 #: .\templates\main\research_project_list.html:23
 msgid "No research projects available at the moment."
 msgstr "На данный момент нет доступных исследовательских проектов."
+
+#: .\templates\main\scientific_library.html:35
+#, fuzzy
+#| msgid "Latest news and updates from our institute"
+msgid "Scientific publications and research materials from our institute"
+msgstr "Последние новости и обновления нашего института"
+
+#: .\templates\main\scientific_library.html:73
+#, fuzzy
+#| msgid "Search opinions..."
+msgid "Search publications..."
+msgstr "Поиск мнений..."
+
+#: .\templates\main\scientific_library.html:84
+#, fuzzy
+#| msgid "Author"
+msgid "By author"
+msgstr "Автор"
+
+#: .\templates\main\scientific_library.html:174
+#, fuzzy
+#| msgid "No recommendations available at the moment."
+msgid "No publications available at the moment."
+msgstr "На данный момент нет доступных рекомендаций."
 
 #: .\templates\main\search_results.html:4
 #: .\templates\main\search_results.html:13
@@ -906,3 +985,6 @@ msgstr "Попробуйте другие ключевые слова"
 #: .\templates\main\search_results.html:131
 msgid "Try more general keywords"
 msgstr "Попробуйте более общие ключевые слова"
+
+#~ msgid "History"
+#~ msgstr "История"
