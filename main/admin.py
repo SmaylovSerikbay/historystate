@@ -1,14 +1,13 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from modeltranslation.admin import TranslationAdmin
 from .models import (
     Hero, Event, Banner, News, Resource, ResearchProject,
     Recommendation, Journal, ExpertOpinion, Achievement,
     MenuItem, SiteSettings, AboutPage, Charter, Management,
     Department, ScientificCouncil, YoungScientist
 )
-from .translation import *  # Импортируем все из translation.py
-from modeltranslation.admin import TranslationAdmin
 
 class AboutUsMixin:
     def get_app_label(self):
