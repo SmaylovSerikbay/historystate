@@ -167,19 +167,16 @@
 </section>
 
 <!-- Resources Section -->
-<section class="resources-section py-5">
+<section class="resources-section py-4">
     <div class="container">
         <h2 class="section-title text-center">{% trans "Resources" %}</h2>
         <div class="resources-list">
             {% for resource in resources %}
-            <a href="{{ resource.url }}" class="resource-link" target="_blank">
-                <div class="resource-item">
-                    <div class="resource-icon">
-                        <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
-                    </div>
-                    <span class="resource-name">{{ resource.title }}</span>
-                    <i class="fas fa-external-link-alt"></i>
+            <a href="{{ resource.url }}" class="resource-link" target="_blank" rel="noopener">
+                <div class="resource-icon">
+                    <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
                 </div>
+                <span class="resource-name">{{ resource.title }}</span>
             </a>
             {% endfor %}
         </div>
@@ -841,84 +838,93 @@
     /* Resources Section */
     .resources-section {
         background: var(--light-bg);
-        padding: 3rem 0;
+        padding: 2rem 0;
+    }
+
+    .resources-section .section-title {
+        margin-bottom: 2rem;
     }
 
     .resources-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
     }
 
     .resource-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-decoration: none;
         color: var(--text-color);
+        text-align: center;
+        width: 120px;
+        transition: transform 0.2s;
     }
 
-    .resource-item {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-        background: white;
-        border-radius: 8px;
-        transition: background-color 0.2s;
-        gap: 1rem;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .resource-item:hover {
-        background: rgba(var(--primary-color-rgb), 0.05);
+    .resource-link:hover {
+        transform: translateY(-3px);
     }
 
     .resource-icon {
-        width: 32px;
-        height: 32px;
-        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .resource-icon img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        border-radius: 4px;
     }
 
     .resource-name {
-        flex-grow: 1;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 500;
+        line-height: 1.2;
     }
 
-    .resource-item i {
-        color: var(--primary-color);
-        font-size: 0.85rem;
-        opacity: 0.7;
-    }
-
-    @media (max-width: 991.98px) {
+    @media (max-width: 768px) {
         .resources-list {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-link {
+            width: 100px;
+        }
+
+        .resource-icon {
+            width: 56px;
+            height: 56px;
+        }
+
+        .resource-name {
+            font-size: 0.85rem;
         }
     }
 
     @media (max-width: 576px) {
         .resources-list {
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
-        .resource-item {
-            padding: 0.5rem;
+        .resource-link {
+            width: 80px;
         }
 
         .resource-icon {
-            width: 24px;
-            height: 24px;
+            width: 48px;
+            height: 48px;
         }
 
         .resource-name {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
     }
 
