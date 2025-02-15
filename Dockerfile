@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libtiff-dev \
     libwebp-dev \
     curl \
+    gettext \
     && rm -rf /var/lib/apt/lists/*
 
 # Установка рабочей директории
