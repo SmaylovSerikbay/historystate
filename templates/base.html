@@ -9,132 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
-    <style>
-        body {
-            padding-top: 70px;
-        }
-        
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1030;
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .navbar {
-            min-height: 70px;
-            padding: 0;
-        }
-
-        .navbar-brand {
-            font-size: 15px;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-logo {
-            height: 35px;
-            width: auto;
-            margin-right: 10px;
-        }
-
-        .navbar-toggler {
-            padding: 4px 8px;
-            font-size: 14px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .navbar-toggler-icon {
-            width: 1em;
-            height: 1em;
-        }
-
-        .navbar-nav .nav-link {
-            padding: 0.5rem 1rem;
-            font-size: 15px;
-            line-height: 1.2;
-        }
-
-        .carousel-item {
-            width: 100%;
-            height: calc(100vh - 70px);
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @media (max-width: 991.98px) {
-            body {
-                padding-top: 56px;
-            }
-
-            .navbar {
-                min-height: 56px;
-            }
-
-            .navbar-collapse {
-                position: fixed;
-                top: 56px;
-                left: 0;
-                right: 0;
-                background-color: var(--primary-color);
-                padding: 1rem;
-                max-height: calc(100vh - 56px);
-                overflow-y: auto;
-            }
-
-            .carousel-item {
-                height: calc(100vh - 56px);
-            }
-        }
-
-        @media (max-width: 576px) {
-            body {
-                padding-top: 52px;
-            }
-
-            .navbar {
-                min-height: 52px;
-            }
-
-            .navbar-brand {
-                font-size: 14px;
-            }
-
-            .header-logo {
-                height: 30px;
-            }
-
-            .navbar-toggler {
-                padding: 3px 6px;
-                font-size: 12px;
-            }
-
-            .navbar-toggler-icon {
-                width: 0.8em;
-                height: 0.8em;
-            }
-
-            .carousel-item {
-                height: calc(100vh - 52px);
-            }
-        }
-    </style>
 </head>
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'main:home' %}">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
                     {% if site_config.logo %}
-                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo">
+                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo me-2">
                     {% endif %}
                     <span>{{ site_config.site_name }}</span>
                 </a>
@@ -292,6 +174,283 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <style>
+        /* Общие стили */
+        :root {
+            --primary-color: #1B2B48;
+            --secondary-color: #C4A052;
+            --text-color: #333333;
+            --light-bg: #F8F9FA;
+            --border-color: #E5E5E5;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+        }
+
+        /* Стили для хедера */
+        .header {
+            background: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-logo {
+            height: 35px;
+            width: auto;
+        }
+
+        .navbar {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 15px;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        /* Стили для навигации */
+        .navbar-nav {
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item {
+            white-space: nowrap;
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 15px;
+            line-height: 1.2;
+            text-align: center;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .dropdown-menu {
+            min-width: 220px;
+            margin-top: 0;
+            border: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar-nav .dropdown-item {
+            white-space: normal;
+            padding: 8px 15px;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+        /* Мобильная навигация */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--primary-color);
+                padding: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .navbar-nav {
+                margin: 0 -1rem;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .navbar-nav .nav-item:last-child {
+                border-bottom: none;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.75rem 1rem;
+                display: block;
+                text-align: left;
+            }
+
+            .navbar-nav .dropdown-menu {
+                min-width: 100%;
+                margin: 0;
+                padding: 0;
+                background: rgba(0,0,0,0.1);
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .navbar-nav .dropdown-item {
+                padding: 0.75rem 1.5rem;
+                color: rgba(255,255,255,0.8);
+            }
+
+            .navbar-nav .dropdown-item:hover {
+                background: rgba(255,255,255,0.1);
+                color: #fff;
+            }
+
+            .language-switcher,
+            .search-wrapper {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .language-switcher .btn,
+            .search-wrapper .btn {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        /* Поиск */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .search-popup.active {
+            display: block;
+        }
+
+        .search-form .form-control {
+            border-radius: 4px 0 0 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-form .btn {
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Адаптивный поиск */
+        @media (max-width: 768px) {
+            .search-popup {
+                width: 100%;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                border-radius: 0;
+                margin-top: 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .search-form {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: auto;
+            padding: 3rem 0 1.5rem;
+            background: var(--primary-color);
+        }
+
+        .footer a {
+            text-decoration: none;
+            transition: opacity 0.3s;
+            color: rgba(255,255,255,0.8) !important;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+            color: #fff !important;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer h5 {
+            color: #fff;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        /* Адаптивный футер */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 0 1rem;
+                text-align: center;
+            }
+
+            .footer .col-md-4 {
+                margin-bottom: 2rem;
+            }
+
+            .footer ul {
+                padding: 0;
+            }
+
+            .footer ul li {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Общие адаптивные стили */
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .row {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+            .col, [class*="col-"] {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            h1, .h1 {
+                font-size: 1.75rem;
+            }
+
+            h2, .h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const searchToggle = document.querySelector('.search-toggle');
