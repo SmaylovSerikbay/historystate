@@ -84,6 +84,42 @@
     </div>
 </section>
 
+<!-- Statistics Section -->
+<section class="statistics-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card">
+                    <i class="fas fa-book-open statistics-icon"></i>
+                    <div class="statistics-value">{{ research_publications_count }}</div>
+                    <p class="statistics-label">{% trans "Research Publications" %}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card">
+                    <i class="fas fa-project-diagram statistics-icon"></i>
+                    <div class="statistics-value">{{ active_projects_count }}</div>
+                    <p class="statistics-label">{% trans "Active Projects" %}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card">
+                    <i class="fas fa-scroll statistics-icon"></i>
+                    <div class="statistics-value">{{ scientific_works_count }}</div>
+                    <p class="statistics-label">{% trans "Scientific Works" %}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card">
+                    <i class="fas fa-user-graduate statistics-icon"></i>
+                    <div class="statistics-value">{{ scientists_count }}</div>
+                    <p class="statistics-label">{% trans "Scientists" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Events Section -->
 <section class="events-section py-5">
     <div class="container">
@@ -174,18 +210,11 @@
             {% for resource in resources %}
             <div class="col-lg-2-4 col-md-4 col-sm-6">
                 <a href="{{ resource.url }}" class="resource-card">
-                    <div class="resource-box">
-                        <div class="resource-image">
-                            <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
-                            <div class="resource-overlay">
-                                <span class="view-resource">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="resource-content">
-                            <h3 class="resource-title">{{ resource.title }}</h3>
-                        </div>
+                    <div class="resource-image">
+                        <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
+                    </div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">{{ resource.title }}</h3>
                     </div>
                 </a>
             </div>
@@ -773,21 +802,6 @@
         color: inherit;
         display: block;
         height: 100%;
-    }
-
-    .resource-box {
-        background: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: all var(--transition-speed);
-        height: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .resource-card:hover .resource-box {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
     .resource-image {
