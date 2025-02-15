@@ -53,12 +53,13 @@ class SiteSettingsAdmin(TranslationAdmin):
         css = {
             'screen': (
                 'modeltranslation/css/tabbed_translation_fields.css',
-                'admin/css/jquery.ui.tabs.css',
+                'admin/css/jquery-ui.min.css',
             ),
         }
         js = (
+            'admin/js/vendor/jquery/jquery.min.js',
             'admin/js/jquery.init.js',
-            'admin/js/jquery.ui.tabs.min.js',
+            'admin/js/vendor/jquery/jquery-ui.min.js',
             'modeltranslation/js/force_jquery.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
