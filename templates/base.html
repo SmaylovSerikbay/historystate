@@ -180,6 +180,66 @@
             width: auto;
         }
 
+        /* Стили для навигации */
+        .navbar-nav {
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item {
+            white-space: nowrap;
+            margin: 0 5px;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 15px;
+            line-height: 1.2;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .navbar-nav .dropdown-menu {
+            min-width: 220px;
+        }
+
+        .navbar-nav .dropdown-item {
+            white-space: normal;
+            padding: 8px 15px;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav .nav-item {
+                margin: 0;
+                width: 100%;
+                text-align: left;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 0;
+                display: block;
+                text-align: left;
+            }
+
+            .navbar-nav .dropdown-menu {
+                min-width: 100%;
+                margin: 0;
+                padding: 0;
+                border: none;
+                background: transparent;
+            }
+
+            .navbar-nav .dropdown-item {
+                padding: 0.5rem 1rem;
+                color: rgba(255,255,255,.75);
+            }
+
+            .navbar-nav .dropdown-item:hover {
+                background: transparent;
+                color: #fff;
+            }
+        }
+
         .search-wrapper {
             position: relative;
         }
