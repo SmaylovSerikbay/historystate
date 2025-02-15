@@ -6,7 +6,7 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-indicators">
             {% for hero in heroes %}
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
@@ -15,11 +15,15 @@
         <div class="carousel-inner">
             {% for hero in heroes %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ hero.image.url }}" class="d-block w-100" alt="{{ hero.title|default:'Hero Image' }}">
+                <div class="carousel-image-wrapper">
+                    <img src="{{ hero.image.url }}" class="d-block w-100" alt="{{ hero.title|default:'Hero Image' }}">
+                </div>
+                {% if hero.title or hero.description %}
                 <div class="carousel-caption">
                     {% if hero.title %}<h2>{{ hero.title }}</h2>{% endif %}
                     {% if hero.description %}<p>{{ hero.description }}</p>{% endif %}
                 </div>
+                {% endif %}
                 <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
             </div>
             {% endfor %}
