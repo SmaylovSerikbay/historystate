@@ -102,11 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(form);
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             fetch(form.action, {
                 method: 'POST',
                 body: formData,
+                credentials: 'same-origin',
                 headers: {
-                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             }).then(response => {
                 if (response.ok) {
