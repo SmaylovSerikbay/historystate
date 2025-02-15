@@ -5,27 +5,35 @@
 
 {% block content %}
 <!-- Hero Section -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        {% for hero in heroes %}
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
-        {% endfor %}
-    </div>
-    <div class="carousel-inner">
-        {% for hero in heroes %}
-        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ hero.image.url }}" class="d-block w-100" alt="Hero Image {{ forloop.counter }}">
-            <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
+<section class="hero-section">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for hero in heroes %}
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="carousel-inner">
+            {% for hero in heroes %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ hero.image.url }}" class="d-block w-100" alt="{{ hero.title|default:'Hero Image' }}">
+                <div class="carousel-caption">
+                    {% if hero.title %}<h2>{{ hero.title }}</h2>{% endif %}
+                    {% if hero.description %}<p>{{ hero.description }}</p>{% endif %}
+                </div>
+                <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
+</section>
 
 <!-- About Section -->
 <section class="about-section py-5">
