@@ -43,44 +43,44 @@ msgstr "Общие настройки"
 
 #: .\main\admin.py:176 .\main\admin.py:190 .\main\admin.py:274
 msgid "Содержание"
-msgstr ""
+msgstr "Содержание"
 
 #: .\main\admin.py:193 .\main\admin.py:277
 msgid "Документ"
-msgstr ""
+msgstr "Документ"
 
 #: .\main\admin.py:195 .\main\admin.py:279
 msgid "Загрузить PDF документ"
-msgstr ""
+msgstr "Загрузить PDF документ"
 
 #: .\main\admin.py:197 .\main\admin.py:225 .\main\admin.py:257
 #: .\main\admin.py:281 .\main\admin.py:309
 msgid "Настройки"
-msgstr ""
+msgstr "Настройки"
 
 #: .\main\admin.py:207 .\main\admin.py:291
 msgid "Просмотр PDF"
-msgstr ""
+msgstr "Просмотр PDF"
 
 #: .\main\admin.py:209 .\main\admin.py:293
 msgid "PDF Документ"
-msgstr ""
+msgstr "PDF Документ"
 
 #: .\main\admin.py:219 .\main\admin.py:303
 msgid "Личная информация"
-msgstr ""
+msgstr "Личная информация"
 
 #: .\main\admin.py:222 .\main\admin.py:254 .\main\admin.py:306
 msgid "Контактная информация"
-msgstr ""
+msgstr "Контактная информация"
 
 #: .\main\admin.py:242 .\main\admin.py:327
 msgid "Фото"
-msgstr ""
+msgstr "Фото"
 
 #: .\main\admin.py:251
 msgid "Информация об отделе"
-msgstr ""
+msgstr "Информация об отделе"
 
 #: .\main\models.py:6
 msgid "Created at"
