@@ -606,11 +606,11 @@ msgstr "Әрекеттер"
 
 #: .\templates\main\about.html:312
 msgid "Show more"
-msgstr "Көбірек көру"
+msgstr "Толығырақ"
 
 #: .\templates\main\about.html:329
 msgid "View Details"
-msgstr "Толығырақ көру"
+msgstr "Толығырақ"
 
 #: .\templates\main\about.html:357
 msgid "Admission Year"
@@ -660,7 +660,7 @@ msgstr "Ескілер бірінші"
 #: .\templates\main\journal_list.html:29 .\templates\main\news_list.html:85
 #: .\templates\main\search_results.html:87
 msgid "Read More"
-msgstr "Толығырақ оқу"
+msgstr "Толығырақ"
 
 #: .\templates\main\expert_opinion_list.html:457
 #: .\templates\main\news_detail.html:289 .\templates\main\news_list.html:429
@@ -674,7 +674,7 @@ msgstr "Тарих күйі - басты бет"
 
 #: .\templates\main\home.html:49 .\templates\main\research_project_list.html:17
 msgid "Learn More"
-msgstr "Көбірек оқу"
+msgstr "Толығырақ"
 
 #: .\templates\main\home.html:63
 msgid "Research Publications"
