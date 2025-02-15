@@ -170,25 +170,17 @@
 <section class="resources-section py-5">
     <div class="container">
         <h2 class="section-title text-center">{% trans "Resources" %}</h2>
-        <div class="row g-4 justify-content-center">
+        <div class="resources-list">
             {% for resource in resources %}
-            <div class="col-lg-2-4 col-md-4 col-sm-6">
-                <a href="{{ resource.url }}" class="resource-card">
-                    <div class="resource-box">
-                        <div class="resource-image">
-                            <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
-                            <div class="resource-overlay">
-                                <span class="view-resource">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="resource-content">
-                            <h3 class="resource-title">{{ resource.title }}</h3>
-                        </div>
+            <a href="{{ resource.url }}" class="resource-link" target="_blank">
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
                     </div>
-                </a>
-            </div>
+                    <span class="resource-name">{{ resource.title }}</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -470,34 +462,92 @@
 
     @media (max-width: 991.98px) {
         .statistics-box {
-            margin-top: 2rem;
+            margin-top: 1rem;
+            box-shadow: none;
+        }
+
+        .achievement-item,
+        .event-card,
+        .news-card,
+        .resource-card {
+            transform: none !important;
+            transition: none !important;
+            will-change: auto;
+        }
+
+        .achievement-item:hover,
+        .event-card:hover,
+        .news-card:hover,
+        .resource-card:hover {
+            transform: none !important;
+            box-shadow: var(--box-shadow);
+        }
+
+        .event-image img,
+        .news-image img,
+        .resource-image img {
+            transition: none !important;
+            transform: none !important;
+            will-change: auto;
+        }
+
+        .event-card:hover .event-image img,
+        .news-card:hover .news-image img,
+        .resource-card:hover .resource-image img {
+            transform: none !important;
+        }
+
+        .achievement-grid {
+            gap: 1rem;
+            will-change: auto;
+        }
+
+        .achievement-item {
+            padding: 1rem;
+            backdrop-filter: none;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .achievement-item .counter {
+            background: none;
+            color: white;
+            -webkit-text-fill-color: white;
         }
     }
 
     @media (max-width: 576px) {
         .statistics-box {
-            margin-top: 1.5rem;
-        }
-        
-        .achievement-grid {
-            gap: 1rem;
-        }
-        
-        .achievement-item {
             padding: 1rem;
+            margin-top: 1rem;
         }
-        
+
+        .achievement-grid {
+            gap: 0.75rem;
+        }
+
+        .achievement-item {
+            padding: 0.75rem;
+        }
+
         .achievement-item i {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
         }
-        
+
         .achievement-item .counter {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            margin: 0.25rem 0;
         }
-        
+
         .achievement-item p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        .event-image,
+        .news-image,
+        .resource-image {
+            height: 180px;
         }
     }
 
@@ -790,101 +840,86 @@
 
     /* Resources Section */
     .resources-section {
-        background-color: var(--light-bg);
-        padding: 5rem 0;
+        background: var(--light-bg);
+        padding: 3rem 0;
     }
 
-    .resource-card {
+    .resources-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .resource-link {
         text-decoration: none;
-        color: inherit;
-        display: block;
-        height: 100%;
+        color: var(--text-color);
     }
 
-    .resource-box {
+    .resource-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
         background: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: all var(--transition-speed);
-        height: 100%;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+        gap: 1rem;
         border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .resource-card:hover .resource-box {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    .resource-item:hover {
+        background: rgba(var(--primary-color-rgb), 0.05);
     }
 
-    .resource-image {
-        position: relative;
-        height: 250px;
-        overflow: hidden;
+    .resource-icon {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
     }
 
-    .resource-image img {
+    .resource-icon img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        transition: transform var(--transition-speed);
+        object-fit: contain;
+        border-radius: 4px;
     }
 
-    .resource-card:hover .resource-image img {
-        transform: scale(1.1);
+    .resource-name {
+        flex-grow: 1;
+        font-size: 0.95rem;
+        font-weight: 500;
     }
 
-    .resource-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity var(--transition-speed);
-    }
-
-    .resource-card:hover .resource-overlay {
-        opacity: 1;
-    }
-
-    .view-resource {
-        width: 50px;
-        height: 50px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .resource-item i {
         color: var(--primary-color);
-        font-size: 1.2rem;
-        transform: translateY(20px);
-        transition: all var(--transition-speed);
+        font-size: 0.85rem;
+        opacity: 0.7;
     }
 
-    .resource-card:hover .view-resource {
-        transform: translateY(0);
+    @media (max-width: 991.98px) {
+        .resources-list {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
     }
 
-    .view-resource:hover {
-        background: var(--primary-color);
-        color: white;
-    }
+    @media (max-width: 576px) {
+        .resources-list {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
 
-    .resource-content {
-        padding: 1.5rem;
-        text-align: center;
-    }
+        .resource-item {
+            padding: 0.5rem;
+        }
 
-    .resource-title {
-        color: var(--dark-bg);
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin: 0;
-        line-height: 1.4;
+        .resource-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .resource-name {
+            font-size: 0.9rem;
+        }
     }
 
     /* Appointment Section */
@@ -1035,67 +1070,68 @@
             gap: 1rem;
         }
     }
+
+    /* Оптимизация производительности */
+    .about-section,
+    .events-section,
+    .news-section,
+    .resources-section {
+        contain: content;
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 5000px;
+    }
 </style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Инициализация каруселей
-        const carousels = document.querySelectorAll('.carousel');
-        carousels.forEach(carousel => {
-            new bootstrap.Carousel(carousel, {
-                interval: 5000,
-                wrap: true,
-                pause: 'hover'
+        // Оптимизация загрузки изображений
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('loading' in HTMLImageElement.prototype) {
+            images.forEach(img => {
+                img.loading = 'lazy';
             });
-        });
+        }
 
-        // Анимация счетчиков
+        // Оптимизация счетчиков
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        const options = {
+            threshold: 0.1,
+            rootMargin: '50px'
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 1000;
+                    const steps = 20;
+                    const stepValue = target / steps;
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += stepValue;
+                        if (current > target) {
+                            counter.textContent = target;
+                        } else {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        }
+                    };
+
+                    requestAnimationFrame(updateCounter);
+                    observer.unobserve(counter);
+                }
+            });
+        }, options);
 
         counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / speed;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-
-            counter.setAttribute('data-target', counter.innerText);
-            counter.innerText = '0';
-            updateCount();
+            counter.setAttribute('data-target', counter.textContent);
+            counter.textContent = '0';
+            observer.observe(counter);
         });
-
-        // Выравнивание высоты карточек
-        function equalizeHeights(selector) {
-            const elements = document.querySelectorAll(selector);
-            let maxHeight = 0;
-            
-            elements.forEach(el => {
-                el.style.height = 'auto';
-                maxHeight = Math.max(maxHeight, el.offsetHeight);
-            });
-            
-            elements.forEach(el => el.style.height = `${maxHeight}px`);
-        }
-
-        function equalizeAllHeights() {
-            equalizeHeights('.featured-event');
-            equalizeHeights('.col-md-4 .card');
-            equalizeHeights('.news-card');
-            equalizeHeights('.resource-card .card');
-        }
-
-        window.addEventListener('load', equalizeAllHeights);
-        window.addEventListener('resize', equalizeAllHeights);
     });
 </script>
 {% endblock %} 
