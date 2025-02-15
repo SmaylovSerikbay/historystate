@@ -506,7 +506,7 @@ msgstr "Современная история"
 
 #: .\templates\base.html:92
 msgid "Digital"
-msgstr "Цифровые ресурсы"
+msgstr "Digital"
 
 #: .\templates\base.html:95
 msgid "History"

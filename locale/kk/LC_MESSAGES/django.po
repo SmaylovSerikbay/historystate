@@ -482,7 +482,7 @@ msgstr "Зерттеу журналдары"
 
 #: .\templates\base.html:85
 msgid "Scientific Library"
-msgstr "Зерттеу қағазханасы"
+msgstr "Ғылыми кітапхана"
 
 #: .\templates\base.html:88
 msgid "Modern History"
@@ -490,7 +490,7 @@ msgstr "Қазіргі заман тарихы"
 
 #: .\templates\base.html:92
 msgid "Digital"
-msgstr "Дигитал"
+msgstr "Digital"
 
 #: .\templates\base.html:95
 msgid "History"
@@ -670,7 +670,7 @@ msgstr "Сілтеме көшірілді"
 
 #: .\templates\main\home.html:4
 msgid "History State - Main Page"
-msgstr "Тарих күйі - басты бет"
+msgstr "Мемлекет тарихы институты - басты бет"
 
 #: .\templates\main\home.html:49 .\templates\main\research_project_list.html:17
 msgid "Learn More"
@@ -694,7 +694,7 @@ msgstr "Ғылыми жұмысшылар"
 
 #: .\templates\main\home.html:113
 msgid "Main Hall"
-msgstr "Қағазхана"
+msgstr "Басты"
 
 #: .\templates\main\home.html:129
 msgid "Latest News"
