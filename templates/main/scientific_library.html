@@ -3,24 +3,66 @@
 
 {% block title %}{% trans "Scientific Library" %} - {{ block.super }}{% endblock %}
 
+{% block extra_head %}
+<style>
+    @media print {
+        .breadcrumb-wrapper,
+        .navbar,
+        .footer,
+        .btn-link,
+        .modal,
+        .input-group,
+        .form-select,
+        .card-footer {
+            display: none !important;
+        }
+        
+        .card {
+            break-inside: avoid;
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+        }
+        
+        .card-img-wrapper {
+            height: 150px !important;
+        }
+        
+        .container {
+            width: 100% !important;
+            max-width: none !important;
+            padding: 0 !important;
+        }
+        
+        .page-header {
+            padding: 1rem 0 !important;
+            margin-bottom: 2rem !important;
+        }
+        
+        .library-item {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="scientific-library">
-    <div class="breadcrumb-wrapper">
+    <div class="breadcrumb-wrapper bg-light">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
                             <li class="breadcrumb-item active">{% trans "Scientific Library" %}</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-md-5 text-md-end">
-                    <button class="btn btn-link" onclick="window.print()">
+                    <button class="btn btn-link text-decoration-none text-dark" onclick="window.print()">
                         <i class="fas fa-print"></i> {% trans "Print" %}
                     </button>
-                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#shareModal">
+                    <button class="btn btn-link text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#shareModal">
                         <i class="fas fa-share-alt"></i> {% trans "Share" %}
                     </button>
                 </div>
@@ -28,12 +70,12 @@
         </div>
     </div>
 
-    <div class="page-header">
+    <div class="page-header bg-white border-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>{% trans "Scientific Library" %}</h1>
-                    <p class="lead">{% trans "Scientific publications and research materials from our institute" %}</p>
+                    <h1 class="mb-2">{% trans "Scientific Library" %}</h1>
+                    <p class="lead mb-0">{% trans "Scientific publications and research materials from our institute" %}</p>
                 </div>
             </div>
         </div>
