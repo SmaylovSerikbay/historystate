@@ -7,9 +7,9 @@
 <style>
     /* Общие стили */
     :root {
-        --primary-color: #1B2B48;
-        --secondary-color: #C4A052;
-        --text-color: #333333;
+        --primary-color: #00205B;
+        --secondary-color: #B8860B;
+        --text-color: #2C3E50;
         --light-bg: #F8F9FA;
         --border-color: #E5E5E5;
     }
@@ -30,20 +30,24 @@
         color: var(--primary-color);
         text-decoration: none;
         font-weight: 500;
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
     }
 
     .breadcrumb-item.active {
         color: var(--secondary-color);
+        font-size: 0.95rem;
     }
 
     .page-header {
         background: white;
-        padding: 3.5rem 0;
+        padding: 4rem 0;
         border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .scientific-library-section {
-        padding: 3.5rem 0;
+        padding: 4rem 0;
         background: var(--light-bg);
     }
 
@@ -54,6 +58,7 @@
         font-weight: 700;
         margin-bottom: 1.2rem;
         letter-spacing: -0.5px;
+        line-height: 1.2;
     }
 
     .page-description {
@@ -62,6 +67,7 @@
         line-height: 1.6;
         margin: 0;
         opacity: 0.85;
+        letter-spacing: 0.2px;
     }
 
     .page-actions .btn {
@@ -70,10 +76,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
         transition: all 0.3s ease;
+        border-radius: 0;
     }
 
     .page-actions .btn:hover {
         transform: translateY(-2px);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
     /* Стили для фильтров */
@@ -82,22 +90,27 @@
     }
 
     .input-group .form-control {
-        padding: 0.8rem 1.2rem;
+        padding: 1rem 1.2rem;
         border: 1px solid var(--border-color);
-        font-size: 1rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+        border-radius: 0;
     }
 
     .input-group .btn {
-        padding: 0.8rem 1.5rem;
+        padding: 0 1.5rem;
         background: var(--primary-color);
         border-color: var(--primary-color);
+        border-radius: 0;
     }
 
     .form-select {
-        padding: 0.8rem 1.2rem;
+        padding: 1rem 1.2rem;
         border: 1px solid var(--border-color);
-        font-size: 1rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-radius: 0;
     }
 
     /* Стили для карточек */
@@ -105,6 +118,7 @@
         border: none;
         box-shadow: 0 2px 15px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
+        border-radius: 0;
     }
 
     .card:hover {
@@ -118,39 +132,49 @@
         font-size: 1.1rem;
         line-height: 1.4;
         margin-bottom: 1rem;
+        letter-spacing: 0.2px;
     }
 
     .card-text {
         color: var(--text-color);
         opacity: 0.8;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
     .card-footer {
         background: transparent;
-        padding: 1.2rem;
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-color);
     }
 
     .card-footer .btn {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1.2rem;
         font-weight: 500;
         letter-spacing: 0.3px;
+        border-radius: 0;
+        text-transform: uppercase;
+        font-size: 0.9rem;
     }
 
     /* Стили для модальных окон */
     .modal-content {
         border: none;
         border-radius: 0;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
     }
 
     .modal-header {
         background: var(--primary-color);
         color: white;
-        padding: 1.2rem 1.5rem;
+        padding: 1.5rem;
+        border-radius: 0;
     }
 
     .modal-title {
         font-weight: 600;
         letter-spacing: 0.3px;
+        font-size: 1.2rem;
     }
 
     .modal-body {
@@ -160,18 +184,22 @@
     .info-section h6 {
         color: var(--primary-color);
         font-size: 1rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
     }
 
     .pdf-preview {
         border: 1px solid var(--border-color);
-        border-radius: 4px;
+        border-radius: 0;
         overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
+    /* Адаптивные стили */
     @media (max-width: 768px) {
         .page-header {
-            padding: 2.5rem 0;
+            padding: 3rem 0;
         }
 
         .page-title {
@@ -191,6 +219,7 @@
         }
     }
 
+    /* Стили для печати */
     @media print {
         .breadcrumb-wrapper,
         .navbar,
@@ -220,8 +249,9 @@
         }
         
         .page-header {
-            padding: 1rem 0 !important;
+            padding: 2rem 0 !important;
             margin-bottom: 2rem !important;
+            box-shadow: none !important;
         }
         
         .library-item {
