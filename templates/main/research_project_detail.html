@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ project.title }} - History State{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'research_projects' %}">{% trans "Research Projects" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+                </ol>
+            </nav>
+
+            <article class="project-article">
+                <h1 class="section-title mb-4">{{ project.title }}</h1>
+                
+                {% if project.image %}
+                <img src="{{ project.image.url }}" class="img-fluid rounded mb-4" alt="{{ project.title }}">
+                {% endif %}
+
+                <div class="project-meta mb-4">
+                    <span class="text-muted">
+                        <i class="fas fa-calendar-alt"></i> 
+                        {% trans "Published" %}: {{ project.created_at|date:"d.m.Y" }}
+                    </span>
+                    {% if project.updated_at %}
+                    <span class="text-muted ml-3">
+                        <i class="fas fa-edit"></i>
+                        {% trans "Updated" %}: {{ project.updated_at|date:"d.m.Y" }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                <div class="project-content">
+                    {{ project.description|safe }}
+                </div>
+
+                {% if project.documents.exists %}
+                <div class="project-documents mt-5">
+                    <h3>{% trans "Related Documents" %}</h3>
+                    <ul class="list-group">
+                        {% for document in project.documents.all %}
+                        <li class="list-group-item">
+                            <i class="fas fa-file-pdf text-danger"></i>
+                            <a href="{{ document.file.url }}" target="_blank" class="ml-2">
+                                {{ document.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="project-share mt-5">
+                    <h3>{% trans "Share" %}</h3>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                           target="_blank" 
+                           class="btn btn-primary">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ project.title }}" 
+                           target="_blank" 
+                           class="btn btn-info">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://t.me/share/url?url={{ request.build_absolute_uri }}&text={{ project.title }}" 
+                           target="_blank" 
+                           class="btn btn-telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .project-article {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 3px;
+        background: var(--secondary-color);
+    }
+
+    .project-meta {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1rem;
+    }
+
+    .project-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .social-share {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-share .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-telegram {
+        background-color: #0088cc;
+        color: white;
+    }
+
+    .btn-telegram:hover {
+        background-color: #0077b3;
+        color: white;
+    }
+</style>
+{% endblock %} 

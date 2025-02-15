@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ opinion.topic }} - History State{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'expert_opinions' %}">{% trans "Expert Opinions" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ opinion.topic }}</li>
+                </ol>
+            </nav>
+
+            <article class="opinion-article">
+                <div class="expert-profile">
+                    {% if opinion.expert_photo %}
+                    <img src="{{ opinion.expert_photo.url }}" alt="{{ opinion.expert_name }}" class="expert-photo">
+                    {% else %}
+                    <img src="{% static 'img/placeholders/expert.jpg' %}" alt="{{ opinion.expert_name }}" class="expert-photo">
+                    {% endif %}
+                    <div class="expert-info">
+                        <h2>{{ opinion.expert_name }}</h2>
+                        <p class="expert-title">{{ opinion.expert_title }}</p>
+                        {% if opinion.expert_bio %}
+                        <div class="expert-bio">
+                            {{ opinion.expert_bio|safe }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="opinion-content">
+                    <h1 class="opinion-title">{{ opinion.topic }}</h1>
+                    
+                    <div class="opinion-meta">
+                        <span class="date">
+                            <i class="fas fa-calendar-alt"></i>
+                            {{ opinion.created_at|date:"d.m.Y" }}
+                        </span>
+                        {% if opinion.tags.exists %}
+                        <div class="tags">
+                            {% for tag in opinion.tags.all %}
+                            <span class="badge badge-primary">{{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="opinion-text">
+                        {{ opinion.content|safe }}
+                    </div>
+
+                    {% if opinion.references %}
+                    <div class="opinion-references">
+                        <h3>{% trans "References" %}</h3>
+                        {{ opinion.references|safe }}
+                    </div>
+                    {% endif %}
+
+                    <div class="opinion-share">
+                        <h3>{% trans "Share" %}</h3>
+                        <div class="social-share">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                               target="_blank" 
+                               class="btn btn-primary">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ opinion.topic }}" 
+                               target="_blank" 
+                               class="btn btn-info">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://t.me/share/url?url={{ request.build_absolute_uri }}&text={{ opinion.topic }}" 
+                               target="_blank" 
+                               class="btn btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .opinion-article {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .expert-profile {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .expert-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 2rem;
+        border: 3px solid var(--primary-color);
+    }
+
+    .expert-info h2 {
+        color: var(--primary-color);
+        margin: 0 0 0.5rem 0;
+    }
+
+    .expert-title {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .expert-bio {
+        color: #444;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .opinion-title {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .opinion-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 3px;
+        background: var(--secondary-color);
+    }
+
+    .opinion-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .date {
+        color: #666;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .badge-primary {
+        background-color: var(--primary-color);
+    }
+
+    .opinion-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+
+    .opinion-references {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 5px;
+        margin: 2rem 0;
+    }
+
+    .opinion-references h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .social-share {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-share .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-telegram {
+        background-color: #0088cc;
+        color: white;
+    }
+
+    .btn-telegram:hover {
+        background-color: #0077b3;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .expert-profile {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .expert-photo {
+            margin: 0 auto 1rem auto;
+        }
+    }
+</style>
+{% endblock %} 

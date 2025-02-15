@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Search Results" %} - History State{% endblock %}
+
+{% block content %}
+<!-- Хлебные крошки -->
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "Search Results" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Заголовок страницы -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="page-title">{% trans "Search Results" %}</h1>
+                <p class="page-description">
+                    {% if query %}
+                        {% blocktrans %}Search results for: "{{ query }}"{% endblocktrans %}
+                    {% else %}
+                        {% trans "Please enter a search query" %}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <form class="search-form" action="{% url 'main:search' %}" method="GET">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" value="{{ query }}" placeholder="{% trans 'Search...' %}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Результаты поиска -->
+<section class="search-results-section py-5">
+    <div class="container">
+        {% if results %}
+            <div class="results-count mb-4">
+                {% blocktrans count counter=results|length %}
+                    Found {{ counter }} result
+                {% plural %}
+                    Found {{ counter }} results
+                {% endblocktrans %}
+            </div>
+
+            <div class="results-list">
+                {% for result in results %}
+                    <div class="result-item">
+                        <div class="result-content">
+                            <div class="result-type">
+                                {% if result.type == 'news' %}
+                                    <i class="fas fa-newspaper"></i> {% trans "News" %}
+                                {% elif result.type == 'event' %}
+                                    <i class="fas fa-calendar-alt"></i> {% trans "Event" %}
+                                {% elif result.type == 'research' %}
+                                    <i class="fas fa-microscope"></i> {% trans "Research Project" %}
+                                {% elif result.type == 'recommendation' %}
+                                    <i class="fas fa-lightbulb"></i> {% trans "Recommendation" %}
+                                {% elif result.type == 'expert_opinion' %}
+                                    <i class="fas fa-user-graduate"></i> {% trans "Expert Opinion" %}
+                                {% endif %}
+                            </div>
+                            <h3 class="result-title">
+                                <a href="{{ result.url }}">{{ result.title }}</a>
+                            </h3>
+                            <div class="result-meta">
+                                <span class="result-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    {{ result.date|date:"d.m.Y" }}
+                                </span>
+                            </div>
+                            <p class="result-description">{{ result.description|truncatewords:30|safe }}</p>
+                            <a href="{{ result.url }}" class="read-more">
+                                {% trans "Read More" %} <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if is_paginated %}
+                <nav class="mt-5" aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?q={{ query }}&page={{ page_obj.previous_page_number }}">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                <a class="page-link" href="?q={{ query }}&page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?q={{ query }}&page={{ page_obj.next_page_number }}">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% else %}
+            {% if query %}
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <p>{% trans "No results found for your search query." %}</p>
+                    <p class="suggestions">
+                        {% trans "Suggestions:" %}
+                        <ul>
+                            <li>{% trans "Make sure all words are spelled correctly" %}</li>
+                            <li>{% trans "Try different keywords" %}</li>
+                            <li>{% trans "Try more general keywords" %}</li>
+                        </ul>
+                    </p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #1B2B48;
+        --secondary-color: #C4A052;
+        --text-color: #333333;
+        --light-bg: #F8F9FA;
+        --border-color: #E5E5E5;
+    }
+
+    /* Результаты поиска */
+    .search-results-section {
+        background: var(--light-bg);
+    }
+
+    .results-count {
+        color: #666;
+        font-size: 1.1rem;
+    }
+
+    .results-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .result-item {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .result-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-type {
+        display: inline-block;
+        padding: 5px 12px;
+        background: var(--light-bg);
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .result-type i {
+        margin-right: 5px;
+    }
+
+    .result-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .result-title a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .result-title a:hover {
+        color: var(--secondary-color);
+    }
+
+    .result-meta {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .result-meta i {
+        margin-right: 5px;
+    }
+
+    .result-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .read-more {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .read-more:hover {
+        color: var(--secondary-color);
+    }
+
+    .read-more i {
+        transition: transform 0.3s ease;
+    }
+
+    .read-more:hover i {
+        transform: translateX(5px);
+    }
+
+    /* Нет результатов */
+    .no-results {
+        text-align: center;
+        padding: 3rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .no-results i {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .no-results p {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .suggestions ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .suggestions li {
+        margin-bottom: 0.5rem;
+        color: #666;
+    }
+
+    .suggestions li:before {
+        content: "•";
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .result-item {
+            padding: 1rem;
+        }
+
+        .result-title {
+            font-size: 1.1rem;
+        }
+
+        .result-description {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %} 

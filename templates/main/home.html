@@ -1,0 +1,1075 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "History State - Main Page" %}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for hero in heroes %}
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for hero in heroes %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ hero.image.url }}" class="d-block w-100" alt="Hero Image {{ forloop.counter }}">
+            <div class="carousel-caption">
+                <div class="caption-content">
+                    <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- About Section -->
+<section class="about-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Информация о нас -->
+            <div class="col-lg-7">
+                {% if about_page %}
+                    <div class="about-content pe-lg-4">
+                        <h2 class="section-title text-start">{{ about_page.title }}</h2>
+                        <div class="about-text mb-4">
+                            {{ about_page.content|safe|truncatewords_html:100 }}
+                        </div>
+                        
+                        <div class="about-actions mt-4">
+                            <a href="{% url 'main:about' %}" class="btn btn-primary">
+                                {% trans "Learn More" %} <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Статистика -->
+            <div class="col-lg-5">
+                <div class="statistics-box">
+                    <div class="achievement-grid">
+                        <div class="achievement-item">
+                            <i class="fas fa-book"></i>
+                            <h2 class="counter">3382</h2>
+                            <p>{% trans "Research Publications" %}</p>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-search"></i>
+                            <h2 class="counter">23</h2>
+                            <p>{% trans "Active Projects" %}</p>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-book-open"></i>
+                            <h2 class="counter">99</h2>
+                            <p>{% trans "Scientific Works" %}</p>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <h2 class="counter">42</h2>
+                            <p>{% trans "Scientists" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="events-section py-5">
+    <div class="container">
+        <h2 class="section-title text-center">{% trans "Events" %}</h2>
+        <div class="row g-4">
+            {% for event in events %}
+            <div class="col-lg-4 col-md-6">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                        <div class="event-date">
+                            <span class="day">{{ event.date|date:"d" }}</span>
+                            <span class="month">{{ event.date|date:"M" }}</span>
+                        </div>
+                        <div class="event-overlay">
+                            <a href="#" class="event-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span class="event-time">
+                                <i class="far fa-calendar"></i> {{ event.date|date:"d.m.Y" }}
+                            </span>
+                            <span class="event-location">
+                                <i class="fas fa-map-marker-alt"></i> {% trans "Main Hall" %}
+                            </span>
+                        </div>
+                        <h3 class="event-title">{{ event.title }}</h3>
+                        <p class="event-description">{{ event.description|truncatewords:15 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="news-section py-5">
+    <div class="container">
+        <h2 class="section-title text-center">{% trans "Latest News" %}</h2>
+        <div class="row g-4">
+            {% for news_item in news %}
+            <div class="col-lg-4 mb-4">
+                <div class="news-card">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <div class="news-image">
+                                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                                <div class="news-category">
+                                    <i class="fas fa-newspaper"></i> {% trans "News" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="far fa-calendar-alt"></i> 
+                                    {{ news_item.created_at|date:"d M Y" }}
+                                </div>
+                                <h3 class="news-title">{{ news_item.title }}</h3>
+                                <p class="news-excerpt">{{ news_item.content|truncatewords:15|safe }}</p>
+                                <a href="{% url 'main:news_detail' news_item.pk %}" class="read-more">
+                                    {% trans "Read More" %} <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'main:news_list' %}" class="btn btn-primary btn-lg">
+                {% trans "View All News" %} <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Resources Section -->
+<section class="resources-section py-5">
+    <div class="container">
+        <h2 class="section-title text-center">{% trans "Resources" %}</h2>
+        <div class="row g-4">
+            {% for resource in resources %}
+            <div class="col-lg-4 col-md-6">
+                <a href="{{ resource.url }}" class="resource-card">
+                    <div class="resource-box">
+                        <div class="resource-image">
+                            <img src="{{ resource.image.url }}" alt="{{ resource.title }}">
+                            <div class="resource-overlay">
+                                <span class="view-resource">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="resource-content">
+                            <h3 class="resource-title">{{ resource.title }}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Section -->
+<section class="appointment-section py-5">
+    <div class="container text-center">
+        <h2 class="section-title">{% trans "Schedule an Appointment" %}</h2>
+        <p class="lead">{% trans "Would you like to visit our institute or meet with our researchers? Schedule an appointment now!" %}</p>
+        <button type="button" class="btn btn-primary btn-lg appointment-btn" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+            {% trans "Schedule Appointment" %}
+        </button>
+    </div>
+</section>
+
+<!-- Appointment Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Schedule an Appointment" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="appointmentForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">{% trans "Full Name" %}</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{% trans "Email" %}</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">{% trans "Phone" %}</label>
+                        <input type="tel" class="form-control" id="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">{% trans "Preferred Date" %}</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">{% trans "Message" %}</label>
+                        <textarea class="form-control" id="message" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                <button type="submit" form="appointmentForm" class="btn btn-primary">{% trans "Submit" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* General Styles */
+    :root {
+        --primary-color: #00529B;
+        --secondary-color: #B59144;
+        --accent-color: #CF2028;
+        --text-color: #2C3E50;
+        --light-bg: #F8F9FA;
+        --dark-bg: #1B2B48;
+        --border-radius: 8px;
+        --transition-speed: 0.3s;
+        --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        color: var(--text-color);
+        line-height: 1.6;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        position: relative;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--secondary-color);
+        border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .carousel-item {
+        height: 600px;
+    }
+
+    .carousel-item img {
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.8);
+    }
+
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        backdrop-filter: blur(5px);
+    }
+
+    .slide-counter {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .about-section {
+        background: white;
+        padding: 5rem 0;
+    }
+
+    .about-content {
+        height: 100%;
+    }
+
+    .about-content .section-title {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    .about-content .section-title::after {
+        left: 0;
+        transform: none;
+    }
+
+    .about-text {
+        color: var(--text-color);
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .key-stats {
+        margin-top: 3rem;
+    }
+
+    .stat-card {
+        background: var(--light-bg);
+        padding: 1rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stat-icon i {
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .stat-info {
+        flex-grow: 1;
+    }
+
+    .stat-value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        display: block;
+        color: var(--text-color);
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    .about-actions mt-4 {
+        text-align: right;
+    }
+
+    .btn-primary {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 30px;
+        transition: all var(--transition-speed);
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Statistics Section */
+    .statistics-section {
+        background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
+        color: white;
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 0;
+    }
+
+    .statistics-box {
+        background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
+        padding: 2rem;
+        border-radius: 16px;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .achievement-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .achievement-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        backdrop-filter: blur(5px);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .achievement-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .achievement-item i {
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+    }
+
+    .achievement-item .counter {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
+        background: linear-gradient(45deg, #fff, var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .achievement-item p {
+        color: white;
+        font-size: 0.9rem;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    /* Events Section */
+    .events-section {
+        padding: 5rem 0;
+        background: var(--light-bg);
+    }
+
+    .event-card {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        transition: all var(--transition-speed);
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-speed);
+    }
+
+    .event-card:hover .event-image img {
+        transform: scale(1.1);
+    }
+
+    .event-date {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: white;
+        padding: 10px 15px;
+        border-radius: var(--border-radius);
+        text-align: center;
+        min-width: 60px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+
+    .event-date .day {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .event-date .month {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-top: 4px;
+    }
+
+    .event-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--transition-speed);
+    }
+
+    .event-card:hover .event-overlay {
+        opacity: 1;
+    }
+
+    .event-link {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        transform: translateY(20px);
+        transition: all var(--transition-speed);
+    }
+
+    .event-card:hover .event-link {
+        transform: translateY(0);
+    }
+
+    .event-link:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .event-content {
+        padding: 1.5rem;
+    }
+
+    .event-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    .event-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .event-meta i {
+        color: var(--primary-color);
+    }
+
+    .event-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        color: var(--dark-bg);
+        font-weight: 600;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .event-description {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* News Section */
+    .news-section {
+        padding: 5rem 0;
+        background: white;
+    }
+
+    .news-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .news-card:hover .news-image img {
+        transform: scale(1.05);
+    }
+
+    .news-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-content {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .news-date {
+        color: #666;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .news-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .news-excerpt {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex-grow: 1;
+    }
+
+    .read-more {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.75rem;
+        border-top: 1px solid #eee;
+        margin-top: auto;
+    }
+
+    .read-more:hover {
+        color: var(--secondary-color);
+    }
+
+    @media (max-width: 992px) {
+        .news-card {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .news-image {
+            height: 180px;
+        }
+        
+        .news-content {
+            padding: 1rem;
+        }
+        
+        .news-title {
+            font-size: 1rem;
+        }
+        
+        .news-excerpt {
+            font-size: 0.85rem;
+            -webkit-line-clamp: 2;
+        }
+    }
+
+    /* Resources Section */
+    .resources-section {
+        background-color: var(--light-bg);
+        padding: 5rem 0;
+    }
+
+    .resource-card {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+    }
+
+    .resource-box {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        transition: all var(--transition-speed);
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .resource-card:hover .resource-box {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-image {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .resource-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-speed);
+    }
+
+    .resource-card:hover .resource-image img {
+        transform: scale(1.1);
+    }
+
+    .resource-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--transition-speed);
+    }
+
+    .resource-card:hover .resource-overlay {
+        opacity: 1;
+    }
+
+    .view-resource {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        transform: translateY(20px);
+        transition: all var(--transition-speed);
+    }
+
+    .resource-card:hover .view-resource {
+        transform: translateY(0);
+    }
+
+    .view-resource:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .resource-content {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .resource-title {
+        color: var(--dark-bg);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* Appointment Section */
+    .appointment-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    .appointment-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        transition: all var(--transition-speed);
+    }
+
+    .appointment-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .carousel-item {
+            height: 400px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .achievement-item {
+            min-height: 180px;
+            margin-bottom: 1.5rem;
+        }
+
+        .counter {
+            font-size: 2.2rem;
+        }
+
+        .news-image {
+            min-height: 200px;
+        }
+        
+        .news-title {
+            font-size: 1.1rem;
+        }
+        
+        .news-excerpt {
+            font-size: 0.9rem;
+            -webkit-line-clamp: 2;
+        }
+
+        .resource-image {
+            height: 200px;
+        }
+        
+        .resource-title {
+            font-size: 1.1rem;
+        }
+    }
+
+    .key-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .key-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--light-bg);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .key-info-item:hover {
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transform: translateX(5px);
+    }
+
+    .key-info-item i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        background: rgba(0, 82, 155, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .info-content h4 {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        margin-bottom: 0.25rem;
+    }
+
+    .info-content p {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    .about-image-wrapper {
+        position: relative;
+    }
+
+    .quick-stats {
+        position: absolute;
+        bottom: -20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1;
+    }
+
+    .stat-label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--text-color);
+        margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .quick-stats {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-top: 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Инициализация каруселей
+        const carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(carousel => {
+            new bootstrap.Carousel(carousel, {
+                interval: 5000,
+                wrap: true,
+                pause: 'hover'
+            });
+        });
+
+        // Анимация счетчиков
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            counter.setAttribute('data-target', counter.innerText);
+            counter.innerText = '0';
+            updateCount();
+        });
+
+        // Выравнивание высоты карточек
+        function equalizeHeights(selector) {
+            const elements = document.querySelectorAll(selector);
+            let maxHeight = 0;
+            
+            elements.forEach(el => {
+                el.style.height = 'auto';
+                maxHeight = Math.max(maxHeight, el.offsetHeight);
+            });
+            
+            elements.forEach(el => el.style.height = `${maxHeight}px`);
+        }
+
+        function equalizeAllHeights() {
+            equalizeHeights('.featured-event');
+            equalizeHeights('.col-md-4 .card');
+            equalizeHeights('.news-card');
+            equalizeHeights('.resource-card .card');
+        }
+
+        window.addEventListener('load', equalizeAllHeights);
+        window.addEventListener('resize', equalizeAllHeights);
+    });
+</script>
+{% endblock %} 

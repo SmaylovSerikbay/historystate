@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ news.title }} - History State{% endblock %}
+
+{% block content %}
+<!-- Хлебные крошки -->
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'main:news_list' %}">{% trans "News" %}</a></li>
+                <li class="breadcrumb-item active">{{ news.title }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Заголовок страницы -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="news-meta">
+                    <span class="news-date">
+                        <i class="far fa-calendar-alt"></i>
+                        {{ news.created_at|date:"d M Y" }}
+                    </span>
+                </div>
+                <h1 class="page-title">{{ news.title }}</h1>
+            </div>
+            <div class="col-lg-4">
+                <nav class="page-actions">
+                    <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>{% trans "Print" %}
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="share()">
+                        <i class="fas fa-share-alt me-2"></i>{% trans "Share" %}
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Основной контент -->
+<article class="news-article py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Изображение новости -->
+                <div class="news-image mb-4">
+                    <img src="{{ news.image.url }}" alt="{{ news.title }}" class="img-fluid rounded">
+                </div>
+
+                <!-- Превью -->
+                <div class="news-preview mb-4">
+                    {{ news.preview|safe }}
+                </div>
+
+                <!-- Контент -->
+                <div class="news-content">
+                    {{ news.content|safe }}
+                </div>
+
+                <!-- Навигация по новостям -->
+                <div class="news-navigation mt-5">
+                    <div class="row">
+                        {% if previous_news %}
+                        <div class="col-6">
+                            <a href="{% url 'main:news_detail' previous_news.pk %}" class="nav-link prev">
+                                <span class="nav-label">{% trans "Previous" %}</span>
+                                <h4 class="nav-title">{{ previous_news.title }}</h4>
+                            </a>
+                        </div>
+                        {% endif %}
+                        
+                        {% if next_news %}
+                        <div class="col-6">
+                            <a href="{% url 'main:news_detail' next_news.pk %}" class="nav-link next">
+                                <span class="nav-label">{% trans "Next" %}</span>
+                                <h4 class="nav-title">{{ next_news.title }}</h4>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #1B2B48;
+        --secondary-color: #C4A052;
+        --text-color: #333333;
+        --light-bg: #F8F9FA;
+        --border-color: #E5E5E5;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb-wrapper {
+        background: var(--light-bg);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumb {
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb-item a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    /* Заголовок страницы */
+    .page-header {
+        background: white;
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .news-meta {
+        margin-bottom: 1rem;
+    }
+
+    .news-date {
+        color: #666;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-title {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    /* Статья */
+    .news-article {
+        background: white;
+    }
+
+    .news-image {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .news-preview {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #444;
+        font-weight: 500;
+    }
+
+    .news-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-color);
+    }
+
+    .news-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    .news-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+
+    /* Навигация по новостям */
+    .news-navigation {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .nav-link {
+        display: block;
+        padding: 1.5rem;
+        background: var(--light-bg);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+    }
+
+    .nav-link.prev {
+        text-align: left;
+    }
+
+    .nav-link.next {
+        text-align: right;
+    }
+
+    .nav-label {
+        display: block;
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-title {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .news-preview {
+            font-size: 1.1rem;
+        }
+
+        .news-content {
+            font-size: 1rem;
+        }
+
+        .page-actions {
+            margin-top: 1rem;
+            justify-content: flex-start;
+        }
+
+        .nav-link {
+            padding: 1rem;
+        }
+
+        .nav-title {
+            font-size: 1rem;
+        }
+    }
+
+    @media print {
+        .page-actions,
+        .news-navigation {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Функция поделиться
+    window.share = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            });
+        } else {
+            // Копировать ссылку в буфер обмена
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => alert('{% trans "Link copied to clipboard" %}'));
+        }
+    };
+</script>
+{% endblock %} 

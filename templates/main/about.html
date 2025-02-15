@@ -1,0 +1,1249 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "About Institute" %} - History State{% endblock %}
+
+{% block content %}
+<!-- Хлебные крошки -->
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "About Institute" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Заголовок страницы -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="page-title">{% trans "About Institute" %}</h1>
+                <p class="page-description">{% trans "Information about our institute, structure and management" %}</p>
+            </div>
+            <div class="col-lg-4">
+                <nav class="page-actions">
+                    <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>{% trans "Print" %}
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="share()">
+                        <i class="fas fa-share-alt me-2"></i>{% trans "Share" %}
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Боковая навигация -->
+        <div class="col-lg-3">
+            <div class="side-nav">
+                <ul class="nav nav-pills flex-column" id="aboutTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active w-100" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">
+                            <i class="fas fa-info-circle me-2"></i>{% trans "About Us" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100" id="charter-tab" data-bs-toggle="tab" data-bs-target="#charter" type="button" role="tab">
+                            <i class="fas fa-file-alt me-2"></i>{% trans "Charter" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100" id="management-tab" data-bs-toggle="tab" data-bs-target="#management" type="button" role="tab">
+                            <i class="fas fa-users me-2"></i>{% trans "Management" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100" id="structure-tab" data-bs-toggle="tab" data-bs-target="#structure" type="button" role="tab">
+                            <i class="fas fa-sitemap me-2"></i>{% trans "Institute Structure" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100" id="council-tab" data-bs-toggle="tab" data-bs-target="#council" type="button" role="tab">
+                            <i class="fas fa-university me-2"></i>{% trans "Scientific Council" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100" id="scientists-tab" data-bs-toggle="tab" data-bs-target="#scientists" type="button" role="tab">
+                            <i class="fas fa-user-graduate me-2"></i>{% trans "Young Scientists" %}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="col-lg-9">
+            <div class="tab-content" id="aboutTabsContent">
+                <!-- О нас -->
+                <div class="tab-pane fade show active" id="about" role="tabpanel">
+                    {% if about_page %}
+                        <div class="content-section">
+                            <h2 class="section-title">{{ about_page.title }}</h2>
+                            <div class="content-text">
+                                {{ about_page.content|safe }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Устав -->
+                <div class="tab-pane fade" id="charter" role="tabpanel">
+                    {% if charters %}
+                        {% for charter in charters %}
+                            <div class="content-section">
+                                <h2 class="section-title">{{ charter.title }}</h2>
+                                <div class="content-text">
+                                    {{ charter.content|safe }}
+                                </div>
+                                    {% if charter.file %}
+                                    <div class="document-section">
+                                            <a href="{{ charter.file.url }}" class="btn btn-primary" target="_blank">
+                                                <i class="fas fa-download me-2"></i>{% trans "Download Charter" %}
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Руководство -->
+                <div class="tab-pane fade" id="management" role="tabpanel">
+                    {% if management_list %}
+                        <div class="content-section">
+                            <h2 class="section-title">{% trans "Management" %}</h2>
+                            <div class="management-grid">
+                                {% for manager in management_list %}
+                                    <div class="management-card">
+                                        <div class="card-media">
+                                            {% if manager.photo %}
+                                                <img src="{{ manager.photo.url }}" alt="{{ manager.name }}" class="manager-photo">
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-content">
+                                            <h3 class="manager-name">{{ manager.name }}</h3>
+                                            <p class="manager-position">{{ manager.position }}</p>
+                                            <div class="manager-bio">{{ manager.bio|safe }}</div>
+                                                {% if manager.email or manager.phone %}
+                                                <div class="manager-contacts">
+                                                        {% if manager.email %}
+                                                            <a href="mailto:{{ manager.email }}" class="contact-link">
+                                                                <i class="fas fa-envelope"></i>{{ manager.email }}
+                                                            </a>
+                                                        {% endif %}
+                                                        {% if manager.phone %}
+                                                            <a href="tel:{{ manager.phone }}" class="contact-link">
+                                                                <i class="fas fa-phone"></i>{{ manager.phone }}
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Структура института -->
+                <div class="tab-pane fade" id="structure" role="tabpanel">
+                    {% if department_list %}
+                        <div class="content-section">
+                            <h2 class="section-title">{% trans "Institute Structure" %}</h2>
+                            <div class="department-list">
+                                {% for department in department_list %}
+                                    <div class="department-item">
+                                        <div class="department-header">
+                                            <div class="department-icon">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="department-main">
+                                                <h3 class="department-title">{{ department.title }}</h3>
+                                                <div class="department-head-info">
+                                                    <span class="head-label">{% trans "Head" %}:</span>
+                                                    <span class="head-name">{{ department.head }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="department-description">
+                                            {{ department.description|safe }}
+                                        </div>
+                                        <div class="department-contacts">
+                                            {% if department.email or department.phone %}
+                                                {% for contact in department.contacts.all %}
+                                                    <a href="{{ contact.get_absolute_url }}" class="department-contact-link">
+                                                        <i class="fas fa-{{ contact.icon }}"></i>
+                                                        {{ contact.title }}
+                                                    </a>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Ученый совет -->
+                <div class="tab-pane fade" id="council" role="tabpanel">
+                    {% if councils %}
+                        {% for council in councils %}
+                            <div class="content-section">
+                                <h2 class="section-title">{{ council.title }}</h2>
+                                <div class="content-text">
+                                    {{ council.content|safe }}
+                                </div>
+                                    {% if council.file %}
+                                    <div class="document-section">
+                                            <a href="{{ council.file.url }}" class="btn btn-primary" target="_blank">
+                                                <i class="fas fa-download me-2"></i>{% trans "Download Document" %}
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Молодые ученые -->
+                <div class="tab-pane fade" id="scientists" role="tabpanel">
+                    {% if young_scientist_list %}
+                        <div class="content-section">
+                            <h2 class="section-title">{% trans "Young Scientists" %}</h2>
+                            
+                            <div class="filter-section">
+                                <div class="row g-4">
+                                    <div class="col-md-3">
+                                        <label class="form-label">{% trans "Filter by Degree" %}</label>
+                                        <select class="form-select" id="degreeFilter">
+                                            <option value="">{% trans "All degrees" %}</option>
+                                            {% for degree in degrees %}
+                                                <option value="{{ degree }}">{{ degree }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">{% trans "Filter by Year" %}</label>
+                                        <select class="form-select" id="yearFilter">
+                                            <option value="">{% trans "All years" %}</option>
+                                            {% for year in admission_years %}
+                                                <option value="{{ year }}">{{ year }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">{% trans "Search" %}</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="scientistSearch" 
+                                                   placeholder="{% trans 'Search by name or research topics' %}">
+                                            <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover scientists-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="sortable" data-sort="photo">
+                                                {% trans "Photo" %}
+                                            </th>
+                                            <th class="sortable" data-sort="name">
+                                                {% trans "Name" %}
+                                                <i class="fas fa-sort"></i>
+                                            </th>
+                                            <th class="sortable" data-sort="degree">
+                                                {% trans "Degree" %}
+                                                <i class="fas fa-sort"></i>
+                                            </th>
+                                            <th class="sortable" data-sort="year">
+                                                {% trans "Year" %}
+                                                <i class="fas fa-sort"></i>
+                                            </th>
+                                            <th>
+                                                {% trans "Research Topics" %}
+                                            </th>
+                                            <th>
+                                                {% trans "Actions" %}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for scientist in young_scientist_list %}
+                                            <tr class="scientist-row" 
+                                                data-degree="{{ scientist.degree }}" 
+                                                data-year="{{ scientist.admission_year }}"
+                                                data-search="{{ scientist.name|lower }} {{ scientist.research_topics|lower }}">
+                                                <td class="scientist-photo-cell">
+                                                    {% if scientist.photo %}
+                                                        <img src="{{ scientist.photo.url }}" 
+                                                             alt="{{ scientist.name }}" 
+                                                             class="scientist-table-photo"
+                                                             data-bs-toggle="modal"
+                                                             data-bs-target="#scientistModal{{ scientist.id }}">
+                                                    {% else %}
+                                                        <div class="no-photo">
+                                                            <i class="fas fa-user"></i>
+                                                        </div>
+                                                    {% endif %}
+                                                </td>
+                                                <td class="scientist-name-cell">{{ scientist.name }}</td>
+                                                <td>{{ scientist.degree }}</td>
+                                                <td>{{ scientist.admission_year }}</td>
+                                                <td>
+                                                    <div class="research-topics-preview">
+                                                        {{ scientist.research_topics|truncatechars:100 }}
+                                                        {% if scientist.research_topics|length > 100 %}
+                                                            <button class="btn btn-link btn-sm show-more" 
+                                                                    data-bs-toggle="modal" 
+                                                                    data-bs-target="#scientistModal{{ scientist.id }}">
+                                                                {% trans "Show more" %}
+                                                            </button>
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        {% if scientist.email %}
+                                                            <a href="mailto:{{ scientist.email }}" 
+                                                               class="btn btn-outline-primary btn-sm" 
+                                                               title="{% trans 'Email' %}">
+                                                                <i class="fas fa-envelope"></i>
+                                                            </a>
+                                                        {% endif %}
+                                                        <button class="btn btn-outline-primary btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#scientistModal{{ scientist.id }}"
+                                                                title="{% trans 'View Details' %}">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Модальное окно для каждого ученого -->
+                                            <div class="modal fade" id="scientistModal{{ scientist.id }}" tabindex="-1">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ scientist.name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    {% if scientist.photo %}
+                                                                        <img src="{{ scientist.photo.url }}" 
+                                                                             alt="{{ scientist.name }}" 
+                                                                             class="img-fluid rounded scientist-modal-photo">
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <h6>{% trans "Degree" %}</h6>
+                                                                    <p>{{ scientist.degree }}</p>
+                                                                    
+                                                                    <h6>{% trans "Admission Year" %}</h6>
+                                                                    <p>{{ scientist.admission_year }}</p>
+                                                                    
+                                                                    <h6>{% trans "Research Topics" %}</h6>
+                                                                    <p>{{ scientist.research_topics }}</p>
+                                                                    
+                                                                    {% if scientist.email or scientist.phone %}
+                                                                        <h6>{% trans "Contact Information" %}</h6>
+                                                                        {% if scientist.email %}
+                                                                            <p>
+                                                                                <i class="fas fa-envelope me-2"></i>
+                                                                                <a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a>
+                                                                            </p>
+                                                                        {% endif %}
+                                                                        {% if scientist.phone %}
+                                                                            <p>
+                                                                                <i class="fas fa-phone me-2"></i>
+                                                                                <a href="tel:{{ scientist.phone }}">{{ scientist.phone }}</a>
+                                                                            </p>
+                                                                        {% endif %}
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-footer mt-3">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="scientists-count">
+                                            {% trans "Showing" %} <span id="visibleCount">0</span> {% trans "of" %} <span id="totalCount">0</span> {% trans "scientists" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                        <button class="btn btn-outline-primary" id="exportExcel">
+                                            <i class="fas fa-file-excel me-2"></i>{% trans "Export to Excel" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #1B2B48;
+        --secondary-color: #C4A052;
+        --text-color: #333333;
+        --border-color: #E5E5E5;
+        --light-bg: #F8F9FA;
+        --spacing-unit: 1rem;
+        --border-radius: 4px;
+        --transition: all 0.3s ease;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb-wrapper {
+        background: var(--light-bg);
+        padding: var(--spacing-unit) 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumb {
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb-item a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    /* Заголовок страницы */
+    .page-header {
+        background: white;
+        padding: calc(var(--spacing-unit) * 2) 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-title {
+        color: var(--primary-color);
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .page-description {
+        color: #666;
+        margin: var(--spacing-unit) 0 0;
+    }
+
+    .page-actions {
+        display: flex;
+        gap: var(--spacing-unit);
+        justify-content: flex-end;
+    }
+
+    /* Навигация */
+    .side-nav {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+    }
+
+    .nav-pills .nav-link {
+        color: var(--text-color);
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        border-left: 3px solid transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-pills .nav-link i {
+        width: 20px;
+        text-align: center;
+    }
+
+    .nav-pills .nav-link:hover {
+        background: var(--light-bg);
+        color: var(--primary-color);
+    }
+
+    .nav-pills .nav-link.active {
+        background: var(--light-bg);
+        color: var(--primary-color);
+        border-left-color: var(--secondary-color);
+        font-weight: 500;
+    }
+
+    /* Основной контент */
+    .content-section {
+        margin-bottom: 2rem;
+        border: none;
+        padding: 0;
+    }
+
+    .content-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--secondary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .content-text {
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    /* Карточки руководства */
+    .management-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+
+    .management-card {
+        background: white;
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .management-card:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+    }
+
+    .card-media {
+        position: relative;
+        padding-top: 120%; /* Более компактное соотношение */
+        background: var(--light-bg);
+        overflow: hidden;
+    }
+
+    .manager-photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%; /* Фокус чуть ниже верха */
+        transition: transform 0.5s ease;
+    }
+
+    .management-card:hover .manager-photo {
+        transform: scale(1.03);
+    }
+
+    .card-content {
+        padding: 1rem;
+        background: white;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .manager-name {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+    }
+
+    .manager-position {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        line-height: 1.4;
+    }
+
+    .manager-bio {
+        color: var(--text-color);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+        flex-grow: 1;
+        opacity: 0.85;
+    }
+
+    .manager-contacts {
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .contact-link {
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.85rem;
+        padding: 0.25rem 0;
+        transition: all 0.2s ease;
+        opacity: 0.8;
+    }
+
+    .contact-link:hover {
+        color: var(--secondary-color);
+        opacity: 1;
+        transform: translateX(4px);
+    }
+
+    .contact-link i {
+        width: 24px;
+        height: 24px;
+        margin-right: 0.5rem;
+        color: var(--secondary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(196, 160, 82, 0.1);
+        border-radius: 6px;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+    }
+
+    .contact-link:hover i {
+        background: var(--secondary-color);
+        color: white;
+    }
+
+    /* Структура института - новый дизайн */
+    .institute-structure {
+        margin-top: 1.5rem;
+    }
+
+    .department-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .department-item {
+        background: white;
+        border-radius: 12px;
+        padding: 1.25rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .department-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transform: translateX(4px);
+    }
+
+    .department-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .department-icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    .department-main {
+        flex-grow: 1;
+    }
+
+    .department-title {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem;
+        line-height: 1.3;
+    }
+
+    .department-head-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .head-label {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .head-name {
+        color: var(--secondary-color);
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .department-description {
+        color: var(--text-color);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        opacity: 0.85;
+        margin-bottom: 1rem;
+    }
+
+    .department-contacts {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .department-contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        transition: all 0.2s ease;
+        background: var(--light-bg);
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+    }
+
+    .department-contact-link:hover {
+        opacity: 1;
+        color: var(--secondary-color);
+        background: rgba(196, 160, 82, 0.1);
+    }
+
+    .department-contact-link i {
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+    }
+
+    @media (max-width: 768px) {
+        .management-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .department-header {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .department-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+        }
+
+        .department-contacts {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .department-contact-link {
+            width: 100%;
+        }
+    }
+
+    /* Молодые ученые */
+    .filter-section {
+        background: var(--light-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .filter-section .form-label {
+        font-weight: 500;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-section .form-select,
+    .filter-section .form-control {
+        border-color: var(--border-color);
+        padding: 0.5rem 1rem;
+    }
+
+    .scientists-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .scientist-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+    }
+
+    .scientist-header {
+        padding: calc(var(--spacing-unit) * 1.5);
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .scientist-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: var(--spacing-unit);
+    }
+
+    .scientist-name {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .scientist-details {
+        padding: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .detail-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .detail-label {
+        color: #666;
+        margin-right: 0.5rem;
+    }
+
+    .detail-value {
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .scientist-research {
+        margin-top: var(--spacing-unit);
+        padding-top: var(--spacing-unit);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .scientist-research h4 {
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Документы */
+    .document-section {
+        margin-top: calc(var(--spacing-unit) * 1.5);
+        padding-top: calc(var(--spacing-unit) * 1.5);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .btn-primary {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        padding: 0.75rem 1.5rem;
+        transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+        background: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+    .btn-outline-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .btn-outline-primary:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 992px) {
+        .side-nav {
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-pane {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .management-grid,
+        .department-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .tab-pane {
+            padding: 1rem;
+        }
+    }
+
+    @media print {
+        .side-nav,
+        .page-actions,
+        .filter-section {
+            display: none;
+        }
+
+        .content-section {
+            break-inside: avoid;
+        }
+    }
+
+    /* Стили для таблицы ученых */
+    .table-responsive {
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        margin-top: 1.5rem;
+    }
+
+    .scientists-table {
+        margin: 0;
+    }
+
+    .scientists-table th {
+        background: var(--primary-color);
+        color: white;
+        padding: 1rem;
+        font-weight: 500;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .scientists-table td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .scientist-table-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .scientist-table-photo:hover {
+        transform: scale(1.1);
+    }
+
+    .no-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--light-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-color);
+    }
+
+    .research-topics-preview {
+        max-width: 300px;
+    }
+
+    .show-more {
+        padding: 0;
+        text-decoration: none;
+    }
+
+    /* Модальное окно */
+    .scientist-modal-photo {
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+    }
+
+    .modal-body h6 {
+        color: var(--primary-color);
+        margin-top: 1rem;
+        font-weight: 600;
+    }
+
+    .modal-body p {
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+    }
+
+    /* Фильтры */
+    .filter-section {
+        background: var(--light-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Анимации */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .scientist-row {
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .scientists-table {
+            font-size: 0.9rem;
+        }
+
+        .research-topics-preview {
+            max-width: 200px;
+        }
+
+        .table-footer {
+            text-align: center;
+        }
+
+        .table-footer .text-end {
+            text-align: center !important;
+            margin-top: 1rem;
+        }
+    }
+
+    /* Адаптивность для карточек */
+    @media (max-width: 1200px) {
+        .management-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .management-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .manager-name {
+            font-size: 1.1rem;
+        }
+
+        .manager-position {
+            font-size: 0.9rem;
+        }
+
+        .manager-bio {
+            font-size: 0.9rem;
+        }
+
+        .contact-link {
+            font-size: 0.85rem;
+        }
+
+        .contact-link i {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .management-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const table = document.querySelector('.scientists-table');
+    const rows = table.querySelectorAll('.scientist-row');
+    const degreeFilter = document.getElementById('degreeFilter');
+    const yearFilter = document.getElementById('yearFilter');
+    const searchInput = document.getElementById('scientistSearch');
+    const clearSearchBtn = document.getElementById('clearSearch');
+    const visibleCountSpan = document.getElementById('visibleCount');
+    const totalCountSpan = document.getElementById('totalCount');
+    const exportExcelBtn = document.getElementById('exportExcel');
+
+    // Установка начальных значений счетчиков
+    totalCountSpan.textContent = rows.length;
+    updateVisibleCount();
+
+    // Функция фильтрации
+    function filterScientists() {
+        const selectedDegree = degreeFilter.value.toLowerCase();
+        const selectedYear = yearFilter.value;
+        const searchText = searchInput.value.toLowerCase();
+
+        rows.forEach(row => {
+            const degree = row.dataset.degree.toLowerCase();
+            const year = row.dataset.year;
+            const searchData = row.dataset.search;
+            
+            const matchDegree = !selectedDegree || degree === selectedDegree;
+            const matchYear = !selectedYear || year === selectedYear;
+            const matchSearch = !searchText || searchData.includes(searchText);
+
+            row.style.display = matchDegree && matchYear && matchSearch ? '' : 'none';
+        });
+
+        updateVisibleCount();
+    }
+
+    // Обновление счетчика видимых строк
+    function updateVisibleCount() {
+        const visibleRows = Array.from(rows).filter(row => row.style.display !== 'none').length;
+        visibleCountSpan.textContent = visibleRows;
+    }
+
+    // Сортировка таблицы
+    function sortTable(column, direction) {
+        const tbody = table.querySelector('tbody');
+        const sortedRows = Array.from(rows);
+
+        sortedRows.sort((a, b) => {
+            let aVal = a.children[getColumnIndex(column)].textContent.trim();
+            let bVal = b.children[getColumnIndex(column)].textContent.trim();
+
+            if (column === 'year') {
+                return direction === 'asc' ? aVal - bVal : bVal - aVal;
+            }
+
+            return direction === 'asc' 
+                ? aVal.localeCompare(bVal)
+                : bVal.localeCompare(aVal);
+        });
+
+        sortedRows.forEach(row => tbody.appendChild(row));
+    }
+
+    function getColumnIndex(column) {
+        const columns = {
+            'name': 1,
+            'degree': 2,
+            'year': 3
+        };
+        return columns[column];
+    }
+
+    // Обработчики событий
+    degreeFilter.addEventListener('change', filterScientists);
+    yearFilter.addEventListener('change', filterScientists);
+    searchInput.addEventListener('input', filterScientists);
+    
+    clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        filterScientists();
+    });
+
+    // Сортировка по клику на заголовок
+    table.querySelectorAll('th.sortable').forEach(th => {
+        th.addEventListener('click', () => {
+            const column = th.dataset.sort;
+            const currentDirection = th.classList.contains('sort-asc') ? 'desc' : 'asc';
+            
+            // Сброс классов сортировки
+            table.querySelectorAll('th').forEach(header => {
+                header.classList.remove('sort-asc', 'sort-desc');
+            });
+
+            th.classList.add(`sort-${currentDirection}`);
+            sortTable(column, currentDirection);
+        });
+    });
+
+    // Экспорт в Excel
+    exportExcelBtn.addEventListener('click', () => {
+        let csv = [];
+        
+        // Заголовки
+        const headers = ['Name', 'Degree', 'Year', 'Research Topics'];
+        csv.push(headers.join(','));
+
+        // Данные
+        Array.from(rows).forEach(row => {
+            if (row.style.display !== 'none') {
+                const name = row.querySelector('.scientist-name-cell').textContent;
+                const degree = row.children[2].textContent;
+                const year = row.children[3].textContent;
+                const research = row.children[4].textContent.replace(/Show more/g, '').trim();
+                
+                csv.push([name, degree, year, `"${research}"`].join(','));
+            }
+        });
+
+        const csvContent = csv.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'young_scientists.csv';
+        link.click();
+    });
+});
+</script>
+{% endblock %} 

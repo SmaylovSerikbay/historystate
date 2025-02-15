@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: >
+      bash -c "python manage.py collectstatic --noinput --clear &&
+               python manage.py migrate --noinput &&
+               gunicorn historystate.wsgi:application --bind 0.0.0.0:8002 --workers 3 --timeout 120"
+    restart: always
+    volumes:
+      - .:/app
+      - staticfiles_volume:/app/staticfiles
+      - /var/www/historystate/media:/app/media
+      - logs_volume:/app/logs
+    environment:
+      - DEBUG=0
+      - POSTGRES_DB=historystate
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=postgres
+      - DJANGO_SETTINGS_MODULE=historystate.settings
+      - PYTHONUNBUFFERED=1
+      - CSRF_TRUSTED_ORIGINS=https://historystate.my-business-card.kz,http://historystate.my-business-card.kz
+      - ALLOWED_HOSTS=historystate.my-business-card.kz,localhost,127.0.0.1
+    ports:
+      - "8002:8002"
+    networks:
+      - web_network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=historystate
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - web_network
+
+volumes:
+  staticfiles_volume:
+  media_volume:
+  logs_volume:
+  postgres_data:
+
+networks:
+  web_network:
+    driver: bridge 

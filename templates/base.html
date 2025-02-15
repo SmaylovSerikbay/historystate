@@ -1,0 +1,305 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_config.site_name }}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+        }
+
+        .navbar-nav .dropdown-menu {
+            min-width: 200px;
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem;
+            white-space: normal;
+            max-width: 200px;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+            
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+            }
+            
+            .navbar-nav .dropdown-menu {
+                background: transparent;
+                border: none;
+                padding-left: 1.5rem;
+            }
+            
+            .navbar-nav .dropdown-item {
+                color: rgba(255,255,255,.75);
+            }
+            
+            .navbar-nav .dropdown-item:hover {
+                color: #fff;
+                background: transparent;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
+                    {% if site_config.logo %}
+                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo me-2">
+                    {% endif %}
+                    <span>{{ site_config.site_name }}</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:about' %}">{% trans "About Institute" %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                {% trans "Research" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'main:research_projects' %}">{% trans "Research Projects" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'main:recommendations' %}">{% trans "Recommendations" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'main:journals' %}">{% trans "Scientific Journals" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'main:expert_opinions' %}">{% trans "Expert Opinions" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{% trans "Scientific Library" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{% trans "Modern History" %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                {% trans "Digital" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">{% trans "History" %}</a></li>
+                                <li><a class="dropdown-item" href="#">{% trans "E-history" %}</a></li>
+                                <li><a class="dropdown-item" href="#">{% trans "Archive 2025" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{% trans "Our Achievements" %}</a>
+                        </li>
+                    </ul>
+                    <div class="search-wrapper me-3">
+                        <button class="btn btn-outline-light search-toggle" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-popup">
+                            <form class="search-form" action="{% url 'main:search' %}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="q" class="form-control" placeholder="{% trans 'Search...' %}">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="language-switcher">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                {{ LANGUAGE_CODE|upper }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% for language in languages %}
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ request.path }}">
+                                        <input name="language" type="hidden" value="{{ language.code }}">
+                                        <button type="submit" class="dropdown-item">
+                                            {{ language.name_local }}
+                                        </button>
+                                    </form>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>{% trans "Contact Information" %}</h5>
+                    {% if site_config %}
+                        {% if site_config.footer_email %}
+                            <p><i class="fas fa-envelope me-2"></i>{{ site_config.footer_email }}</p>
+                        {% endif %}
+                        {% if site_config.footer_phone %}
+                            <p><i class="fas fa-phone me-2"></i>{{ site_config.footer_phone }}</p>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == 'ru' and site_config.footer_address_ru %}
+                            <p><i class="fas fa-map-marker-alt me-2"></i>{{ site_config.footer_address_ru|safe }}</p>
+                        {% elif LANGUAGE_CODE == 'kk' and site_config.footer_address_kk %}
+                            <p><i class="fas fa-map-marker-alt me-2"></i>{{ site_config.footer_address_kk|safe }}</p>
+                        {% elif LANGUAGE_CODE == 'en' and site_config.footer_address_en %}
+                            <p><i class="fas fa-map-marker-alt me-2"></i>{{ site_config.footer_address_en|safe }}</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    {% if site_config %}
+                        <h5>{% trans "About Us" %}</h5>
+                        {% if LANGUAGE_CODE == 'ru' and site_config.footer_text_ru %}
+                            <p>{{ site_config.footer_text_ru|safe }}</p>
+                        {% elif LANGUAGE_CODE == 'kk' and site_config.footer_text_kk %}
+                            <p>{{ site_config.footer_text_kk|safe }}</p>
+                        {% elif LANGUAGE_CODE == 'en' and site_config.footer_text_en %}
+                            <p>{{ site_config.footer_text_en|safe }}</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h5>{% trans "Quick Links" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main:about' %}" class="text-light">{% trans "About Institute" %}</a></li>
+                        <li><a href="{% url 'main:news_list' %}" class="text-light">{% trans "News" %}</a></li>
+                        <li><a href="{% url 'main:research_projects' %}" class="text-light">{% trans "Research Projects" %}</a></li>
+                        <li><a href="{% url 'main:expert_opinions' %}" class="text-light">{% trans "Expert Opinions" %}</a></li>
+                        <li><a href="{% url 'main:contact' %}" class="text-light">{% trans "Contact" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="text-center">
+                {% if LANGUAGE_CODE == 'ru' and site_config.site_name_ru %}
+                    {% with site_name=site_config.site_name_ru copyright=site_config.copyright_text_ru %}
+                        <p>&copy; {% now "Y" %} {{ site_name|default:_("Institute of State History") }}. {{ copyright|default:_("All rights reserved") }}</p>
+                    {% endwith %}
+                {% elif LANGUAGE_CODE == 'kk' and site_config.site_name_kk %}
+                    {% with site_name=site_config.site_name_kk copyright=site_config.copyright_text_kk %}
+                        <p>&copy; {% now "Y" %} {{ site_name|default:_("Institute of State History") }}. {{ copyright|default:_("All rights reserved") }}</p>
+                    {% endwith %}
+                {% elif LANGUAGE_CODE == 'en' and site_config.site_name_en %}
+                    {% with site_name=site_config.site_name_en copyright=site_config.copyright_text_en %}
+                        <p>&copy; {% now "Y" %} {{ site_name|default:_("Institute of State History") }}. {{ copyright|default:_("All rights reserved") }}</p>
+                    {% endwith %}
+                {% else %}
+                    <p>&copy; {% now "Y" %} {% trans "Institute of State History" %}. {% trans "All rights reserved" %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <style>
+        .header-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .search-popup.active {
+            display: block;
+        }
+
+        .search-form .form-control {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-form .btn {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer a {
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .search-popup {
+                width: 100%;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchToggle = document.querySelector('.search-toggle');
+            const searchPopup = document.querySelector('.search-popup');
+
+            searchToggle.addEventListener('click', function() {
+                searchPopup.classList.toggle('active');
+                if (searchPopup.classList.contains('active')) {
+                    searchPopup.querySelector('input').focus();
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-wrapper')) {
+                    searchPopup.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

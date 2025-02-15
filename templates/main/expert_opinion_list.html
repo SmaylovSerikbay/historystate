@@ -1,0 +1,462 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Expert Opinions" %} - History State{% endblock %}
+
+{% block content %}
+<!-- Хлебные крошки -->
+<div class="breadcrumb-wrapper">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "Expert Opinions" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Заголовок страницы -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="page-title">{% trans "Expert Opinions" %}</h1>
+                <p class="page-description">{% trans "Expert analysis and opinions on historical events" %}</p>
+            </div>
+            <div class="col-lg-4">
+                <nav class="page-actions">
+                    <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>{% trans "Print" %}
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="share()">
+                        <i class="fas fa-share-alt me-2"></i>{% trans "Share" %}
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Основной контент -->
+<section class="opinions-section py-5">
+    <div class="container">
+        <!-- Фильтры и поиск -->
+        <div class="opinions-filters mb-4">
+            <div class="row g-3">
+                <div class="col-lg-8">
+                    <div class="search-box">
+                        <input type="text" id="opinionSearch" class="form-control" placeholder="{% trans 'Search opinions...' %}">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-select" id="sortSelect">
+                        <option value="date-desc">{% trans "Newest first" %}</option>
+                        <option value="date-asc">{% trans "Oldest first" %}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Список мнений -->
+        <div class="row g-4">
+            {% for opinion in opinions %}
+            <div class="col-lg-4 mb-4">
+                <a href="{{ opinion.url }}" target="_blank" class="opinion-card-link">
+                    <div class="opinion-card">
+                        <div class="row g-0">
+                            <div class="col-12">
+                                <div class="opinion-image">
+                                    <img src="{{ opinion.photo.url }}" alt="{{ opinion.title }}">
+                                    <div class="opinion-category">
+                                        <i class="fas fa-user-graduate"></i> {% trans "Expert Opinion" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="opinion-content">
+                                    <div class="opinion-date">
+                                        <i class="far fa-calendar-alt"></i> 
+                                        {{ opinion.publication_date|date:"d M Y" }}
+                                    </div>
+                                    <h3 class="opinion-title">{{ opinion.title }}</h3>
+                                    <p class="opinion-excerpt">{{ opinion.description|truncatewords:15|safe }}</p>
+                                    <div class="opinion-button">
+                                        <span class="btn btn-primary btn-sm">
+                                            {% trans "Read More" %} <i class="fas fa-external-link-alt ms-2"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="no-opinions">
+                    <i class="fas fa-user-graduate"></i>
+                    <p>{% trans "No expert opinions available at the moment." %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Пагинация -->
+        {% if is_paginated %}
+        <nav class="mt-5" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #1B2B48;
+        --secondary-color: #C4A052;
+        --text-color: #333333;
+        --light-bg: #F8F9FA;
+        --border-color: #E5E5E5;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb-wrapper {
+        background: var(--light-bg);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumb {
+        margin: 0;
+        padding: 0;
+    }
+
+    .breadcrumb-item a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    /* Заголовок страницы */
+    .page-header {
+        background: white;
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-title {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .page-description {
+        color: var(--text-color);
+        font-size: 1.1rem;
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    /* Фильтры */
+    .opinions-filters {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    .search-box input {
+        padding: 0.75rem 1rem 0.75rem 3rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .search-box i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+    }
+
+    /* Opinion Cards */
+    .opinion-card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+    }
+
+    .opinion-card-link:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .opinion-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .opinion-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .opinion-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .opinion-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .opinion-card:hover .opinion-image img {
+        transform: scale(1.05);
+    }
+
+    .opinion-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .opinion-content {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .opinion-date {
+        color: #666;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .opinion-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .opinion-excerpt {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex-grow: 1;
+    }
+
+    .opinion-button {
+        margin-top: auto;
+        text-align: right;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .opinion-button .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 20px;
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        transition: all 0.3s ease;
+    }
+
+    .opinion-button .btn:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        transform: translateX(5px);
+    }
+
+    /* Пагинация */
+    .pagination {
+        gap: 0.5rem;
+    }
+
+    .page-link {
+        border: none;
+        color: var(--primary-color);
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .page-link:hover {
+        background: var(--light-bg);
+        color: var(--primary-color);
+    }
+
+    .page-item.active .page-link {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    /* Пустой список */
+    .no-opinions {
+        text-align: center;
+        padding: 3rem;
+        background: var(--light-bg);
+        border-radius: 12px;
+        color: #666;
+    }
+
+    .no-opinions i {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 992px) {
+        .opinion-card {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .opinion-image {
+            height: 180px;
+        }
+        
+        .opinion-content {
+            padding: 1rem;
+        }
+        
+        .opinion-title {
+            font-size: 1rem;
+        }
+        
+        .opinion-excerpt {
+            font-size: 0.85rem;
+            -webkit-line-clamp: 2;
+        }
+
+        .page-actions {
+            margin-top: 1rem;
+            justify-content: flex-start;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Поиск по мнениям
+        const searchInput = document.getElementById('opinionSearch');
+        const opinionCards = document.querySelectorAll('.opinion-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+
+            opinionCards.forEach(card => {
+                const title = card.querySelector('.opinion-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.opinion-excerpt').textContent.toLowerCase();
+                const isVisible = title.includes(searchText) || excerpt.includes(searchText);
+                card.closest('.col-lg-4').style.display = isVisible ? 'block' : 'none';
+            });
+        });
+
+        // Сортировка мнений
+        const sortSelect = document.getElementById('sortSelect');
+        const opinionsContainer = document.querySelector('.row.g-4');
+
+        sortSelect.addEventListener('change', function() {
+            const cards = Array.from(document.querySelectorAll('.col-lg-4'));
+            const sortValue = this.value;
+
+            cards.sort((a, b) => {
+                const dateA = new Date(a.querySelector('.opinion-date').textContent.trim());
+                const dateB = new Date(b.querySelector('.opinion-date').textContent.trim());
+                return sortValue === 'date-desc' ? dateB - dateA : dateA - dateB;
+            });
+
+            cards.forEach(card => opinionsContainer.appendChild(card));
+        });
+
+        // Функция поделиться
+        window.share = function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href)
+                    .then(() => alert('{% trans "Link copied to clipboard" %}'));
+            }
+        };
+    });
+</script>
+{% endblock %} 

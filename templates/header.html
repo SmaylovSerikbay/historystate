@@ -1,0 +1,16 @@
+{% load static %}
+{% load i18n %}
+
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main:home' %}">
+                {% if site_config.logo %}
+                    <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo">
+                {% endif %}
+                <span class="site-name">{{ site_config.site_name }}</span>
+            </a>
+            // ... existing code ...
+        </div>
+    </nav>
+</header> 

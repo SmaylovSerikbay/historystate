@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ journal.title }} - History State{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'journals' %}">{% trans "Scientific Journals" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ journal.title }}</li>
+                </ol>
+            </nav>
+
+            <article class="journal-article">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="journal-cover mb-4">
+                            {% if journal.cover_image %}
+                            <img src="{{ journal.cover_image.url }}" alt="{{ journal.title }}" class="img-fluid rounded">
+                            {% else %}
+                            <img src="{% static 'img/placeholders/journal.jpg' %}" alt="{{ journal.title }}" class="img-fluid rounded">
+                            {% endif %}
+                        </div>
+
+                        <div class="journal-info-box">
+                            <h4>{% trans "Journal Information" %}</h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fas fa-calendar"></i>
+                                    <strong>{% trans "Publication Date" %}:</strong>
+                                    {{ journal.publication_date|date:"d.m.Y" }}
+                                </li>
+                                <li>
+                                    <i class="fas fa-book"></i>
+                                    <strong>{% trans "Issue" %}:</strong>
+                                    {{ journal.issue_number }}
+                                </li>
+                                {% if journal.issn %}
+                                <li>
+                                    <i class="fas fa-barcode"></i>
+                                    <strong>ISSN:</strong>
+                                    {{ journal.issn }}
+                                </li>
+                                {% endif %}
+                            </ul>
+
+                            {% if journal.file %}
+                            <a href="{{ journal.file.url }}" class="btn btn-primary btn-block" target="_blank">
+                                <i class="fas fa-download"></i> {% trans "Download Journal" %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h1 class="journal-title">{{ journal.title }}</h1>
+                        
+                        <div class="journal-description">
+                            {{ journal.description|safe }}
+                        </div>
+
+                        {% if journal.table_of_contents %}
+                        <div class="journal-contents mt-4">
+                            <h3>{% trans "Table of Contents" %}</h3>
+                            {{ journal.table_of_contents|safe }}
+                        </div>
+                        {% endif %}
+
+                        {% if journal.editorial_board %}
+                        <div class="journal-board mt-4">
+                            <h3>{% trans "Editorial Board" %}</h3>
+                            {{ journal.editorial_board|safe }}
+                        </div>
+                        {% endif %}
+
+                        <div class="journal-share mt-4">
+                            <h3>{% trans "Share" %}</h3>
+                            <div class="social-share">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                                   target="_blank" 
+                                   class="btn btn-primary">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ journal.title }}" 
+                                   target="_blank" 
+                                   class="btn btn-info">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://t.me/share/url?url={{ request.build_absolute_uri }}&text={{ journal.title }}" 
+                                   target="_blank" 
+                                   class="btn btn-telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .journal-article {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .journal-title {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .journal-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 3px;
+        background: var(--secondary-color);
+    }
+
+    .journal-cover img {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .journal-info-box {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 5px;
+    }
+
+    .journal-info-box h4 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .journal-info-box ul li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .journal-info-box ul li i {
+        color: var(--primary-color);
+        width: 20px;
+    }
+
+    .journal-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .social-share {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-share .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-telegram {
+        background-color: #0088cc;
+        color: white;
+    }
+
+    .btn-telegram:hover {
+        background-color: #0077b3;
+        color: white;
+    }
+</style>
+{% endblock %} 

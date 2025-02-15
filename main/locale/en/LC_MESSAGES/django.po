@@ -1,0 +1,273 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-13 20:57+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\main\admin.py:22
+msgid "General Settings"
+msgstr ""
+
+#: .\main\admin.py:25
+msgid "Contact Information"
+msgstr ""
+
+#: .\main\admin.py:28
+msgid "Social Media"
+msgstr ""
+
+#: .\main\models.py:6
+msgid "Created at"
+msgstr ""
+
+#: .\main\models.py:7
+msgid "Updated at"
+msgstr ""
+
+#: .\main\models.py:13 .\main\models.py:28 .\main\models.py:42
+#: .\main\models.py:59 .\main\models.py:73 .\main\models.py:88
+msgid "Image"
+msgstr ""
+
+#: .\main\models.py:14 .\main\models.py:30 .\main\models.py:45
+#: .\main\models.py:166
+msgid "Is active"
+msgstr ""
+
+#: .\main\models.py:15 .\main\models.py:44 .\main\models.py:75
+#: .\main\models.py:151 .\main\models.py:164
+msgid "Order"
+msgstr ""
+
+#: .\main\models.py:18
+msgid "Hero"
+msgstr ""
+
+#: .\main\models.py:19
+msgid "Heroes"
+msgstr ""
+
+#: .\main\models.py:26 .\main\models.py:41 .\main\models.py:56
+#: .\main\models.py:71 .\main\models.py:86 .\main\models.py:103
+#: .\main\models.py:116 .\main\models.py:148 .\main\models.py:162
+msgid "Title"
+msgstr ""
+
+#: .\main\models.py:27 .\main\models.py:72 .\main\models.py:87
+#: .\main\models.py:117
+msgid "Description"
+msgstr ""
+
+#: .\main\models.py:29
+msgid "Date"
+msgstr ""
+
+#: .\main\models.py:33
+msgid "Event"
+msgstr ""
+
+#: .\main\models.py:34
+msgid "Events"
+msgstr ""
+
+#: .\main\models.py:43 .\main\models.py:74 .\main\models.py:163
+msgid "URL"
+msgstr ""
+
+#: .\main\models.py:48
+msgid "Banner"
+msgstr ""
+
+#: .\main\models.py:49
+msgid "Banners"
+msgstr ""
+
+#: .\main\models.py:57
+msgid "Preview"
+msgstr ""
+
+#: .\main\models.py:58 .\main\models.py:104 .\main\models.py:136
+msgid "Content"
+msgstr ""
+
+#: .\main\models.py:60
+msgid "Is featured"
+msgstr ""
+
+#: .\main\models.py:63 .\main\models.py:64
+msgid "News"
+msgstr ""
+
+#: .\main\models.py:78
+msgid "Resource"
+msgstr ""
+
+#: .\main\models.py:79
+msgid "Resources"
+msgstr ""
+
+#: .\main\models.py:90
+msgid "Ongoing"
+msgstr ""
+
+#: .\main\models.py:91
+msgid "Completed"
+msgstr ""
+
+#: .\main\models.py:92
+msgid "Status"
+msgstr ""
+
+#: .\main\models.py:95
+msgid "Research Project"
+msgstr ""
+
+#: .\main\models.py:96
+msgid "Research Projects"
+msgstr ""
+
+#: .\main\models.py:105 .\main\models.py:119
+msgid "File"
+msgstr ""
+
+#: .\main\models.py:108
+msgid "Recommendation"
+msgstr ""
+
+#: .\main\models.py:109
+msgid "Recommendations"
+msgstr ""
+
+#: .\main\models.py:118
+msgid "Cover"
+msgstr ""
+
+#: .\main\models.py:120
+msgid "Issue Number"
+msgstr ""
+
+#: .\main\models.py:121
+msgid "Publication Date"
+msgstr ""
+
+#: .\main\models.py:124
+msgid "Journal"
+msgstr ""
+
+#: .\main\models.py:125
+msgid "Journals"
+msgstr ""
+
+#: .\main\models.py:132
+msgid "Expert Name"
+msgstr ""
+
+#: .\main\models.py:133
+msgid "Expert Title"
+msgstr ""
+
+#: .\main\models.py:134
+msgid "Expert Biography"
+msgstr ""
+
+#: .\main\models.py:135
+msgid "Topic"
+msgstr ""
+
+#: .\main\models.py:137
+msgid "Photo"
+msgstr ""
+
+#: .\main\models.py:140
+msgid "Expert Opinion"
+msgstr ""
+
+#: .\main\models.py:141
+msgid "Expert Opinions"
+msgstr ""
+
+#: .\main\models.py:149
+msgid "Value"
+msgstr ""
+
+#: .\main\models.py:150
+msgid "Icon Class"
+msgstr ""
+
+#: .\main\models.py:154
+msgid "Achievement"
+msgstr ""
+
+#: .\main\models.py:155
+msgid "Achievements"
+msgstr ""
+
+#: .\main\models.py:165
+msgid "Parent Menu"
+msgstr ""
+
+#: .\main\models.py:169
+msgid "Menu Item"
+msgstr ""
+
+#: .\main\models.py:170
+msgid "Menu Items"
+msgstr ""
+
+#: .\main\models.py:177
+msgid "Site Name"
+msgstr ""
+
+#: .\main\models.py:178
+msgid "About Text"
+msgstr ""
+
+#: .\main\models.py:179
+msgid "Contact Email"
+msgstr ""
+
+#: .\main\models.py:180
+msgid "Contact Phone"
+msgstr ""
+
+#: .\main\models.py:181
+msgid "Address"
+msgstr ""
+
+#: .\main\models.py:182
+msgid "Facebook URL"
+msgstr ""
+
+#: .\main\models.py:183
+msgid "Twitter URL"
+msgstr ""
+
+#: .\main\models.py:184
+msgid "Instagram URL"
+msgstr ""
+
+#: .\main\models.py:185
+msgid "YouTube URL"
+msgstr ""
+
+#: .\main\models.py:186
+msgid "Telegram URL"
+msgstr ""
+
+#: .\main\models.py:189 .\main\models.py:190
+msgid "Site Configuration"
+msgstr ""

@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Expert Opinions" %} | History State{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "Expert Opinions" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">{% trans "Expert Opinions" %}</h1>
+        <p class="page-description">{% trans "Expert analysis and opinions on historical events and their impact on modern society" %}</p>
+    </div>
+</div>
+
+<!-- Expert Opinions Section -->
+<section class="expert-opinions-section">
+    <div class="container">
+        <div class="row">
+            {% for opinion in opinions %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="expert-card">
+                    <div class="expert-image">
+                        <img src="{{ opinion.photo.url }}" alt="{{ opinion.expert_name }}" class="img-fluid">
+                    </div>
+                    <div class="expert-content">
+                        <div class="expert-meta">
+                            <span class="expert-date">{{ opinion.publication_date|date:"d.m.Y" }}</span>
+                            <span class="expert-source">
+                                <i class="{{ opinion.source_icon }}"></i>
+                                {{ opinion.source_name }}
+                            </span>
+                        </div>
+                        <h3 class="expert-name">{{ opinion.expert_name }}</h3>
+                        <p class="expert-title">{{ opinion.expert_title }}</p>
+                        <h4 class="expert-topic">{{ opinion.topic }}</h4>
+                        <p class="expert-description">{{ opinion.description|truncatewords:30 }}</p>
+                        <a href="{{ opinion.url }}" target="_blank" class="read-more-link">
+                            {% trans "Read Full Opinion" %} <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p>{% trans "No expert opinions available at the moment." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .expert-opinions-section {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+    }
+
+    .expert-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .expert-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .expert-image {
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .expert-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .expert-content {
+        padding: 20px;
+    }
+
+    .expert-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .expert-source i {
+        margin-right: 5px;
+    }
+
+    .expert-name {
+        font-size: 1.25rem;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .expert-title {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-bottom: 15px;
+    }
+
+    .expert-topic {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    .expert-description {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .read-more-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        transition: color 0.3s ease;
+    }
+
+    .read-more-link i {
+        margin-left: 5px;
+        font-size: 0.9rem;
+    }
+
+    .read-more-link:hover {
+        color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        .expert-image {
+            height: 200px;
+        }
+
+        .expert-content {
+            padding: 15px;
+        }
+
+        .expert-name {
+            font-size: 1.1rem;
+        }
+
+        .expert-topic {
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %} 
