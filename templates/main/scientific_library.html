@@ -17,7 +17,7 @@
     /* Стили для секций */
     .breadcrumb-wrapper {
         background: var(--light-bg);
-        padding: 1rem 0;
+        padding: 1.2rem 0;
         border-bottom: 1px solid var(--border-color);
     }
 
@@ -29,46 +29,165 @@
     .breadcrumb-item a {
         color: var(--primary-color);
         text-decoration: none;
+        font-weight: 500;
+    }
+
+    .breadcrumb-item.active {
+        color: var(--secondary-color);
     }
 
     .page-header {
         background: white;
-        padding: 3rem 0;
+        padding: 3.5rem 0;
         border-bottom: 1px solid var(--border-color);
     }
 
     .scientific-library-section {
-        padding: 3rem 0;
+        padding: 3.5rem 0;
         background: var(--light-bg);
     }
 
     /* Стили для заголовка */
     .page-title {
         color: var(--primary-color);
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
+        letter-spacing: -0.5px;
     }
 
     .page-description {
         color: var(--text-color);
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        line-height: 1.6;
         margin: 0;
+        opacity: 0.85;
+    }
+
+    .page-actions .btn {
+        padding: 0.8rem 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+
+    .page-actions .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Стили для фильтров */
+    .input-group {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .input-group .form-control {
+        padding: 0.8rem 1.2rem;
+        border: 1px solid var(--border-color);
+        font-size: 1rem;
+    }
+
+    .input-group .btn {
+        padding: 0.8rem 1.5rem;
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .form-select {
+        padding: 0.8rem 1.2rem;
+        border: 1px solid var(--border-color);
+        font-size: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    /* Стили для карточек */
+    .card {
+        border: none;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .card-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+
+    .card-text {
+        color: var(--text-color);
         opacity: 0.8;
+    }
+
+    .card-footer {
+        background: transparent;
+        padding: 1.2rem;
+    }
+
+    .card-footer .btn {
+        padding: 0.8rem 1rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+
+    /* Стили для модальных окон */
+    .modal-content {
+        border: none;
+        border-radius: 0;
+    }
+
+    .modal-header {
+        background: var(--primary-color);
+        color: white;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    .modal-body {
+        padding: 2rem 1.5rem;
+    }
+
+    .info-section h6 {
+        color: var(--primary-color);
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .pdf-preview {
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        overflow: hidden;
     }
 
     @media (max-width: 768px) {
         .page-header {
-            padding: 2rem 0;
+            padding: 2.5rem 0;
         }
 
         .page-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
         }
 
         .page-actions {
-            margin-top: 1rem;
-            justify-content: flex-start;
+            margin-top: 1.5rem;
+        }
+
+        .card-img-wrapper {
+            height: 180px !important;
         }
     }
 

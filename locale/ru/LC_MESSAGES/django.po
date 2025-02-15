@@ -343,13 +343,13 @@ msgstr "Класс иконки"
 #, fuzzy
 #| msgid "Our Achievements"
 msgid "Achievement"
-msgstr "Наши достижения"
+msgstr "Достижения"
 
 #: .\main\models.py:157
 #, fuzzy
 #| msgid "Our Achievements"
 msgid "Achievements"
-msgstr "Наши достижения"
+msgstr "Достижения"
 
 #: .\main\models.py:167
 msgid "Parent Menu"
