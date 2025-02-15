@@ -29,6 +29,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', '77.246.247.179', 'historystate.my-business-card.kz']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://historystate.my-business-card.kz',
+    'http://historystate.my-business-card.kz',
+    'https://www.historystate.my-business-card.kz',
+    'http://www.historystate.my-business-card.kz'
+]
+
 
 # Application definition
 
