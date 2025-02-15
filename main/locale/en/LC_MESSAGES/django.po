@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-13 20:57+0500\n"
+"POT-Creation-Date: 2025-02-15 23:40+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,256 +18,377 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\main\admin.py:22
-msgid "General Settings"
+#: main/admin.py:43
+msgid "General"
 msgstr ""
 
-#: .\main\admin.py:25
-msgid "Contact Information"
+#: main/admin.py:46
+msgid "Footer Information"
 msgstr ""
 
-#: .\main\admin.py:28
-msgid "Social Media"
+#: main/admin.py:55
+msgid "Logo Preview"
 msgstr ""
 
-#: .\main\models.py:6
-msgid "Created at"
-msgstr ""
-
-#: .\main\models.py:7
-msgid "Updated at"
-msgstr ""
-
-#: .\main\models.py:13 .\main\models.py:28 .\main\models.py:42
-#: .\main\models.py:59 .\main\models.py:73 .\main\models.py:88
-msgid "Image"
-msgstr ""
-
-#: .\main\models.py:14 .\main\models.py:30 .\main\models.py:45
-#: .\main\models.py:166
-msgid "Is active"
-msgstr ""
-
-#: .\main\models.py:15 .\main\models.py:44 .\main\models.py:75
-#: .\main\models.py:151 .\main\models.py:164
-msgid "Order"
-msgstr ""
-
-#: .\main\models.py:18
-msgid "Hero"
-msgstr ""
-
-#: .\main\models.py:19
-msgid "Heroes"
-msgstr ""
-
-#: .\main\models.py:26 .\main\models.py:41 .\main\models.py:56
-#: .\main\models.py:71 .\main\models.py:86 .\main\models.py:103
-#: .\main\models.py:116 .\main\models.py:148 .\main\models.py:162
-msgid "Title"
-msgstr ""
-
-#: .\main\models.py:27 .\main\models.py:72 .\main\models.py:87
-#: .\main\models.py:117
-msgid "Description"
-msgstr ""
-
-#: .\main\models.py:29
-msgid "Date"
-msgstr ""
-
-#: .\main\models.py:33
-msgid "Event"
-msgstr ""
-
-#: .\main\models.py:34
-msgid "Events"
-msgstr ""
-
-#: .\main\models.py:43 .\main\models.py:74 .\main\models.py:163
-msgid "URL"
-msgstr ""
-
-#: .\main\models.py:48
-msgid "Banner"
-msgstr ""
-
-#: .\main\models.py:49
-msgid "Banners"
-msgstr ""
-
-#: .\main\models.py:57
-msgid "Preview"
-msgstr ""
-
-#: .\main\models.py:58 .\main\models.py:104 .\main\models.py:136
+#: main/admin.py:152 main/models.py:58 main/models.py:103 main/models.py:198
+#: main/models.py:211 main/models.py:262
 msgid "Content"
 msgstr ""
 
-#: .\main\models.py:60
+#: main/admin.py:155
+msgid "Settings"
+msgstr ""
+
+#: main/admin.py:181 main/admin.py:195 main/admin.py:279
+msgid "Содержание"
+msgstr ""
+
+#: main/admin.py:198 main/admin.py:282
+msgid "Документ"
+msgstr ""
+
+#: main/admin.py:200 main/admin.py:284
+msgid "Загрузить PDF документ"
+msgstr ""
+
+#: main/admin.py:202 main/admin.py:230 main/admin.py:262 main/admin.py:286
+#: main/admin.py:314
+msgid "Настройки"
+msgstr ""
+
+#: main/admin.py:212 main/admin.py:296
+msgid "Просмотр PDF"
+msgstr ""
+
+#: main/admin.py:214 main/admin.py:298
+msgid "PDF Документ"
+msgstr ""
+
+#: main/admin.py:224 main/admin.py:308
+msgid "Личная информация"
+msgstr ""
+
+#: main/admin.py:227 main/admin.py:259 main/admin.py:311
+msgid "Контактная информация"
+msgstr ""
+
+#: main/admin.py:247 main/admin.py:332
+msgid "Фото"
+msgstr ""
+
+#: main/admin.py:256
+msgid "Информация об отделе"
+msgstr ""
+
+#: main/models.py:6
+msgid "Created at"
+msgstr ""
+
+#: main/models.py:7
+msgid "Updated at"
+msgstr ""
+
+#: main/models.py:13 main/models.py:28 main/models.py:42 main/models.py:59
+#: main/models.py:72 main/models.py:87
+msgid "Image"
+msgstr ""
+
+#: main/models.py:14 main/models.py:30 main/models.py:45 main/models.py:106
+#: main/models.py:118 main/models.py:133 main/models.py:162 main/models.py:199
+#: main/models.py:213 main/models.py:231 main/models.py:249 main/models.py:264
+#: main/models.py:283
+msgid "Is active"
+msgstr ""
+
+#: main/models.py:15 main/models.py:44 main/models.py:74 main/models.py:147
+#: main/models.py:160 main/models.py:230 main/models.py:248 main/models.py:282
+msgid "Order"
+msgstr ""
+
+#: main/models.py:18
+msgid "Hero"
+msgstr ""
+
+#: main/models.py:19
+msgid "Heroes"
+msgstr ""
+
+#: main/models.py:26 main/models.py:41 main/models.py:56 main/models.py:71
+#: main/models.py:85 main/models.py:102 main/models.py:128 main/models.py:144
+#: main/models.py:158 main/models.py:197 main/models.py:210 main/models.py:243
+#: main/models.py:261
+msgid "Title"
+msgstr ""
+
+#: main/models.py:27 main/models.py:86 main/models.py:129 main/models.py:244
+msgid "Description"
+msgstr ""
+
+#: main/models.py:29
+msgid "Date"
+msgstr ""
+
+#: main/models.py:33
+msgid "Event"
+msgstr ""
+
+#: main/models.py:34
+msgid "Events"
+msgstr ""
+
+#: main/models.py:43 main/models.py:73 main/models.py:117 main/models.py:132
+#: main/models.py:159
+msgid "URL"
+msgstr ""
+
+#: main/models.py:48
+msgid "Banner"
+msgstr ""
+
+#: main/models.py:49
+msgid "Banners"
+msgstr ""
+
+#: main/models.py:57
+msgid "Preview"
+msgstr ""
+
+#: main/models.py:60
 msgid "Is featured"
 msgstr ""
 
-#: .\main\models.py:63 .\main\models.py:64
+#: main/models.py:63 main/models.py:64
 msgid "News"
 msgstr ""
 
-#: .\main\models.py:78
+#: main/models.py:77
 msgid "Resource"
 msgstr ""
 
-#: .\main\models.py:79
+#: main/models.py:78
 msgid "Resources"
 msgstr ""
 
-#: .\main\models.py:90
+#: main/models.py:89
 msgid "Ongoing"
 msgstr ""
 
-#: .\main\models.py:91
+#: main/models.py:90
 msgid "Completed"
 msgstr ""
 
-#: .\main\models.py:92
+#: main/models.py:91
 msgid "Status"
 msgstr ""
 
-#: .\main\models.py:95
+#: main/models.py:94
 msgid "Research Project"
 msgstr ""
 
-#: .\main\models.py:96
+#: main/models.py:95
 msgid "Research Projects"
 msgstr ""
 
-#: .\main\models.py:105 .\main\models.py:119
+#: main/models.py:104
 msgid "File"
 msgstr ""
 
-#: .\main\models.py:108
+#: main/models.py:105
+msgid "Author"
+msgstr ""
+
+#: main/models.py:109
 msgid "Recommendation"
 msgstr ""
 
-#: .\main\models.py:109
+#: main/models.py:110
 msgid "Recommendations"
 msgstr ""
 
-#: .\main\models.py:118
-msgid "Cover"
-msgstr ""
-
-#: .\main\models.py:120
-msgid "Issue Number"
-msgstr ""
-
-#: .\main\models.py:121
-msgid "Publication Date"
-msgstr ""
-
-#: .\main\models.py:124
+#: main/models.py:121
 msgid "Journal"
 msgstr ""
 
-#: .\main\models.py:125
+#: main/models.py:122
 msgid "Journals"
 msgstr ""
 
-#: .\main\models.py:132
-msgid "Expert Name"
-msgstr ""
-
-#: .\main\models.py:133
-msgid "Expert Title"
-msgstr ""
-
-#: .\main\models.py:134
-msgid "Expert Biography"
-msgstr ""
-
-#: .\main\models.py:135
-msgid "Topic"
-msgstr ""
-
-#: .\main\models.py:137
+#: main/models.py:130 main/models.py:227 main/models.py:276
 msgid "Photo"
 msgstr ""
 
-#: .\main\models.py:140
+#: main/models.py:131
+msgid "Publication Date"
+msgstr ""
+
+#: main/models.py:136
 msgid "Expert Opinion"
 msgstr ""
 
-#: .\main\models.py:141
+#: main/models.py:137 main/templates/main/expert_opinion_list.html:4
+#: main/templates/main/expert_opinion_list.html:13
+#: main/templates/main/expert_opinion_list.html:22
 msgid "Expert Opinions"
 msgstr ""
 
-#: .\main\models.py:149
+#: main/models.py:145
 msgid "Value"
 msgstr ""
 
-#: .\main\models.py:150
+#: main/models.py:146
 msgid "Icon Class"
 msgstr ""
 
-#: .\main\models.py:154
+#: main/models.py:150
 msgid "Achievement"
 msgstr ""
 
-#: .\main\models.py:155
+#: main/models.py:151
 msgid "Achievements"
 msgstr ""
 
-#: .\main\models.py:165
+#: main/models.py:161
 msgid "Parent Menu"
 msgstr ""
 
-#: .\main\models.py:169
+#: main/models.py:165
 msgid "Menu Item"
 msgstr ""
 
-#: .\main\models.py:170
+#: main/models.py:166
 msgid "Menu Items"
 msgstr ""
 
-#: .\main\models.py:177
+#: main/models.py:174
+msgid "Logo"
+msgstr ""
+
+#: main/models.py:175
 msgid "Site Name"
 msgstr ""
 
-#: .\main\models.py:178
-msgid "About Text"
+#: main/models.py:176
+msgid "Footer Text"
 msgstr ""
 
-#: .\main\models.py:179
-msgid "Contact Email"
+#: main/models.py:177
+msgid "Footer Email"
 msgstr ""
 
-#: .\main\models.py:180
-msgid "Contact Phone"
+#: main/models.py:178
+msgid "Footer Phone"
 msgstr ""
 
-#: .\main\models.py:181
-msgid "Address"
+#: main/models.py:179
+msgid "Footer Address"
 msgstr ""
 
-#: .\main\models.py:182
-msgid "Facebook URL"
+#: main/models.py:180
+msgid "Copyright Text"
 msgstr ""
 
-#: .\main\models.py:183
-msgid "Twitter URL"
+#: main/models.py:181
+msgid "All rights reserved"
 msgstr ""
 
-#: .\main\models.py:184
-msgid "Instagram URL"
+#: main/models.py:184 main/models.py:185 main/models.py:188
+msgid "Site Settings"
 msgstr ""
 
-#: .\main\models.py:185
-msgid "YouTube URL"
+#: main/models.py:202 main/models.py:203
+msgid "About Page"
 msgstr ""
 
-#: .\main\models.py:186
-msgid "Telegram URL"
+#: main/models.py:212 main/models.py:263
+msgid "PDF File"
 msgstr ""
 
-#: .\main\models.py:189 .\main\models.py:190
-msgid "Site Configuration"
+#: main/models.py:216 main/models.py:217
+msgid "Charter"
+msgstr ""
+
+#: main/models.py:224 main/models.py:275
+msgid "Full Name"
+msgstr ""
+
+#: main/models.py:225
+msgid "Position"
+msgstr ""
+
+#: main/models.py:226 main/models.py:280
+msgid "Biography"
+msgstr ""
+
+#: main/models.py:228 main/models.py:246 main/models.py:281
+msgid "Email"
+msgstr ""
+
+#: main/models.py:229 main/models.py:247
+msgid "Phone"
+msgstr ""
+
+#: main/models.py:234 main/models.py:235
+msgid "Management"
+msgstr ""
+
+#: main/models.py:245
+msgid "Head of Department"
+msgstr ""
+
+#: main/models.py:252
+msgid "Department"
+msgstr ""
+
+#: main/models.py:253
+msgid "Departments"
+msgstr ""
+
+#: main/models.py:267 main/models.py:268
+msgid "Scientific Council"
+msgstr ""
+
+#: main/models.py:277
+msgid "Academic Degree"
+msgstr ""
+
+#: main/models.py:278
+msgid "Year of Admission"
+msgstr ""
+
+#: main/models.py:279
+msgid "Research Topics"
+msgstr ""
+
+#: main/models.py:286
+msgid "Young Scientist"
+msgstr ""
+
+#: main/models.py:287
+msgid "Young Scientists"
+msgstr ""
+
+#: main/templates/main/expert_opinion_list.html:12
+msgid "Home"
+msgstr ""
+
+#: main/templates/main/expert_opinion_list.html:23
+msgid ""
+"Expert analysis and opinions on historical events and their impact on modern "
+"society"
+msgstr ""
+
+#: main/templates/main/expert_opinion_list.html:50
+msgid "Read Full Opinion"
+msgstr ""
+
+#: main/templates/main/expert_opinion_list.html:57
+msgid "No expert opinions available at the moment."
+msgstr ""
+
+#: main/translation.py:18
+msgid "Institute of State History"
+msgstr ""
+
+#: main/views.py:88
+msgid "No active journals available."
 msgstr ""
