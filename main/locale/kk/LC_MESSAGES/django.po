@@ -43,44 +43,44 @@ msgstr "Жалпы параметрлер"
 
 #: .\main\admin.py:176 .\main\admin.py:190 .\main\admin.py:274
 msgid "Содержание"
-msgstr ""
+msgstr "Мазмұны"
 
 #: .\main\admin.py:193 .\main\admin.py:277
 msgid "Документ"
-msgstr ""
+msgstr "Файл"
 
 #: .\main\admin.py:195 .\main\admin.py:279
 msgid "Загрузить PDF документ"
-msgstr ""
+msgstr "PDF файлын жүктеу"
 
 #: .\main\admin.py:197 .\main\admin.py:225 .\main\admin.py:257
 #: .\main\admin.py:281 .\main\admin.py:309
 msgid "Настройки"
-msgstr ""
+msgstr "Параметрлер"
 
 #: .\main\admin.py:207 .\main\admin.py:291
 msgid "Просмотр PDF"
-msgstr ""
+msgstr "PDF файлын қарау"
 
 #: .\main\admin.py:209 .\main\admin.py:293
 msgid "PDF Документ"
-msgstr ""
+msgstr "PDF файлы"
 
 #: .\main\admin.py:219 .\main\admin.py:303
 msgid "Личная информация"
-msgstr ""
+msgstr "Жеке ақпарат"
 
 #: .\main\admin.py:222 .\main\admin.py:254 .\main\admin.py:306
 msgid "Контактная информация"
-msgstr ""
+msgstr "Байланыс ақпараты"
 
 #: .\main\admin.py:242 .\main\admin.py:327
 msgid "Фото"
-msgstr ""
+msgstr "Сурет"
 
 #: .\main\admin.py:251
 msgid "Информация об отделе"
-msgstr ""
+msgstr "Бөлімнің ақпараты"
 
 #: .\main\models.py:6
 msgid "Created at"
@@ -197,11 +197,11 @@ msgstr "Ғылыми жобалар"
 
 #: .\main\models.py:104
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: .\main\models.py:105
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: .\main\models.py:109
 msgid "Recommendation"
@@ -267,7 +267,7 @@ msgstr "Мәзір элементтері"
 
 #: .\main\models.py:174
 msgid "Logo"
-msgstr ""
+msgstr "Логотип"
 
 #: .\main\models.py:175
 msgid "Site Name"
@@ -299,7 +299,7 @@ msgstr "Мекенжай"
 
 #: .\main\models.py:180
 msgid "Copyright Text"
-msgstr ""
+msgstr "Копирайтинг мәтіні"
 
 #: .\main\models.py:181
 msgid "All rights reserved"
@@ -319,11 +319,11 @@ msgstr "Біз туралы мәтін"
 
 #: .\main\models.py:212 .\main\models.py:263
 msgid "PDF File"
-msgstr ""
+msgstr "PDF файлы"
 
 #: .\main\models.py:216 .\main\models.py:217
 msgid "Charter"
-msgstr ""
+msgstr "Шарт"
 
 #: .\main\models.py:224 .\main\models.py:275
 msgid "Full Name"
@@ -333,7 +333,7 @@ msgstr "Аты-жөні"
 #, fuzzy
 #| msgid "Description"
 msgid "Position"
-msgstr "Сипаттама"
+msgstr "Лауазымы"
 
 #: .\main\models.py:226 .\main\models.py:280
 #, fuzzy
@@ -351,19 +351,19 @@ msgstr "Телефон"
 
 #: .\main\models.py:234 .\main\models.py:235
 msgid "Management"
-msgstr ""
+msgstr "Басқару"
 
 #: .\main\models.py:245
 msgid "Head of Department"
-msgstr ""
+msgstr "Бөлім басшысы"
 
 #: .\main\models.py:252
 msgid "Department"
-msgstr ""
+msgstr "Бөлім"
 
 #: .\main\models.py:253
 msgid "Departments"
-msgstr ""
+msgstr "Бөлімдер"
 
 #: .\main\models.py:267 .\main\models.py:268
 #, fuzzy
@@ -373,11 +373,11 @@ msgstr "Ғылыми журналдар"
 
 #: .\main\models.py:277
 msgid "Academic Degree"
-msgstr ""
+msgstr "Ғылыми дәреже"
 
 #: .\main\models.py:278
 msgid "Year of Admission"
-msgstr ""
+msgstr "Қабылдану жылы"
 
 #: .\main\models.py:279
 #, fuzzy
@@ -387,29 +387,29 @@ msgstr "Ғылыми жобалар"
 
 #: .\main\models.py:286
 msgid "Young Scientist"
-msgstr ""
+msgstr "Жас ғылыми жұмысшы"
 
 #: .\main\models.py:287
 msgid "Young Scientists"
-msgstr ""
+msgstr "Жас ғылыми жұмысшылар"
 
 #: .\main\templates\main\expert_opinion_list.html:12
 msgid "Home"
-msgstr ""
+msgstr "Басты бет"
 
 #: .\main\templates\main\expert_opinion_list.html:23
 msgid ""
 "Expert analysis and opinions on historical events and their impact on modern "
 "society"
-msgstr ""
+msgstr "Исторические события и их влияние на современную общество"
 
 #: .\main\templates\main\expert_opinion_list.html:50
 msgid "Read Full Opinion"
-msgstr ""
+msgstr "Читать полную статью"
 
 #: .\main\templates\main\expert_opinion_list.html:57
 msgid "No expert opinions available at the moment."
-msgstr ""
+msgstr "На данный момент нет экспертных мнений"
 
 #: .\main\translation.py:18
 msgid "Institute of State History"
@@ -417,7 +417,7 @@ msgstr "Мемлекет тарихы институты"
 
 #: .\main\views.py:88
 msgid "No active journals available."
-msgstr ""
+msgstr "Активті журналдар жоқ"
 
 #~ msgid "Social Media"
 #~ msgstr "Әлеуметтік желілер"
