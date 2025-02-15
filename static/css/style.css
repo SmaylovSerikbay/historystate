@@ -438,4 +438,28 @@ body {
 .scientific-library .modal-footer {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
-} 
+}
+
+.carousel-item {
+    height: 600px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.slide-counter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+/* About Section */ 

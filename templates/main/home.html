@@ -15,11 +15,7 @@
         {% for hero in heroes %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
             <img src="{{ hero.image.url }}" class="d-block w-100" alt="Hero Image {{ forloop.counter }}">
-            <div class="carousel-caption">
-                <div class="caption-content">
-                    <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
-                </div>
-            </div>
+            <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
         </div>
         {% endfor %}
     </div>
