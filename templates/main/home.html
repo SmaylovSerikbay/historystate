@@ -16,10 +16,6 @@
             {% for hero in heroes %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 <img src="{{ hero.image.url }}" class="d-block w-100" alt="{{ hero.title|default:'Hero Image' }}">
-                <div class="carousel-caption">
-                    {% if hero.title %}<h2>{{ hero.title }}</h2>{% endif %}
-                    {% if hero.description %}<p>{{ hero.description }}</p>{% endif %}
-                </div>
                 <div class="slide-counter">{{ forloop.counter }}/{{ heroes|length }}</div>
             </div>
             {% endfor %}
@@ -304,15 +300,6 @@
         filter: brightness(0.8);
     }
 
-    .carousel-caption {
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: var(--border-radius);
-        padding: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-        backdrop-filter: blur(5px);
-    }
-
     .slide-counter {
         position: absolute;
         bottom: 20px;
@@ -434,6 +421,8 @@
         border-radius: 16px;
         height: 100%;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
     }
 
     .achievement-grid {
@@ -477,6 +466,39 @@
         font-size: 0.9rem;
         margin: 0;
         opacity: 0.9;
+    }
+
+    @media (max-width: 991.98px) {
+        .statistics-box {
+            margin-top: 2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .statistics-box {
+            margin-top: 1.5rem;
+        }
+        
+        .achievement-grid {
+            gap: 1rem;
+        }
+        
+        .achievement-item {
+            padding: 1rem;
+        }
+        
+        .achievement-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-item .counter {
+            font-size: 1.8rem;
+        }
+        
+        .achievement-item p {
+            font-size: 0.8rem;
+        }
     }
 
     /* Events Section */
