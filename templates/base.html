@@ -10,6 +10,27 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
     <style>
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+        body {
+            padding-top: 70px;
+        }
+        @media (max-width: 991.98px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+        @media (max-width: 576px) {
+            body {
+                padding-top: 52px;
+            }
+        }
         /* Общие стили */
         :root {
             --primary-color: #1B2B48;
@@ -23,7 +44,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-top: 70px;
         }
 
         .main-content {
@@ -34,487 +54,220 @@
         .header {
             background: var(--primary-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            z-index: 1030;
         }
 
         .navbar {
-            padding: 0;
-            min-height: 70px;
+            padding: 0.5rem 0;
         }
 
-        .navbar > .container {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Логотип */
         .navbar-brand {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            margin-right: 2rem;
-            color: #fff !important;
+            font-size: 15px;
+            line-height: 1.2;
+            margin-right: 0;
+            max-width: 75%;
         }
 
         .header-logo {
-            height: 40px;
+            height: 35px;
             width: auto;
-            margin-right: 12px;
+            object-fit: contain;
         }
 
-        /* Основная навигация */
-        .navbar-nav {
-            margin-left: auto;
-            gap: 5px;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            padding: 25px 15px !important;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover,
-        .nav-link:focus {
-            color: #fff !important;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Выпадающее меню */
-        .dropdown-menu {
-            margin: 0;
-            padding: 8px 0;
-            border: none;
-            border-radius: 0 0 8px 8px;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .dropdown-item {
-            padding: 8px 20px;
-            color: var(--text-color);
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background: var(--light-bg);
-            color: var(--primary-color);
-            padding-left: 25px;
-        }
-
-        /* Кнопка мобильного меню */
-        .navbar-toggler {
-            padding: 0;
-            border: none;
-            margin-left: 15px;
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.1);
-            position: relative;
-        }
-
-        .navbar-toggler:focus {
-            box-shadow: none;
-            outline: none;
-        }
-
-        .navbar-toggler-icon {
-            background-image: none;
-            position: relative;
-            width: 20px;
-            height: 2px;
-            background: #fff;
+        .brand-text {
             display: inline-block;
-            transition: all 0.3s ease;
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.2;
+            font-size: 15px;
         }
 
-        .navbar-toggler-icon::before,
-        .navbar-toggler-icon::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 20px;
-            height: 2px;
-            background: #fff;
-            transition: all 0.3s ease;
+        .navbar-toggler {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-left: 0.5rem;
         }
 
-        .navbar-toggler-icon::before {
-            top: -6px;
-        }
-
-        .navbar-toggler-icon::after {
-            bottom: -6px;
-        }
-
-        /* Мобильная навигация */
         @media (max-width: 991.98px) {
-            /* Шапка */
-            .navbar > .container {
-                padding: 8px 15px;
-                position: relative;
-                justify-content: flex-start;
-            }
-
-            /* Логотип */
             .navbar-brand {
-                font-size: 15px;
-                padding: 8px 0;
-                margin-right: auto;
-                max-width: calc(100% - 100px);
-                white-space: normal;
-                line-height: 1.2;
+                max-width: 70%;
             }
-
-            .navbar-brand span {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
+            
             .header-logo {
-                height: 35px;
-                min-width: 35px;
-                margin-right: 10px;
-                flex-shrink: 0;
+                height: 30px;
             }
-
-            /* Кнопки справа */
-            .mobile-buttons {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-left: 10px;
-                flex-shrink: 0;
-            }
-
-            /* Переключатель языков */
-            .language-switcher {
-                margin: 0;
-                position: relative;
-            }
-
-            .language-switcher .btn {
-                width: 40px;
-                height: 40px;
-                padding: 0;
-                border: none;
-                background: #ffffff20;
-                border-radius: 8px;
+            
+            .brand-text {
                 font-size: 14px;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                color: #fff;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-
-            .language-switcher .btn:hover,
-            .language-switcher .btn:focus {
-                background: #ffffff30;
-                color: #fff;
-                box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            }
-
-            .language-switcher .dropdown-menu {
-                min-width: 160px;
-                background: #fff;
-                border: none;
-                border-radius: 8px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                margin-top: 8px;
-                padding: 8px 0;
-                transform: none !important;
-            }
-
-            .language-switcher .dropdown-item {
-                padding: 12px 20px;
-                color: var(--text-color);
-                font-size: 14px;
-                display: flex;
-                align-items: center;
-                transition: all 0.2s ease;
-                background: transparent;
-                border-bottom: 1px solid #f5f5f5;
-            }
-
-            .language-switcher .dropdown-item:last-child {
-                border-bottom: none;
-            }
-
-            .language-switcher .dropdown-item:hover {
-                background: var(--light-bg);
-                color: var(--primary-color);
-                padding-left: 25px;
-            }
-
-            /* Кнопка меню */
-            .navbar-toggler {
-                width: 40px;
-                height: 40px;
-                padding: 0;
-                margin: 0;
-                border: none;
-                background: rgba(255,255,255,0.1);
-                border-radius: 8px;
-                transition: all 0.3s ease;
-            }
-
-            .navbar-toggler:hover {
-                background: rgba(255,255,255,0.2);
-            }
-
-            /* Мобильное меню */
-            .navbar-collapse {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--primary-color);
-                padding: 20px;
-                overflow-y: auto;
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
-                z-index: 1000;
-            }
-
-            .navbar-collapse.show {
-                transform: translateX(0);
-            }
-
-            .navbar-nav {
-                margin: 0;
-                padding: 0;
-            }
-
-            .nav-item {
-                margin: 5px 0;
-                border-radius: 8px;
-                overflow: hidden;
-            }
-
-            .nav-link {
-                padding: 12px 15px !important;
-                font-size: 16px;
-                color: rgba(255,255,255,0.9) !important;
-                border-radius: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .nav-link:hover,
-            .nav-link:focus {
-                background: rgba(255,255,255,0.1);
-                color: #fff !important;
-            }
-
-            /* Выпадающее меню в мобильной версии */
-            .dropdown-menu {
-                background: rgba(255,255,255,0.05);
-                border: none;
-                border-radius: 8px;
-                margin: 5px 0;
-                padding: 10px 0;
-            }
-
-            .dropdown-item {
-                color: rgba(255,255,255,0.9);
-                padding: 10px 20px;
-                font-size: 15px;
-            }
-
-            .dropdown-item:hover,
-            .dropdown-item:focus {
-                background: rgba(255,255,255,0.1);
-                color: #fff;
-            }
-
-            /* Анимация кнопки меню */
-            .navbar-toggler-icon,
-            .navbar-toggler-icon::before,
-            .navbar-toggler-icon::after {
-                transition: all 0.3s ease-in-out;
-            }
-
-            .navbar-toggler.active .navbar-toggler-icon {
-                background: transparent;
-            }
-
-            .navbar-toggler.active .navbar-toggler-icon::before {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .navbar-toggler.active .navbar-toggler-icon::after {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
-            /* Поиск */
-            .search-wrapper {
-                margin: 15px 0;
-                width: 100%;
-            }
-
-            .search-popup {
-                position: relative;
-                width: 100%;
-                padding: 0;
-                background: transparent;
-                box-shadow: none;
-                margin: 0;
-                display: block;
-            }
-
-            .search-form {
-                width: 100%;
-            }
-
-            .search-form .input-group {
-                background: #ffffff15;
-                border-radius: 10px;
-                padding: 5px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-
-            .search-form .form-control {
-                background: transparent;
-                border: none;
-                color: #fff;
-                padding: 10px 15px;
-                height: 42px;
-                font-size: 15px;
-            }
-
-            .search-form .form-control::placeholder {
-                color: rgba(255,255,255,0.7);
-            }
-
-            .search-form .form-control:focus {
-                box-shadow: none;
-                background: #ffffff10;
-            }
-
-            .search-form .btn {
-                background: #ffffff20;
-                border: none;
-                color: #fff;
-                padding: 8px 15px;
-                border-radius: 8px;
-                height: 42px;
-                width: 50px;
-                margin-right: 5px;
-                transition: all 0.3s ease;
-            }
-
-            .search-form .btn:hover {
-                background: #ffffff30;
-                transform: translateY(-1px);
-            }
-
-            .search-toggle {
-                display: none;
             }
         }
 
         @media (max-width: 576px) {
-            body {
-                padding-top: 60px;
-            }
-
-            .navbar {
-                min-height: 60px;
-            }
-
-            .navbar > .container {
-                padding: 5px 15px;
-            }
-
             .navbar-brand {
-                font-size: 14px;
-                max-width: calc(100% - 90px);
+                max-width: 65%;
             }
-
+            
             .header-logo {
-                height: 30px;
-                min-width: 30px;
-                margin-right: 8px;
+                height: 25px;
             }
-
-            .navbar-collapse {
-                top: 60px;
-                padding: 15px;
+            
+            .brand-text {
+                font-size: 13px;
             }
-
-            .navbar-toggler,
-            .language-switcher .btn {
-                width: 36px;
-                height: 36px;
-            }
-
-            .mobile-buttons {
-                gap: 8px;
-            }
-
-            .nav-link {
-                padding: 10px 15px !important;
-                font-size: 15px;
-            }
-
-            .dropdown-item {
-                padding: 8px 20px;
-                font-size: 14px;
-            }
-
-            .search-form .form-control {
-                height: 38px;
-                font-size: 14px;
-            }
-
-            .search-form .btn {
-                height: 38px;
-                width: 45px;
+            
+            .navbar-toggler {
+                padding: 3px 6px;
             }
         }
 
-        @media (max-width: 360px) {
-            .navbar-brand {
-                font-size: 13px;
-                max-width: calc(100% - 84px);
+        /* Стили для навигации */
+        .navbar-nav {
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item {
+            white-space: nowrap;
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 15px;
+            line-height: 1.2;
+            text-align: center;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .dropdown-menu {
+            min-width: 220px;
+            margin-top: 0;
+            border: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar-nav .dropdown-item {
+            white-space: normal;
+            padding: 8px 15px;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+        /* Мобильная навигация */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--primary-color);
+                padding: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             }
 
-            .header-logo {
-                height: 28px;
-                min-width: 28px;
-                margin-right: 6px;
+            .navbar-nav {
+                margin: 0 -1rem;
             }
 
-            .navbar-toggler,
-            .language-switcher .btn {
-                width: 34px;
-                height: 34px;
+            .navbar-nav .nav-item {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
-            .mobile-buttons {
-                gap: 6px;
+            .navbar-nav .nav-item:last-child {
+                border-bottom: none;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.75rem 1rem;
+                display: block;
+                text-align: left;
+            }
+
+            .navbar-nav .dropdown-menu {
+                min-width: 100%;
+                margin: 0;
+                padding: 0;
+                background: rgba(0,0,0,0.1);
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .navbar-nav .dropdown-item {
+                padding: 0.75rem 1.5rem;
+                color: rgba(255,255,255,0.8);
+            }
+
+            .navbar-nav .dropdown-item:hover {
+                background: rgba(255,255,255,0.1);
+                color: #fff;
+            }
+
+            .language-switcher,
+            .search-wrapper {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .language-switcher .btn,
+            .search-wrapper .btn {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        /* Поиск */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .search-popup.active {
+            display: block;
+        }
+
+        .search-form .form-control {
+            border-radius: 4px 0 0 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-form .btn {
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Адаптивный поиск */
+        @media (max-width: 768px) {
+            .search-popup {
+                width: 100%;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                border-radius: 0;
+                margin-top: 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .search-form {
+                max-width: 90%;
+                margin: 0 auto;
             }
         }
 
@@ -544,6 +297,26 @@
             color: #fff;
             margin-bottom: 1.25rem;
             font-size: 1.1rem;
+        }
+
+        /* Адаптивный футер */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 0 1rem;
+                text-align: center;
+            }
+
+            .footer .col-md-4 {
+                margin-bottom: 2rem;
+            }
+
+            .footer ul {
+                padding: 0;
+            }
+
+            .footer ul li {
+                margin-bottom: 0.5rem;
+            }
         }
 
         /* Общие адаптивные стили */
@@ -582,39 +355,14 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
-                    {% if site_config.logo %}
-                        <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo me-2">
-                    {% endif %}
-                    <span>{{ site_config.site_name }}</span>
-                </a>
-                <!-- Группируем кнопки в мобильной версии -->
-                <div class="mobile-buttons d-flex d-lg-none">
-                    <div class="language-switcher">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        <div class="dropdown">
-                            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                {{ LANGUAGE_CODE|upper }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                {% for language in languages %}
-                                <li>
-                                    <form action="{% url 'set_language' %}" method="post">
-                                        {% csrf_token %}
-                                        <input name="next" type="hidden" value="{{ request.path }}">
-                                        <input name="language" type="hidden" value="{{ language.code }}">
-                                        <button type="submit" class="dropdown-item">
-                                            {{ language.name_local }}
-                                        </button>
-                                    </form>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
+                        {% if site_config.logo %}
+                            <img src="{{ site_config.logo.url }}" alt="{{ site_config.site_name }}" class="header-logo me-2">
+                        {% endif %}
+                        <span class="brand-text">{{ site_config.site_name }}</span>
+                    </a>
+                    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
@@ -666,6 +414,30 @@
                                     </button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="language-switcher">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                {{ LANGUAGE_CODE|upper }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% for language in languages %}
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ request.path }}">
+                                        <input name="language" type="hidden" value="{{ language.code }}">
+                                        <button type="submit" class="dropdown-item">
+                                            {{ language.name_local }}
+                                        </button>
+                                    </form>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -760,23 +532,6 @@
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.search-wrapper')) {
                     searchPopup.classList.remove('active');
-                }
-            });
-
-            // Анимация кнопки мобильного меню
-            const toggler = document.querySelector('.navbar-toggler');
-            toggler.addEventListener('click', function() {
-                this.classList.toggle('active');
-                if (this.classList.contains('active')) {
-                    this.querySelector('.navbar-toggler-icon').style.background = 'transparent';
-                    this.querySelector('.navbar-toggler-icon').style.transform = 'rotate(180deg)';
-                    this.querySelector('.navbar-toggler-icon::before').style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    this.querySelector('.navbar-toggler-icon::after').style.transform = 'rotate(-45deg) translate(5px, -5px)';
-                } else {
-                    this.querySelector('.navbar-toggler-icon').style.background = '#fff';
-                    this.querySelector('.navbar-toggler-icon').style.transform = 'rotate(0)';
-                    this.querySelector('.navbar-toggler-icon::before').style.transform = 'rotate(0) translate(0)';
-                    this.querySelector('.navbar-toggler-icon::after').style.transform = 'rotate(0) translate(0)';
                 }
             });
         });
