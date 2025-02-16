@@ -162,22 +162,152 @@
             bottom: -6px;
         }
 
-        /* Мобильная навигация - только улучшения кнопок */
+        /* Мобильная навигация */
         @media (max-width: 991.98px) {
-            /* Контейнер для кнопок */
+            body {
+                padding-top: 60px;
+            }
+
+            .navbar {
+                min-height: 60px;
+                background: var(--primary-color);
+            }
+
             .navbar > .container {
                 padding: 0 15px;
             }
 
-            /* Группировка кнопок справа */
+            /* Логотип в мобильной версии */
+            .navbar-brand {
+                font-size: 16px;
+                padding: 0;
+            }
+
+            .header-logo {
+                height: 32px;
+                margin-right: 10px;
+            }
+
+            /* Мобильное меню */
+            .navbar-collapse {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #fff;
+                padding: 0;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+                transform: translateX(100%);
+                z-index: 1000;
+            }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+
+            /* Навигация */
+            .navbar-nav {
+                padding: 15px;
+                margin: 0;
+                background: #fff;
+            }
+
+            .nav-item {
+                margin: 0;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+
+            .nav-link {
+                color: var(--primary-color) !important;
+                padding: 15px !important;
+                font-size: 16px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-link:after {
+                content: '\f054';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                font-size: 12px;
+                opacity: 0.5;
+            }
+
+            .nav-link:hover {
+                background: var(--light-bg);
+                color: var(--primary-color) !important;
+            }
+
+            /* Выпадающее меню */
+            .dropdown-menu {
+                position: static !important;
+                background: var(--light-bg);
+                margin: 0;
+                padding: 0;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .dropdown-item {
+                padding: 12px 20px;
+                color: var(--primary-color);
+                font-size: 15px;
+                border-bottom: 1px solid rgba(0,0,0,0.03);
+            }
+
+            .dropdown-item:hover {
+                background: rgba(0,0,0,0.03);
+                padding-left: 25px;
+            }
+
+            /* Кнопки в шапке */
             .mobile-buttons {
                 display: flex;
                 align-items: center;
-                gap: 10px;
-                margin-left: auto;
+                gap: 8px;
             }
 
-            /* Стилизация кнопки меню */
+            /* Переключатель языков */
+            .language-switcher .btn {
+                width: 45px;
+                height: 40px;
+                padding: 0;
+                border: none;
+                background: rgba(255,255,255,0.1);
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            .language-switcher .dropdown-menu {
+                position: absolute !important;
+                right: 0;
+                left: auto !important;
+                top: 100% !important;
+                min-width: 120px;
+                background: #fff;
+                margin-top: 5px;
+                border-radius: 12px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                padding: 5px;
+                transform: none !important;
+            }
+
+            .language-switcher .dropdown-item {
+                padding: 10px 15px;
+                text-align: center;
+                border-radius: 8px;
+                border: none;
+                font-weight: 500;
+            }
+
+            /* Кнопка меню */
             .navbar-toggler {
                 width: 40px;
                 height: 40px;
@@ -185,53 +315,48 @@
                 border: none;
                 background: rgba(255,255,255,0.1);
                 border-radius: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-left: 10px;
+                position: relative;
             }
 
-            .navbar-toggler:focus {
-                box-shadow: none;
+            .navbar-toggler-icon {
+                width: 20px;
+                height: 2px;
+                background: #fff;
+                position: relative;
+                transition: all 0.3s ease;
             }
 
-            /* Стилизация переключателя языков */
-            .language-switcher {
-                margin: 0;
+            .navbar-toggler-icon::before,
+            .navbar-toggler-icon::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 20px;
+                height: 2px;
+                background: #fff;
+                transition: all 0.3s ease;
             }
 
-            .language-switcher .btn {
-                height: 40px;
-                padding: 0 15px;
-                border-radius: 8px;
-                font-size: 14px;
-                font-weight: 500;
-                background: rgba(255,255,255,0.1);
-                border: none;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .navbar-toggler-icon::before {
+                top: -6px;
             }
 
-            .language-switcher .dropdown-menu {
-                min-width: 120px;
-                margin-top: 5px;
-                border-radius: 8px;
-                border: none;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                padding: 5px;
+            .navbar-toggler-icon::after {
+                bottom: -6px;
             }
 
-            .language-switcher .dropdown-item {
-                padding: 8px 15px;
-                border-radius: 6px;
-                font-size: 14px;
-                font-weight: 500;
-                color: var(--text-color);
+            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+                background: transparent;
             }
 
-            .language-switcher .dropdown-item:hover {
-                background: var(--light-bg);
+            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+
+            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+                bottom: 0;
+                transform: rotate(-45deg);
             }
         }
 
@@ -245,69 +370,51 @@
             }
 
             .navbar-brand {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .header-logo {
-                height: 30px;
-                margin-right: 8px;
+                height: 28px;
             }
 
             .navbar-collapse {
                 top: 56px;
             }
 
-            .nav-link {
-                padding: 12px 20px !important;
-                font-size: 15px;
-            }
-
-            .dropdown-item {
-                padding: 10px 25px;
-                font-size: 14px;
-            }
-
-            .navbar-toggler {
+            .navbar-toggler,
+            .language-switcher .btn {
                 width: 36px;
                 height: 36px;
             }
 
             .language-switcher .btn {
-                height: 36px;
-                padding: 0 12px;
-                font-size: 13px;
+                font-size: 12px;
             }
 
-            .language-switcher .dropdown-menu {
-                min-width: 110px;
+            .nav-link {
+                padding: 12px 15px !important;
+                font-size: 15px;
             }
 
-            .language-switcher .dropdown-item {
-                padding: 6px 12px;
-                font-size: 13px;
+            .dropdown-item {
+                padding: 10px 15px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 360px) {
             .navbar-brand {
-                font-size: 12px;
-                max-width: calc(100% - 45px);
+                font-size: 13px;
             }
 
             .header-logo {
-                height: 22px;
-                margin-right: 6px;
+                height: 24px;
             }
 
-            .navbar-toggler {
+            .navbar-toggler,
+            .language-switcher .btn {
                 width: 34px;
                 height: 34px;
-            }
-
-            .language-switcher .btn {
-                height: 34px;
-                padding: 0 10px;
-                font-size: 12px;
             }
         }
 
