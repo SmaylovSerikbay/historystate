@@ -166,17 +166,17 @@
         @media (max-width: 991.98px) {
             /* Шапка */
             .navbar > .container {
-                padding: 0 15px;
+                padding: 8px 15px;
                 position: relative;
                 justify-content: flex-start;
             }
 
             /* Логотип */
             .navbar-brand {
-                font-size: 14px;
+                font-size: 15px;
                 padding: 8px 0;
                 margin-right: auto;
-                max-width: calc(100% - 100px); /* Оставляем место для кнопок */
+                max-width: calc(100% - 100px);
                 white-space: normal;
                 line-height: 1.2;
             }
@@ -189,9 +189,9 @@
             }
 
             .header-logo {
-                height: 32px;
-                min-width: 32px;
-                margin-right: 8px;
+                height: 35px;
+                min-width: 35px;
+                margin-right: 10px;
                 flex-shrink: 0;
             }
 
@@ -199,7 +199,7 @@
             .mobile-buttons {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 10px;
                 margin-left: 10px;
                 flex-shrink: 0;
             }
@@ -216,11 +216,16 @@
                 border: none;
                 background: rgba(255,255,255,0.1);
                 border-radius: 8px;
-                font-size: 13px;
+                font-size: 14px;
                 font-weight: 600;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .language-switcher .btn:hover {
+                background: rgba(255,255,255,0.2);
             }
 
             /* Кнопка меню */
@@ -232,31 +237,127 @@
                 border: none;
                 background: rgba(255,255,255,0.1);
                 border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .navbar-toggler:hover {
+                background: rgba(255,255,255,0.2);
+            }
+
+            /* Мобильное меню */
+            .navbar-collapse {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--primary-color);
+                padding: 20px;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 1000;
+            }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+
+            .navbar-nav {
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-item {
+                margin: 5px 0;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .nav-link {
+                padding: 12px 15px !important;
+                font-size: 16px;
+                color: rgba(255,255,255,0.9) !important;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-link:hover,
+            .nav-link:focus {
+                background: rgba(255,255,255,0.1);
+                color: #fff !important;
+            }
+
+            /* Выпадающее меню в мобильной версии */
+            .dropdown-menu {
+                background: rgba(255,255,255,0.05);
+                border: none;
+                border-radius: 8px;
+                margin: 5px 0;
+                padding: 10px 0;
+            }
+
+            .dropdown-item {
+                color: rgba(255,255,255,0.9);
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .dropdown-item:hover,
+            .dropdown-item:focus {
+                background: rgba(255,255,255,0.1);
+                color: #fff;
+            }
+
+            /* Анимация кнопки меню */
+            .navbar-toggler-icon,
+            .navbar-toggler-icon::before,
+            .navbar-toggler-icon::after {
+                transition: all 0.3s ease-in-out;
+            }
+
+            .navbar-toggler.active .navbar-toggler-icon {
+                background: transparent;
+            }
+
+            .navbar-toggler.active .navbar-toggler-icon::before {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .navbar-toggler.active .navbar-toggler-icon::after {
+                transform: rotate(-45deg) translate(5px, -5px);
             }
         }
 
         @media (max-width: 576px) {
             body {
-                padding-top: 56px;
+                padding-top: 60px;
             }
 
             .navbar {
-                min-height: 56px;
+                min-height: 60px;
+            }
+
+            .navbar > .container {
+                padding: 5px 15px;
             }
 
             .navbar-brand {
-                font-size: 13px;
+                font-size: 14px;
                 max-width: calc(100% - 90px);
             }
 
             .header-logo {
-                height: 28px;
-                min-width: 28px;
-                margin-right: 6px;
+                height: 30px;
+                min-width: 30px;
+                margin-right: 8px;
             }
 
             .navbar-collapse {
-                top: 56px;
+                top: 60px;
+                padding: 15px;
             }
 
             .navbar-toggler,
@@ -266,20 +367,30 @@
             }
 
             .mobile-buttons {
-                gap: 6px;
+                gap: 8px;
+            }
+
+            .nav-link {
+                padding: 10px 15px !important;
+                font-size: 15px;
+            }
+
+            .dropdown-item {
+                padding: 8px 20px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 360px) {
             .navbar-brand {
-                font-size: 12px;
+                font-size: 13px;
                 max-width: calc(100% - 84px);
             }
 
             .header-logo {
-                height: 24px;
-                min-width: 24px;
-                margin-right: 5px;
+                height: 28px;
+                min-width: 28px;
+                margin-right: 6px;
             }
 
             .navbar-toggler,
@@ -289,7 +400,7 @@
             }
 
             .mobile-buttons {
-                gap: 5px;
+                gap: 6px;
             }
         }
 
