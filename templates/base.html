@@ -207,6 +207,7 @@
             /* Переключатель языков */
             .language-switcher {
                 margin: 0;
+                position: relative;
             }
 
             .language-switcher .btn {
@@ -214,7 +215,7 @@
                 height: 40px;
                 padding: 0;
                 border: none;
-                background: rgba(255,255,255,0.1);
+                background: #ffffff20;
                 border-radius: 8px;
                 font-size: 14px;
                 font-weight: 600;
@@ -222,10 +223,47 @@
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
+                color: #fff;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
-            .language-switcher .btn:hover {
-                background: rgba(255,255,255,0.2);
+            .language-switcher .btn:hover,
+            .language-switcher .btn:focus {
+                background: #ffffff30;
+                color: #fff;
+                box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            }
+
+            .language-switcher .dropdown-menu {
+                min-width: 160px;
+                background: #fff;
+                border: none;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                margin-top: 8px;
+                padding: 8px 0;
+                transform: none !important;
+            }
+
+            .language-switcher .dropdown-item {
+                padding: 12px 20px;
+                color: var(--text-color);
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                transition: all 0.2s ease;
+                background: transparent;
+                border-bottom: 1px solid #f5f5f5;
+            }
+
+            .language-switcher .dropdown-item:last-child {
+                border-bottom: none;
+            }
+
+            .language-switcher .dropdown-item:hover {
+                background: var(--light-bg);
+                color: var(--primary-color);
+                padding-left: 25px;
             }
 
             /* Кнопка меню */
@@ -329,6 +367,72 @@
             .navbar-toggler.active .navbar-toggler-icon::after {
                 transform: rotate(-45deg) translate(5px, -5px);
             }
+
+            /* Поиск */
+            .search-wrapper {
+                margin: 15px 0;
+                width: 100%;
+            }
+
+            .search-popup {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                background: transparent;
+                box-shadow: none;
+                margin: 0;
+                display: block;
+            }
+
+            .search-form {
+                width: 100%;
+            }
+
+            .search-form .input-group {
+                background: #ffffff15;
+                border-radius: 10px;
+                padding: 5px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+
+            .search-form .form-control {
+                background: transparent;
+                border: none;
+                color: #fff;
+                padding: 10px 15px;
+                height: 42px;
+                font-size: 15px;
+            }
+
+            .search-form .form-control::placeholder {
+                color: rgba(255,255,255,0.7);
+            }
+
+            .search-form .form-control:focus {
+                box-shadow: none;
+                background: #ffffff10;
+            }
+
+            .search-form .btn {
+                background: #ffffff20;
+                border: none;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 8px;
+                height: 42px;
+                width: 50px;
+                margin-right: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .search-form .btn:hover {
+                background: #ffffff30;
+                transform: translateY(-1px);
+            }
+
+            .search-toggle {
+                display: none;
+            }
         }
 
         @media (max-width: 576px) {
@@ -379,6 +483,16 @@
                 padding: 8px 20px;
                 font-size: 14px;
             }
+
+            .search-form .form-control {
+                height: 38px;
+                font-size: 14px;
+            }
+
+            .search-form .btn {
+                height: 38px;
+                width: 45px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -402,38 +516,6 @@
             .mobile-buttons {
                 gap: 6px;
             }
-        }
-
-        /* Поиск */
-        .search-wrapper {
-            position: relative;
-        }
-
-        .search-popup {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 300px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-top: 10px;
-            z-index: 1000;
-        }
-
-        .search-popup.active {
-            display: block;
-        }
-
-        .search-form .form-control {
-            border-radius: 4px 0 0 4px;
-            border: 1px solid var(--border-color);
-        }
-
-        .search-form .btn {
-            border-radius: 0 4px 4px 0;
         }
 
         /* Футер */
