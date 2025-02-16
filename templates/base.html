@@ -49,60 +49,190 @@
 
         .navbar > .container {
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
+        /* Логотип */
         .navbar-brand {
-            font-size: 15px;
-            line-height: 1.2;
             display: flex;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 10px 0;
             margin-right: 2rem;
-        }
-
-        .header-logo {
-            height: 35px;
-            width: auto;
-            margin-right: 10px;
-        }
-
-        /* Стили для навигации */
-        .navbar-nav {
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar-nav .nav-item {
-            margin: 0 0.5rem;
-        }
-
-        .navbar-nav .nav-link {
-            padding: 0.5rem 1rem;
-            font-size: 15px;
-            line-height: 1.2;
-            color: rgba(255,255,255,0.9) !important;
-        }
-
-        .navbar-nav .nav-link:hover {
             color: #fff !important;
         }
 
-        .navbar-nav .dropdown-menu {
-            margin-top: 0.5rem;
-            border: none;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .header-logo {
+            height: 40px;
+            width: auto;
+            margin-right: 12px;
         }
 
-        .navbar-nav .dropdown-item {
-            padding: 0.5rem 1rem;
+        /* Основная навигация */
+        .navbar-nav {
+            margin-left: auto;
+            gap: 5px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            padding: 25px 15px !important;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: #fff !important;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Выпадающее меню */
+        .dropdown-menu {
+            margin: 0;
+            padding: 8px 0;
+            border: none;
+            border-radius: 0 0 8px 8px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+            color: var(--text-color);
             font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        /* Кнопка мобильного меню */
+        .navbar-toggler {
+            padding: 0;
+            border: none;
+            margin-left: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -6px;
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: -6px;
         }
 
         /* Мобильная навигация */
         @media (max-width: 991.98px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .navbar {
+                min-height: 60px;
+            }
+
+            .navbar-brand {
+                font-size: 14px;
+                padding: 8px 0;
+            }
+
+            .header-logo {
+                height: 35px;
+            }
+
+            .navbar-collapse {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--primary-color);
+                padding: 20px 0;
+                overflow-y: auto;
+                transition: transform 0.3s ease;
+                transform: translateX(100%);
+            }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+
+            .navbar-nav {
+                padding: 0;
+                margin: 0;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-link {
+                padding: 15px 20px !important;
+                font-size: 16px;
+            }
+
+            .dropdown-menu {
+                background: rgba(0,0,0,0.2);
+                border-radius: 0;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .dropdown-item {
+                padding: 12px 30px;
+                color: rgba(255,255,255,0.8);
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .dropdown-item:hover {
+                background: rgba(255,255,255,0.1);
+                color: #fff;
+                padding-left: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
             body {
                 padding-top: 56px;
             }
@@ -112,90 +242,26 @@
             }
 
             .navbar-brand {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .header-logo {
                 height: 30px;
-            }
-
-            .navbar-collapse {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-color);
-                padding: 1rem 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .navbar-nav {
-                padding: 0.5rem 0;
-            }
-
-            .navbar-nav .nav-item {
-                margin: 0;
-                padding: 0;
-            }
-
-            .navbar-nav .nav-link {
-                padding: 0.75rem 1.5rem;
-            }
-
-            .navbar-nav .dropdown-menu {
-                margin: 0;
-                background: rgba(0,0,0,0.2);
-                border-radius: 0;
-                box-shadow: none;
-            }
-
-            .navbar-nav .dropdown-item {
-                color: rgba(255,255,255,0.8);
-                padding: 0.75rem 2rem;
-            }
-
-            .navbar-nav .dropdown-item:hover {
-                background: rgba(255,255,255,0.1);
-                color: #fff;
-            }
-        }
-
-        @media (max-width: 576px) {
-            body {
-                padding-top: 52px;
-            }
-
-            .navbar {
-                min-height: 52px;
-            }
-
-            .navbar > .container {
-                padding: 0 15px;
-            }
-
-            .navbar-brand {
-                font-size: 13px;
-                margin-right: 0;
-            }
-
-            .header-logo {
-                height: 25px;
                 margin-right: 8px;
             }
 
-            .navbar-toggler {
-                padding: 4px 8px;
-                font-size: 0.8rem;
+            .navbar-collapse {
+                top: 56px;
             }
 
-            .navbar-nav .nav-link {
-                padding: 0.75rem 1rem;
+            .nav-link {
+                padding: 12px 20px !important;
+                font-size: 15px;
+            }
+
+            .dropdown-item {
+                padding: 10px 25px;
                 font-size: 14px;
-            }
-
-            .navbar-nav .dropdown-item {
-                padding: 0.75rem 1.5rem;
-                font-size: 13px;
             }
         }
 
@@ -482,6 +548,23 @@
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.search-wrapper')) {
                     searchPopup.classList.remove('active');
+                }
+            });
+
+            // Анимация кнопки мобильного меню
+            const toggler = document.querySelector('.navbar-toggler');
+            toggler.addEventListener('click', function() {
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.querySelector('.navbar-toggler-icon').style.background = 'transparent';
+                    this.querySelector('.navbar-toggler-icon').style.transform = 'rotate(180deg)';
+                    this.querySelector('.navbar-toggler-icon::before').style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    this.querySelector('.navbar-toggler-icon::after').style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                } else {
+                    this.querySelector('.navbar-toggler-icon').style.background = '#fff';
+                    this.querySelector('.navbar-toggler-icon').style.transform = 'rotate(0)';
+                    this.querySelector('.navbar-toggler-icon::before').style.transform = 'rotate(0) translate(0)';
+                    this.querySelector('.navbar-toggler-icon::after').style.transform = 'rotate(0) translate(0)';
                 }
             });
         });
