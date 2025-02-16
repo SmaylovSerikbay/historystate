@@ -162,73 +162,76 @@
             bottom: -6px;
         }
 
-        /* Мобильная навигация */
+        /* Мобильная навигация - только улучшения кнопок */
         @media (max-width: 991.98px) {
-            body {
-                padding-top: 60px;
+            /* Контейнер для кнопок */
+            .navbar > .container {
+                padding: 0 15px;
             }
 
-            .navbar {
-                min-height: 60px;
+            /* Группировка кнопок справа */
+            .mobile-buttons {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: auto;
             }
 
-            .navbar-brand {
-                font-size: 14px;
-                padding: 8px 0;
-            }
-
-            .header-logo {
-                height: 35px;
-            }
-
-            .navbar-collapse {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--primary-color);
-                padding: 20px 0;
-                overflow-y: auto;
-                transition: transform 0.3s ease;
-                transform: translateX(100%);
-            }
-
-            .navbar-collapse.show {
-                transform: translateX(0);
-            }
-
-            .navbar-nav {
+            /* Стилизация кнопки меню */
+            .navbar-toggler {
+                width: 40px;
+                height: 40px;
                 padding: 0;
+                border: none;
+                background: rgba(255,255,255,0.1);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 10px;
+            }
+
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+
+            /* Стилизация переключателя языков */
+            .language-switcher {
                 margin: 0;
             }
 
-            .nav-item {
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .nav-link {
-                padding: 15px 20px !important;
-                font-size: 16px;
-            }
-
-            .dropdown-menu {
-                background: rgba(0,0,0,0.2);
-                border-radius: 0;
-                box-shadow: none;
-                padding: 0;
-            }
-
-            .dropdown-item {
-                padding: 12px 30px;
-                color: rgba(255,255,255,0.8);
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-
-            .dropdown-item:hover {
+            .language-switcher .btn {
+                height: 40px;
+                padding: 0 15px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 500;
                 background: rgba(255,255,255,0.1);
-                color: #fff;
-                padding-left: 35px;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .language-switcher .dropdown-menu {
+                min-width: 120px;
+                margin-top: 5px;
+                border-radius: 8px;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                padding: 5px;
+            }
+
+            .language-switcher .dropdown-item {
+                padding: 8px 15px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--text-color);
+            }
+
+            .language-switcher .dropdown-item:hover {
+                background: var(--light-bg);
             }
         }
 
@@ -263,6 +266,26 @@
                 padding: 10px 25px;
                 font-size: 14px;
             }
+
+            .navbar-toggler {
+                width: 36px;
+                height: 36px;
+            }
+
+            .language-switcher .btn {
+                height: 36px;
+                padding: 0 12px;
+                font-size: 13px;
+            }
+
+            .language-switcher .dropdown-menu {
+                min-width: 110px;
+            }
+
+            .language-switcher .dropdown-item {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -274,6 +297,17 @@
             .header-logo {
                 height: 22px;
                 margin-right: 6px;
+            }
+
+            .navbar-toggler {
+                width: 34px;
+                height: 34px;
+            }
+
+            .language-switcher .btn {
+                height: 34px;
+                padding: 0 10px;
+                font-size: 12px;
             }
         }
 
@@ -367,238 +401,6 @@
                 font-size: 0.9rem;
             }
         }
-
-        /* Мобильное меню и языки */
-        @media (max-width: 991.98px) {
-            /* Контейнер для кнопок */
-            .mobile-buttons {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            /* Кнопка мобильного меню */
-            .navbar-toggler {
-                width: 44px;
-                height: 44px;
-                padding: 0;
-                border: none;
-                background: rgba(255,255,255,0.1);
-                border-radius: 8px;
-                position: relative;
-                order: 3;
-            }
-
-            .navbar-toggler:focus {
-                box-shadow: none;
-            }
-
-            .navbar-toggler-icon {
-                width: 24px;
-                height: 2px;
-                background: #fff;
-                position: relative;
-                transition: all 0.3s ease;
-            }
-
-            .navbar-toggler-icon::before,
-            .navbar-toggler-icon::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                width: 24px;
-                height: 2px;
-                background: #fff;
-                transition: all 0.3s ease;
-            }
-
-            .navbar-toggler-icon::before {
-                top: -8px;
-            }
-
-            .navbar-toggler-icon::after {
-                bottom: -8px;
-            }
-
-            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-                background: transparent;
-            }
-
-            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
-                top: 0;
-                transform: rotate(45deg);
-            }
-
-            .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
-                bottom: 0;
-                transform: rotate(-45deg);
-            }
-
-            /* Переключатель языков */
-            .language-switcher {
-                order: 2;
-            }
-
-            .language-switcher .btn {
-                height: 44px;
-                padding: 0 15px;
-                font-size: 15px;
-                border-radius: 8px;
-                background: rgba(255,255,255,0.1);
-                border: none;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .language-switcher .btn::after {
-                margin-left: 0;
-            }
-
-            .language-switcher .dropdown-menu {
-                min-width: 160px;
-                margin-top: 8px;
-                padding: 8px 0;
-                background: #fff;
-                border: none;
-                border-radius: 8px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            }
-
-            .language-switcher .dropdown-item {
-                padding: 12px 20px;
-                font-size: 15px;
-                color: var(--text-color);
-                transition: all 0.2s ease;
-            }
-
-            .language-switcher .dropdown-item:hover {
-                background: var(--light-bg);
-                padding-left: 25px;
-            }
-
-            /* Поиск */
-            .search-wrapper {
-                order: 1;
-            }
-
-            .search-toggle {
-                width: 44px;
-                height: 44px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 18px;
-                border-radius: 8px;
-                background: rgba(255,255,255,0.1);
-                border: none;
-            }
-
-            .search-popup {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                padding: 15px;
-                background: #fff;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                border-radius: 0;
-                margin: 0;
-                width: 100%;
-            }
-
-            /* Мобильное меню */
-            .navbar-collapse {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--primary-color);
-                padding: 0;
-                overflow-y: auto;
-                transition: all 0.3s ease;
-                transform: translateX(100%);
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            .navbar-collapse.show {
-                transform: translateX(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .navbar-nav {
-                padding: 15px 0;
-            }
-
-            .nav-item {
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .nav-link {
-                padding: 15px 20px !important;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .dropdown-toggle::after {
-                margin-left: 10px;
-            }
-
-            .dropdown-menu {
-                background: rgba(0,0,0,0.2);
-                border-radius: 0;
-                margin: 0;
-                padding: 10px 0;
-            }
-
-            .dropdown-item {
-                padding: 12px 30px;
-                color: rgba(255,255,255,0.8);
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-
-            .dropdown-item:last-child {
-                border-bottom: none;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .navbar-toggler,
-            .language-switcher .btn,
-            .search-toggle {
-                width: 40px;
-                height: 40px;
-            }
-
-            .language-switcher .btn {
-                padding: 0 12px;
-                font-size: 14px;
-            }
-
-            .search-popup {
-                top: 56px;
-            }
-
-            .navbar-collapse {
-                top: 56px;
-            }
-
-            .nav-link {
-                padding: 12px 20px !important;
-                font-size: 15px;
-            }
-
-            .dropdown-item {
-                padding: 10px 25px;
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -611,22 +413,8 @@
                     {% endif %}
                     <span>{{ site_config.site_name }}</span>
                 </a>
-                <div class="mobile-buttons d-lg-none">
-                    <div class="search-wrapper">
-                        <button class="btn btn-outline-light search-toggle" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <div class="search-popup">
-                            <form class="search-form" action="{% url 'main:search' %}" method="GET">
-                                <div class="input-group">
-                                    <input type="text" name="q" class="form-control" placeholder="{% trans 'Search...' %}">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <!-- Группируем кнопки в мобильной версии -->
+                <div class="mobile-buttons d-flex d-lg-none">
                     <div class="language-switcher">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
@@ -703,30 +491,6 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="language-switcher">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        <div class="dropdown">
-                            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                {{ LANGUAGE_CODE|upper }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                {% for language in languages %}
-                                <li>
-                                    <form action="{% url 'set_language' %}" method="post">
-                                        {% csrf_token %}
-                                        <input name="next" type="hidden" value="{{ request.path }}">
-                                        <input name="language" type="hidden" value="{{ language.code }}">
-                                        <button type="submit" class="dropdown-item">
-                                            {{ language.name_local }}
-                                        </button>
-                                    </form>
-                                </li>
-                                {% endfor %}
-                            </ul>
                         </div>
                     </div>
                 </div>
